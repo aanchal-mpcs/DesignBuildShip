@@ -431,7 +431,14 @@
     .card[data-version="20"] .card-preview::before { content: '🖼'; position: absolute; top: 10px; right: 14px; font-size: 1.2rem; opacity: 0.4; }
     .card[data-version="20"] .card-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #b8860b, #d4a846, #b8860b); }
 
-    /* Placeholder cards (21-25) keep generic dark style */
+    /* v21 Softened Edition — warm parchment + brown */
+    .card[data-version="21"] .card-preview { background: linear-gradient(180deg, #f4f0ea 50%, #2a2520 50%); }
+    .card[data-version="21"] .card-preview .version-number { color: #e8e4dc; font-family: 'Bodoni Moda', serif; font-weight: 900; }
+    .card[data-version="21"] .card-preview .preview-label { color: #b8860b; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 1.05rem; font-style: italic; }
+    .card[data-version="21"] .card-tag { color: #b8860b; }
+    .card[data-version="21"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.15); }
+
+    /* Placeholder cards (22-25) keep generic dark style */
     .card[data-version="19"] .card-preview,
     .card[data-version="20"] .card-preview,
     .card[data-version="21"] .card-preview,
@@ -860,15 +867,15 @@
     <a href="version21/index.html" class="card" data-version="21">
       <div class="card-preview">
         <span class="version-number">21</span>
-        <span class="preview-label">TBD</span>
+        <span class="preview-label">Bodoni Moda</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 21</div>
-        <h2>Landing Page v21</h2>
-        <p>Twenty-first iteration — neumorphism experiment.</p>
+        <h2>Softened Edition</h2>
+        <p>v20 with muted palette: warm parchment (#f4f0ea) replaces stark white, desaturated brown (#2a2520) replaces pure black.</p>
       </div>
       <div class="card-footer">
-        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="status"><span class="dot"></span>Ready</span>
         <span class="arrow">&rarr;</span>
       </div>
     </a>

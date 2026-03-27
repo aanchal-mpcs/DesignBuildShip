@@ -1,1 +1,694 @@
-<\!DOCTYPE html><html><head><title>Version 21</title></head><body><h1>Landing Page — Version 21</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMBULA — Softened Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #2a2520;
+            --white: #f4f0ea;
+            --cream: #ece7df;
+            --gold: #b8860b;
+            --gold-dim: rgba(184, 134, 11, 0.25);
+            --grey: #8a8078;
+            --grey-dark: #504840;
+            --grey-light: #ddd6cc;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--black);
+            font-family: 'EB Garamond', serif;
+            font-weight: 400;
+            line-height: 1.85;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--black); text-decoration: none; transition: all 0.3s; }
+        a:hover { color: var(--gold); }
+
+        .back-link {
+            position: fixed;
+            top: 32px;
+            left: 32px;
+            z-index: 100;
+            font-family: 'EB Garamond', serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--grey);
+        }
+        .back-link:hover { color: var(--black); }
+
+        .hairline { border: none; border-top: 0.5px solid var(--grey-light); margin: 0; }
+        .gold-hairline { border: none; border-top: 0.5px solid var(--gold); margin: 0; }
+
+        /* HERO — v13 minimal center + v16 stats */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+        }
+
+        .hero-overline {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(3.5rem, 9vw, 8rem);
+            font-weight: 900;
+            line-height: 0.92;
+            letter-spacing: -2px;
+            margin-bottom: 12px;
+        }
+        .hero h1 em {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-line {
+            width: 60px;
+            height: 0.5px;
+            background: var(--gold);
+            margin: 32px auto;
+        }
+
+        .hero-body {
+            max-width: 500px;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--grey);
+            line-height: 2;
+            margin-bottom: 48px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 56px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .stat { text-align: center; }
+        .stat-num {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+        .stat-label {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-top: 4px;
+        }
+
+        /* Section */
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .section-label {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 0.5px;
+            background: var(--grey-light);
+        }
+
+        /* HUD box — v16 frame with fleurons, adapted to white */
+        .hud-box {
+            position: relative;
+            border: 0.5px solid var(--grey-light);
+            padding: 48px;
+        }
+        .hud-box::before, .hud-box::after {
+            content: '❦';
+            position: absolute;
+            font-size: 0.9rem;
+            color: var(--gold);
+            opacity: 0.5;
+        }
+        .hud-box::before { top: 8px; left: 12px; }
+        .hud-box::after { bottom: 8px; right: 12px; transform: rotate(180deg); }
+
+        /* Drop cap — v16 */
+        .intro-text {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--grey-dark);
+            text-align: justify;
+        }
+        .intro-text::first-letter {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 4.5rem;
+            float: left;
+            line-height: 0.72;
+            padding-right: 12px;
+            padding-top: 8px;
+            color: var(--black);
+            font-weight: 900;
+        }
+        .intro-text em { color: var(--gold); }
+
+        /* Two-column — v13 */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        .two-col h2 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .two-col p {
+            font-size: 0.95rem;
+            color: var(--grey-dark);
+            line-height: 2;
+        }
+
+        /* Real images */
+        .art-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border: 0.5px solid var(--grey-light);
+            display: block;
+        }
+        .art-image-wide {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border: 0.5px solid var(--grey-light);
+            display: block;
+            margin-bottom: 20px;
+        }
+        .img-credit {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.62rem;
+            font-style: italic;
+            color: var(--grey);
+            margin-top: 6px;
+            letter-spacing: 0.03em;
+        }
+
+        /* Editorial grid — v13 */
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .editorial-item .image-placeholder {
+            aspect-ratio: 3/4;
+            margin-bottom: 20px;
+        }
+        .editorial-item h3 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .editorial-item p {
+            font-size: 0.88rem;
+            color: var(--grey);
+            line-height: 1.9;
+        }
+        .editorial-item .meta {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 12px;
+        }
+
+        /* Full-width image banner */
+        .image-banner {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .image-banner img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border: 0.5px solid var(--grey-light);
+            display: block;
+        }
+        .image-banner .img-credit {
+            text-align: center;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+
+        /* Artifact image in dark section */
+        .artifact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 1000px;
+            margin: 48px auto 0;
+        }
+        .artifact-row img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border: 0.5px solid rgba(255,255,255,0.1);
+        }
+        .artifact-row .img-credit { color: #666; }
+
+        /* Pull quote — merged style */
+        .pull-quote {
+            padding: 100px 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .pull-quote::before {
+            content: '❦';
+            font-size: 1.2rem;
+            color: var(--gold);
+            opacity: 0.4;
+            display: block;
+            margin-bottom: 32px;
+        }
+        .pull-quote blockquote {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--black);
+        }
+        .pull-quote cite {
+            display: block;
+            margin-top: 24px;
+            font-family: 'EB Garamond', serif;
+            font-size: 0.72rem;
+            font-style: normal;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* Dark section — v13 inversion + v16 cards */
+        .dark-section {
+            background: var(--black);
+            color: var(--white);
+            padding: 100px 40px;
+        }
+        .dark-section .section-label {
+            color: var(--gold);
+        }
+        .dark-section .section-label::after {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .ms-card {
+            border: 0.5px solid rgba(255,255,255,0.1);
+            padding: 36px;
+            position: relative;
+            transition: all 0.4s;
+        }
+        .ms-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(184, 134, 11, 0.08);
+        }
+        .ms-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 40px; height: 0.5px;
+            background: var(--gold);
+        }
+        .ms-card .num {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.7rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 12px;
+        }
+        .ms-card h3 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .ms-card p {
+            font-size: 0.88rem;
+            color: #999;
+            line-height: 1.9;
+        }
+
+        /* Timeline in hud-box — v16 */
+        .dark-section .hud-box {
+            border-color: rgba(255,255,255,0.1);
+            background: transparent;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .dark-section .hud-box::before,
+        .dark-section .hud-box::after {
+            color: var(--gold);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 44px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 8px;
+            width: 0.5px;
+            background: linear-gradient(to bottom, var(--gold), rgba(184,134,11,0.1));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: '◆';
+            position: absolute;
+            left: -42px; top: 2px;
+            font-size: 0.5rem;
+            color: var(--gold);
+        }
+        .timeline-item h4 {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-style: italic;
+            letter-spacing: 0.05em;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+        .timeline-item p {
+            font-size: 0.9rem;
+            color: #999;
+            line-height: 1.85;
+        }
+        .timeline-item p em { color: var(--white); }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 120px 40px;
+        }
+        .cta-section h2 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+        .cta-section h2 em {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--gold);
+        }
+        .cta-section p {
+            font-size: 0.9rem;
+            color: var(--grey);
+            max-width: 420px;
+            margin: 0 auto 36px;
+            font-style: italic;
+        }
+        .cta-btn {
+            display: inline-block;
+            font-family: 'EB Garamond', serif;
+            font-size: 0.85rem;
+            font-style: italic;
+            letter-spacing: 0.08em;
+            color: var(--white);
+            background: var(--black);
+            padding: 16px 48px;
+            border: 0.5px solid var(--black);
+            transition: all 0.3s;
+        }
+        .cta-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 32px 40px;
+            border-top: 0.5px solid var(--grey-light);
+        }
+        .footer-fleuron {
+            color: var(--gold);
+            opacity: 0.4;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        footer p {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.72rem;
+            font-style: italic;
+            letter-spacing: 0.06em;
+            color: var(--grey);
+        }
+
+        @media (max-width: 700px) {
+            .two-col { grid-template-columns: 1fr; gap: 40px; }
+            .editorial-grid { grid-template-columns: 1fr; }
+            .card-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: clamp(2.5rem, 12vw, 5rem); }
+            .hero-stats { gap: 32px; }
+            .hud-box { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link">&larr; Back</a>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-overline">A Community Inquiry</div>
+    <h1>TAMBULA<br><em>&amp; Desire</em></h1>
+    <div class="hero-line"></div>
+    <p class="hero-body">The betel leaf as the silent vocabulary of longing, intimacy, and ritual pleasure in classical Sanskrit literature.</p>
+    <div class="hero-stats">
+        <div class="stat">
+            <div class="stat-num">1,500+</div>
+            <div class="stat-label">Years of Tradition</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">47</div>
+            <div class="stat-label">Texts Explored</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">312</div>
+            <div class="stat-label">References</div>
+        </div>
+    </div>
+</div>
+
+<hr class="hairline" style="max-width:1000px; margin:0 auto;">
+
+<!-- INTRODUCTION — v16 drop cap in v13 hud frame -->
+<section>
+    <div class="section-label">I &middot; Introduction</div>
+    <div class="hud-box">
+        <p class="intro-text">In the age of the great poets, when courtship was an art refined to its most exquisite form, the betel leaf &mdash; known to the learned as <em>tambula</em> &mdash; occupied a place of singular importance. It was not merely chewed; it was <em>offered</em>, with all the gravity and tenderness that the word implies. Across centuries of kavya, natya, and kama-shastra, paan functions as a loaded signifier: of desire, of consent, of intimacy ritualized. This archive maps its presence across the classical canon, illuminating how a single leaf carried the weight of an entire erotic grammar.</p>
+    </div>
+</section>
+
+<!-- TWO-COL with image — v13 layout -->
+<section>
+    <div class="section-label">II &middot; Origins</div>
+    <div class="two-col">
+        <div>
+            <h2>Where Botany Meets the Bedroom</h2>
+            <p>The betel vine &mdash; <em>Piper betle</em>, called <em>tambula</em> in Sanskrit &mdash; occupies a singular position in the classical Indian erotic imagination. Neither food nor medicine in the conventional sense, it existed in a liminal space: part stimulant, part cosmetic, part language of desire.</p>
+            <p style="margin-top:16px;">Vatsyayana placed its preparation among the sixty-four arts a cultured person must master. This was not mere etiquette &mdash; the Kamasutra understood that desire operates through layers of sensory preparation.</p>
+        </div>
+        <div>
+            <img class="art-image" src="https://images.metmuseum.org/CRDImages/as/original/DP335788.jpg" alt="Radha pining for Krishna, from the Gita Govinda series, c. 1775-80">
+            <p class="img-credit">Radha with Her Confidant, Gita Govinda series, c. 1775. The Metropolitan Museum of Art, Public Domain.</p>
+        </div>
+    </div>
+</section>
+
+<!-- EDITORIAL GRID — v13 -->
+<section>
+    <div class="section-label">III &middot; The Texts</div>
+    <div class="editorial-grid">
+        <div class="editorial-item">
+            <img class="art-image-wide" src="https://upload.wikimedia.org/wikipedia/commons/1/10/A_Pensive_Nayika_%28Romantic_Heroine%29_%28CBL_In_11B.39%29.jpg" alt="A Pensive Nayika (Romantic Heroine)">
+            <h3>The Crimson Canon</h3>
+            <p>Kalidasa, Amaru, Bhartrihari &mdash; the great poets returned obsessively to betel-stained lips as the mark of erotic beauty.</p>
+            <div class="meta">Poetry &bull; 4th&ndash;7th Century</div>
+            <p class="img-credit">A Pensive Nayika. Chester Beatty Library, Public Domain.</p>
+        </div>
+        <div class="editorial-item">
+            <img class="art-image-wide" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Indian_-_Final_Adornment%2C_from_a_%22Gitagovinda%22_Series_-_Walters_W861.jpg" alt="Final Adornment from a Gitagovinda Series">
+            <h3>Treatises of the Body</h3>
+            <p>The Kamasutra, Ratirahasya, and Anangaranga each codify tambula's role in the architecture of lovemaking.</p>
+            <div class="meta">Shastra &bull; 3rd&ndash;15th Century</div>
+            <p class="img-credit">Final Adornment, Gitagovinda. Walters Art Museum, Public Domain.</p>
+        </div>
+        <div class="editorial-item">
+            <img class="art-image-wide" src="https://upload.wikimedia.org/wikipedia/commons/6/68/Anonymous_-_Krishna_and_Radha_Conversing%2C_Page_from_a_Dispersed_Gita_Govinda_%28Loves_of_Krishna%29_-_1979.512_-_Metropolitan_Museum_of_Art.jpg" alt="Krishna and Radha Conversing, Gita Govinda">
+            <h3>Divine Eroticism</h3>
+            <p>Jayadeva's Gita Govinda transforms the paan exchange between Radha and Krishna into devotional ecstasy.</p>
+            <div class="meta">Bhakti &bull; 12th Century</div>
+            <p class="img-credit">Krishna and Radha Conversing. The Met, Public Domain.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PAAN LEAF BANNER -->
+<div class="image-banner">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Paan_leaf.jpg" alt="Fresh paan (betel) leaf">
+    <p class="img-credit">Piper betle &mdash; the betel leaf. Wikimedia Commons, CC BY-SA 4.0.</p>
+</div>
+
+<!-- QUOTE -->
+<hr class="gold-hairline" style="max-width:1000px; margin:40px auto 0;">
+<div class="pull-quote">
+    <blockquote>"She offered him the betel from her own mouth &mdash; and in that crimson transit, an entire vocabulary of desire was spoken without a single word."</blockquote>
+    <cite>Adapted from Amarushataka &middot; c. 7th Century CE</cite>
+</div>
+<hr class="gold-hairline" style="max-width:1000px; margin:0 auto;">
+
+<!-- DARK SECTION — v13 inversion + v16 card grid -->
+<div class="dark-section">
+    <div style="max-width:1000px; margin:0 auto;">
+        <div class="section-label">IV &middot; The Ritual Language</div>
+    </div>
+    <div class="card-grid">
+        <div class="ms-card">
+            <span class="num">I</span>
+            <h3>The Offering</h3>
+            <p>To prepare paan for another was an act of devotion. The selection of ingredients, the folding of the leaf &mdash; each step was courtship in miniature.</p>
+        </div>
+        <div class="ms-card">
+            <span class="num">II</span>
+            <h3>The Acceptance</h3>
+            <p>Taking paan from a lover's hand signaled consent and desire. Refusal was a legible rejection &mdash; no words required.</p>
+        </div>
+        <div class="ms-card">
+            <span class="num">III</span>
+            <h3>The Exchange</h3>
+            <p>Passing the half-chewed leaf between mouths was the apex of non-coital intimacy &mdash; mingling bodies through the botanical.</p>
+        </div>
+        <div class="ms-card">
+            <span class="num">IV</span>
+            <h3>The Afterglow</h3>
+            <p>Post-coital tambula sealed the erotic encounter. The shared leaf was both refreshment and ritual closure.</p>
+        </div>
+        <div class="ms-card">
+            <span class="num">V</span>
+            <h3>Aromatic Code</h3>
+            <p>Camphor, cardamom, clove, lime &mdash; each ingredient carried symbolic weight, an encrypted message of longing.</p>
+        </div>
+        <div class="ms-card">
+            <span class="num">VI</span>
+            <h3>Courtly Hierarchy</h3>
+            <p>Who prepared paan, who served it, who received it first &mdash; encoded hierarchies of desire and rank in classical courts.</p>
+        </div>
+    </div>
+    <div class="artifact-row">
+        <div>
+            <img src="https://images.metmuseum.org/CRDImages/as/original/DP22195_1997.132.jpg" alt="Bidri pan box in the shape of a duck, ca. 1700">
+            <p class="img-credit">Bidri pan box in the shape of a duck, c. 1700. The Met, Public Domain.</p>
+        </div>
+        <div>
+            <img src="https://images.metmuseum.org/CRDImages/is/original/DP221344.jpg" alt="Bidri box for holding pan, 17th century">
+            <p class="img-credit">Bidri box for holding pan, 17th century. The Met, Public Domain.</p>
+        </div>
+    </div>
+</div>
+
+<!-- TIMELINE — v16 style in dark section -->
+<div class="dark-section" style="padding-top:0;">
+    <div style="max-width:1000px; margin:0 auto;">
+        <div class="section-label">V &middot; A History in Verse</div>
+        <div class="hud-box">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>c. 3rd Century CE</h4>
+                    <p>Vatsyayana's <em>Kamasutra</em> codifies tambula preparation as one of the sixty-four arts.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>c. 5th Century CE</h4>
+                    <p>Kalidasa's <em>Kumarasambhava</em> deploys betel-stained lips as the supreme motif of beauty.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>c. 7th Century CE</h4>
+                    <p>Amaru's <em>Amarushataka</em> elevates the paan exchange to high art in miniature verses.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>c. 12th Century CE</h4>
+                    <p>Jayadeva's <em>Gita Govinda</em> sacralizes the betel ritual within devotional poetry.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>c. 15th Century CE</h4>
+                    <p>Kalyanamalla's <em>Anangaranga</em> prescribes paan for different stages of lovemaking.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+    <div class="section-label" style="justify-content:center;">VI &middot; Community</div>
+    <h2>Join the <em>Inquiry</em></h2>
+    <p>We welcome scholars, translators, and curious minds to this ongoing exploration of eros and botany in classical India.</p>
+    <a href="#" class="cta-btn">Request Access &rarr;</a>
+</div>
+
+<footer>
+    <div class="footer-fleuron">&#10047; &#10086; &#10047;</div>
+    <p>&copy; 2026 Tambula &amp; Desire &mdash; A Luxury Literary Journal &middot; Composed for students &amp; lovers of Sanskrit</p>
+</footer>
+
+</body>
+</html>

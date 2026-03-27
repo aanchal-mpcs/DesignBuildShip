@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 1 — 25 Landing Page Versions</title>
+  <style>
+    /* ===== Variables ===== */
+    :root {
+      --bg: #0f0f13;
+      --bg-card: #1a1a24;
+      --bg-card-hover: #22223a;
+      --text: #eee;
+      --text-muted: #8a8aa3;
+      --accent-1: #6366f1;
+      --accent-2: #ec4899;
+      --accent-3: #14b8a6;
+      --accent-4: #f59e0b;
+      --accent-5: #ef4444;
+      --border: rgba(255,255,255,0.06);
+      --radius: 14px;
+      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      position: relative;
+    }
+
+    .header h1 span {
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-top: 0.75rem;
+      position: relative;
+    }
+
+    .header .badge {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.4rem 1.2rem;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-1);
+      letter-spacing: 0.03em;
+      position: relative;
+    }
+
+    /* ===== Filter Bar ===== */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0 2rem 2rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: var(--bg-card);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: var(--font);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent-1);
+      color: white;
+      border-color: var(--accent-1);
+    }
+
+    /* ===== Grid ===== */
+    .grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 1rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ===== Card ===== */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.35s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .card-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-preview .version-number {
+      font-size: 4rem;
+      font-weight: 900;
+      opacity: 0.12;
+      position: absolute;
+    }
+
+    .card-preview .preview-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-body .card-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-body p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-footer {
+      padding: 0 1.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-footer .status {
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+    }
+
+    .card-footer .status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    .card-footer .arrow {
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: translateX(-5px);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .card-footer .arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ===== Color Themes per Row ===== */
+    .card:nth-child(5n+1) .card-preview { background: linear-gradient(135deg, #1e1b4b, #312e81); }
+    .card:nth-child(5n+1) .card-tag { color: var(--accent-1); }
+
+    .card:nth-child(5n+2) .card-preview { background: linear-gradient(135deg, #2d1a35, #4a1942); }
+    .card:nth-child(5n+2) .card-tag { color: var(--accent-2); }
+
+    .card:nth-child(5n+3) .card-preview { background: linear-gradient(135deg, #0f2b2b, #134e4a); }
+    .card:nth-child(5n+3) .card-tag { color: var(--accent-3); }
+
+    .card:nth-child(5n+4) .card-preview { background: linear-gradient(135deg, #2a1f0a, #422d0b); }
+    .card:nth-child(5n+4) .card-tag { color: var(--accent-4); }
+
+    .card:nth-child(5n+5) .card-preview { background: linear-gradient(135deg, #2a0f0f, #451a1a); }
+    .card:nth-child(5n+5) .card-tag { color: var(--accent-5); }
+
+    /* Hover glow per theme */
+    .card:nth-child(5n+1):hover { box-shadow: 0 20px 50px rgba(99,102,241,0.15); }
+    .card:nth-child(5n+2):hover { box-shadow: 0 20px 50px rgba(236,72,153,0.15); }
+    .card:nth-child(5n+3):hover { box-shadow: 0 20px 50px rgba(20,184,166,0.15); }
+    .card:nth-child(5n+4):hover { box-shadow: 0 20px 50px rgba(245,158,11,0.15); }
+    .card:nth-child(5n+5):hover { box-shadow: 0 20px 50px rgba(239,68,68,0.15); }
+
+    /* ===== Footer ===== */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+        padding: 1rem 1.25rem 3rem;
+      }
+
+      .header {
+        padding: 4rem 1.5rem 2rem;
+      }
+    }
+
+    /* ===== Scrollbar ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+    /* ===== Animation ===== */
+    .card {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cardIn 0.5s ease forwards;
+    }
+
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:nth-child(1) { animation-delay: 0.02s; }
+    .card:nth-child(2) { animation-delay: 0.04s; }
+    .card:nth-child(3) { animation-delay: 0.06s; }
+    .card:nth-child(4) { animation-delay: 0.08s; }
+    .card:nth-child(5) { animation-delay: 0.10s; }
+    .card:nth-child(6) { animation-delay: 0.12s; }
+    .card:nth-child(7) { animation-delay: 0.14s; }
+    .card:nth-child(8) { animation-delay: 0.16s; }
+    .card:nth-child(9) { animation-delay: 0.18s; }
+    .card:nth-child(10) { animation-delay: 0.20s; }
+    .card:nth-child(11) { animation-delay: 0.22s; }
+    .card:nth-child(12) { animation-delay: 0.24s; }
+    .card:nth-child(13) { animation-delay: 0.26s; }
+    .card:nth-child(14) { animation-delay: 0.28s; }
+    .card:nth-child(15) { animation-delay: 0.30s; }
+    .card:nth-child(16) { animation-delay: 0.32s; }
+    .card:nth-child(17) { animation-delay: 0.34s; }
+    .card:nth-child(18) { animation-delay: 0.36s; }
+    .card:nth-child(19) { animation-delay: 0.38s; }
+    .card:nth-child(20) { animation-delay: 0.40s; }
+    .card:nth-child(21) { animation-delay: 0.42s; }
+    .card:nth-child(22) { animation-delay: 0.44s; }
+    .card:nth-child(23) { animation-delay: 0.46s; }
+    .card:nth-child(24) { animation-delay: 0.48s; }
+    .card:nth-child(25) { animation-delay: 0.50s; }
+
+    /* ===== Filter animation ===== */
+    .card.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>25 Versions of a <span>Landing Page</span></h1>
+    <p>Assignment 1 — Exploring layout, color, typography, and interaction.</p>
+    <div class="badge">Aanchal Singh &middot; Design Build Ship</div>
+  </header>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="1-5">1–5</button>
+    <button class="filter-btn" data-filter="6-10">6–10</button>
+    <button class="filter-btn" data-filter="11-15">11–15</button>
+    <button class="filter-btn" data-filter="16-20">16–20</button>
+    <button class="filter-btn" data-filter="21-25">21–25</button>
+  </div>
+
+  <main class="grid">
+
+    <a href="version01/index.html" class="card" data-version="1">
+      <div class="card-preview">
+        <span class="version-number">01</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 01</div>
+        <h2>Landing Page v1</h2>
+        <p>First iteration — establishing the base layout and structure.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version02/index.html" class="card" data-version="2">
+      <div class="card-preview">
+        <span class="version-number">02</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 02</div>
+        <h2>Landing Page v2</h2>
+        <p>Second iteration — experimenting with typography choices.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version03/index.html" class="card" data-version="3">
+      <div class="card-preview">
+        <span class="version-number">03</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 03</div>
+        <h2>Landing Page v3</h2>
+        <p>Third iteration — exploring color palette variations.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version04/index.html" class="card" data-version="4">
+      <div class="card-preview">
+        <span class="version-number">04</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 04</div>
+        <h2>Landing Page v4</h2>
+        <p>Fourth iteration — refining spacing and visual hierarchy.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version05/index.html" class="card" data-version="5">
+      <div class="card-preview">
+        <span class="version-number">05</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 05</div>
+        <h2>Landing Page v5</h2>
+        <p>Fifth iteration — adding hero section variations.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version06/index.html" class="card" data-version="6">
+      <div class="card-preview">
+        <span class="version-number">06</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 06</div>
+        <h2>Landing Page v6</h2>
+        <p>Sixth iteration — testing dark theme approach.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version07/index.html" class="card" data-version="7">
+      <div class="card-preview">
+        <span class="version-number">07</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 07</div>
+        <h2>Landing Page v7</h2>
+        <p>Seventh iteration — minimal layout with bold type.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version08/index.html" class="card" data-version="8">
+      <div class="card-preview">
+        <span class="version-number">08</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 08</div>
+        <h2>Landing Page v8</h2>
+        <p>Eighth iteration — grid-based card layout.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version09/index.html" class="card" data-version="9">
+      <div class="card-preview">
+        <span class="version-number">09</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 09</div>
+        <h2>Landing Page v9</h2>
+        <p>Ninth iteration — experimenting with gradients.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version10/index.html" class="card" data-version="10">
+      <div class="card-preview">
+        <span class="version-number">10</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 10</div>
+        <h2>Landing Page v10</h2>
+        <p>Tenth iteration — split-screen hero design.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version11/index.html" class="card" data-version="11">
+      <div class="card-preview">
+        <span class="version-number">11</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 11</div>
+        <h2>Landing Page v11</h2>
+        <p>Eleventh iteration — asymmetric layout exploration.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version12/index.html" class="card" data-version="12">
+      <div class="card-preview">
+        <span class="version-number">12</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 12</div>
+        <h2>Landing Page v12</h2>
+        <p>Twelfth iteration — monochrome with accent color.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version13/index.html" class="card" data-version="13">
+      <div class="card-preview">
+        <span class="version-number">13</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 13</div>
+        <h2>Landing Page v13</h2>
+        <p>Thirteenth iteration — full-width immersive sections.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version14/index.html" class="card" data-version="14">
+      <div class="card-preview">
+        <span class="version-number">14</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 14</div>
+        <h2>Landing Page v14</h2>
+        <p>Fourteenth iteration — animated scroll transitions.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version15/index.html" class="card" data-version="15">
+      <div class="card-preview">
+        <span class="version-number">15</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 15</div>
+        <h2>Landing Page v15</h2>
+        <p>Fifteenth iteration — glassmorphism UI elements.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version16/index.html" class="card" data-version="16">
+      <div class="card-preview">
+        <span class="version-number">16</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 16</div>
+        <h2>Landing Page v16</h2>
+        <p>Sixteenth iteration — retro/vintage aesthetic.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version17/index.html" class="card" data-version="17">
+      <div class="card-preview">
+        <span class="version-number">17</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 17</div>
+        <h2>Landing Page v17</h2>
+        <p>Seventeenth iteration — brutalist design approach.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version18/index.html" class="card" data-version="18">
+      <div class="card-preview">
+        <span class="version-number">18</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 18</div>
+        <h2>Landing Page v18</h2>
+        <p>Eighteenth iteration — serif-heavy editorial style.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version19/index.html" class="card" data-version="19">
+      <div class="card-preview">
+        <span class="version-number">19</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 19</div>
+        <h2>Landing Page v19</h2>
+        <p>Nineteenth iteration — playful with rounded elements.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version20/index.html" class="card" data-version="20">
+      <div class="card-preview">
+        <span class="version-number">20</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 20</div>
+        <h2>Landing Page v20</h2>
+        <p>Twentieth iteration — high contrast accessibility focus.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version21/index.html" class="card" data-version="21">
+      <div class="card-preview">
+        <span class="version-number">21</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 21</div>
+        <h2>Landing Page v21</h2>
+        <p>Twenty-first iteration — neumorphism experiment.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version22/index.html" class="card" data-version="22">
+      <div class="card-preview">
+        <span class="version-number">22</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 22</div>
+        <h2>Landing Page v22</h2>
+        <p>Twenty-second iteration — bold geometric shapes.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version23/index.html" class="card" data-version="23">
+      <div class="card-preview">
+        <span class="version-number">23</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 23</div>
+        <h2>Landing Page v23</h2>
+        <p>Twenty-third iteration — organic flowing layout.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version24/index.html" class="card" data-version="24">
+      <div class="card-preview">
+        <span class="version-number">24</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 24</div>
+        <h2>Landing Page v24</h2>
+        <p>Twenty-fourth iteration — micro-interactions and polish.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="version25/index.html" class="card" data-version="25">
+      <div class="card-preview">
+        <span class="version-number">25</span>
+        <span class="preview-label">Preview</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Version 25</div>
+        <h2>Landing Page v25</h2>
+        <p>Final iteration — the culmination of all explorations.</p>
+      </div>
+      <div class="card-footer">
+        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+    </a>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Aanchal Singh &middot; Design Build Ship &middot; Assignment 1</p>
+  </footer>
+
+  <script>
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.card').forEach(card => {
+          const v = parseInt(card.dataset.version);
+          if (filter === 'all') {
+            card.classList.remove('hidden');
+          } else {
+            const [min, max] = filter.split('-').map(Number);
+            card.classList.toggle('hidden', v < min || v > max);
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

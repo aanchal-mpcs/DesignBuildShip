@@ -383,8 +383,16 @@
     .card[data-version="15"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; transform: translate(-50%,-50%); border: 2px solid rgba(201,168,76,0.3); border-radius: 50%; }
     .card[data-version="15"] .card-preview::after { content: ''; position: absolute; top: 50%; left: 50%; width: 40px; height: 40px; transform: translate(-50%,-50%) rotate(45deg); border: 1px solid rgba(201,168,76,0.2); }
 
-    /* Placeholder cards (16-25) keep generic dark style */
-    .card[data-version="16"] .card-preview,
+    /* v16 Manuscript + Neon Layout — dark bg, gold accents, serif */
+    .card[data-version="16"] .card-preview { background: #0e0b06; }
+    .card[data-version="16"] .card-preview .version-number { color: #1a1508; font-family: Georgia; }
+    .card[data-version="16"] .card-preview .preview-label { color: #c5a96a; font-family: Georgia; font-style: italic; }
+    .card[data-version="16"] .card-tag { color: #c5a96a; }
+    .card[data-version="16"]:hover { box-shadow: 0 20px 50px rgba(197,169,106,0.15); }
+    .card[data-version="16"] .card-preview::before { content: '❦'; position: absolute; top: 10px; left: 14px; color: #c5a96a; font-size: 1rem; opacity: 0.4; }
+    .card[data-version="16"] .card-preview::after { content: ''; position: absolute; bottom: 30%; left: 15%; right: 15%; height: 1px; background: linear-gradient(90deg, transparent, rgba(197,169,106,0.3), transparent); }
+
+    /* Placeholder cards (17-25) keep generic dark style */
     .card[data-version="17"] .card-preview,
     .card[data-version="18"] .card-preview,
     .card[data-version="19"] .card-preview,
@@ -394,7 +402,6 @@
     .card[data-version="23"] .card-preview,
     .card[data-version="24"] .card-preview,
     .card[data-version="25"] .card-preview { background: linear-gradient(135deg, #1a1a24, #252535); }
-    .card[data-version="16"] .card-tag,
     .card[data-version="17"] .card-tag,
     .card[data-version="18"] .card-tag,
     .card[data-version="19"] .card-tag,
@@ -740,11 +747,11 @@
       </div>
       <div class="card-body">
         <div class="card-tag">Version 16</div>
-        <h2>Landing Page v16</h2>
-        <p>Sixteenth iteration — retro/vintage aesthetic.</p>
+        <h2>Manuscript + Neon Layout</h2>
+        <p>v5 typography (EB Garamond, drop caps, fleurons) meets v11 layout (HUD boxes, card grid, timeline).</p>
       </div>
       <div class="card-footer">
-        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="status"><span class="dot"></span>Ready</span>
         <span class="arrow">&rarr;</span>
       </div>
     </a>

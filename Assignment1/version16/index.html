@@ -1,1 +1,567 @@
-<\!DOCTYPE html><html><head><title>Version 16</title></head><body><h1>Landing Page — Version 16</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Leaf of Desire — Manuscript Meets Machine</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0e0b06;
+            --bg-card: #15110a;
+            --parchment: #f4ead5;
+            --gold: #c5a96a;
+            --gold-dim: rgba(197, 169, 106, 0.25);
+            --brown: #8a6e47;
+            --brown-dark: #3b2a1a;
+            --text: #d4c8b0;
+            --text-dim: #8a7e6a;
+            --cream: #f9f2e0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Spectral', serif;
+            font-weight: 300;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Subtle parchment texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(197, 169, 106, 0.012) 3px,
+                    rgba(197, 169, 106, 0.012) 6px
+                );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        a { color: var(--gold); text-decoration: none; transition: all 0.3s; }
+        a:hover { color: var(--cream); }
+
+        /* Back link */
+        .back-link {
+            position: fixed;
+            top: 24px;
+            left: 28px;
+            z-index: 100;
+            font-family: 'EB Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--gold);
+            transition: opacity 0.3s;
+        }
+        .back-link:hover { opacity: 0.6; }
+
+        /* HUD container — manuscript frame style */
+        .hud-box {
+            position: relative;
+            border: 1px solid var(--gold-dim);
+            background: rgba(14, 11, 6, 0.85);
+            padding: 44px;
+        }
+        .hud-box::before, .hud-box::after {
+            content: '❦';
+            position: absolute;
+            font-size: 1.1rem;
+            color: var(--gold);
+            opacity: 0.4;
+        }
+        .hud-box::before {
+            top: 8px; left: 12px;
+        }
+        .hud-box::after {
+            bottom: 8px; right: 12px;
+            transform: rotate(180deg);
+        }
+
+        .hud-box-alt::before {
+            content: '❧';
+            top: 8px; right: 12px; left: auto;
+        }
+        .hud-box-alt::after {
+            content: '❧';
+            bottom: 8px; left: 12px; right: auto;
+            transform: rotate(180deg);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 24px 60px;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 600px; height: 600px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(197, 169, 106, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--brown);
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.1;
+            color: var(--cream);
+            margin-bottom: 12px;
+        }
+        .hero h1 .accent {
+            color: var(--gold);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .hero-sub {
+            font-family: 'Spectral', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            max-width: 580px;
+            color: var(--text-dim);
+            margin: 20px auto 44px;
+            line-height: 1.9;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            color: var(--gold);
+            font-size: 0.85rem;
+            margin-bottom: 44px;
+            width: 300px;
+            opacity: 0.5;
+        }
+        .hero-divider::before,
+        .hero-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 56px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .stat { text-align: center; }
+        .stat-num {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        .stat-label {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .section-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--brown);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold-dim), transparent);
+        }
+
+        /* Card grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .ms-card {
+            background: var(--bg-card);
+            border: 1px solid var(--gold-dim);
+            padding: 36px;
+            position: relative;
+            transition: all 0.4s;
+        }
+        .ms-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(197, 169, 106, 0.08);
+        }
+        .ms-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 50px; height: 1px;
+            background: var(--gold);
+            opacity: 0.6;
+        }
+
+        .ms-card h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--cream);
+            margin-bottom: 12px;
+        }
+        .ms-card p {
+            font-family: 'Spectral', serif;
+            font-size: 0.92rem;
+            color: var(--text-dim);
+            line-height: 1.9;
+        }
+        .ms-card .card-tag-label {
+            display: inline-block;
+            font-family: 'EB Garamond', serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--gold-dim);
+            padding: 4px 12px;
+            margin-top: 18px;
+        }
+
+        /* Introduction box with drop cap */
+        .intro-text {
+            font-family: 'Spectral', serif;
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            text-align: justify;
+        }
+        .intro-text::first-letter {
+            font-family: 'EB Garamond', serif;
+            font-size: 4.5rem;
+            float: left;
+            line-height: 0.75;
+            padding-right: 12px;
+            padding-top: 8px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .intro-text em { color: var(--gold); font-style: italic; }
+
+        /* Featured quote */
+        .featured-quote {
+            margin: 80px auto;
+            max-width: 800px;
+            padding: 52px;
+            text-align: center;
+            border-top: 1px solid var(--gold-dim);
+            border-bottom: 1px solid var(--gold-dim);
+            position: relative;
+        }
+        .featured-quote::before {
+            content: '❦';
+            font-size: 1.4rem;
+            color: var(--gold);
+            opacity: 0.4;
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            padding: 0 24px;
+        }
+        .featured-quote blockquote {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text);
+            line-height: 2;
+        }
+        .featured-quote cite {
+            display: block;
+            margin-top: 18px;
+            font-family: 'EB Garamond', serif;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--brown);
+            font-style: normal;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 44px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 8px;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--gold), var(--brown), var(--gold-dim));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 44px;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: '◆';
+            position: absolute;
+            left: -42px; top: 2px;
+            font-size: 0.55rem;
+            color: var(--gold);
+        }
+        .timeline-item h4 {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+        .timeline-item p {
+            font-family: 'Spectral', serif;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.85;
+        }
+        .timeline-item p em { color: var(--text); }
+
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 24px;
+            margin: 40px auto;
+            max-width: 1100px;
+        }
+        .cta-section h2 {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--cream);
+            margin-bottom: 16px;
+        }
+        .cta-section h2 .accent { color: var(--gold); font-style: normal; font-weight: 600; }
+        .cta-section p {
+            font-family: 'Spectral', serif;
+            color: var(--text-dim);
+            max-width: 480px;
+            margin: 0 auto 36px;
+            font-style: italic;
+            line-height: 1.9;
+        }
+        .cta-btn {
+            display: inline-block;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            padding: 14px 40px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            transition: all 0.4s;
+        }
+        .cta-btn:hover {
+            background: var(--gold);
+            color: var(--bg);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid var(--gold-dim);
+        }
+        footer p {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.82rem;
+            font-style: italic;
+            color: var(--text-dim);
+            letter-spacing: 0.06em;
+        }
+        .footer-fleuron {
+            color: var(--gold);
+            opacity: 0.4;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hud-box { padding: 28px 20px; }
+            .ms-card { padding: 24px; }
+            .hero h1 { font-size: clamp(2rem, 9vw, 3.5rem); }
+            .hero-stats { gap: 32px; }
+            .featured-quote { padding: 36px 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link">&larr; Back</a>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-tag">A Community Inquiry</div>
+    <h1>The Leaf of <span class="accent">Desire</span></h1>
+    <p class="hero-sub">On the role of paan in Sanskrit erotic literature &mdash; where the betel leaf becomes the silent vocabulary of longing, intimacy, and ritual pleasure.</p>
+    <div class="hero-divider">&#10047;</div>
+    <div class="hero-stats">
+        <div class="stat">
+            <div class="stat-num">1,500+</div>
+            <div class="stat-label">Years of Tradition</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">47</div>
+            <div class="stat-label">Texts Explored</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">312</div>
+            <div class="stat-label">References Catalogued</div>
+        </div>
+    </div>
+</div>
+
+<!-- INTRODUCTION -->
+<section>
+    <div class="section-title">I &middot; Introduction</div>
+    <div class="hud-box">
+        <p class="intro-text">In the age of the great poets, when courtship was an art refined to its most exquisite form, the betel leaf &mdash; known to the learned as <em>tambula</em> &mdash; occupied a place of singular importance. It was not merely chewed; it was <em>offered</em>, with all the gravity and tenderness that the word implies. Across centuries of kavya, natya, and kama-shastra, paan functions as a loaded signifier: of desire, of consent, of intimacy ritualized. This archive maps its presence across the classical canon, illuminating how a single leaf carried the weight of an entire erotic grammar.</p>
+    </div>
+</section>
+
+<!-- THEME CARDS -->
+<section>
+    <div class="section-title">II &middot; Core Themes</div>
+    <div class="card-grid">
+        <div class="ms-card">
+            <h3>Tambula as Foreplay</h3>
+            <p>Vatsyayana lists the offering of betel as one of the sixty-four arts. The act of preparing and sharing paan between lovers served as a codified prelude to intimacy &mdash; a ritual of anticipation.</p>
+            <span class="card-tag-label">Kamasutra</span>
+        </div>
+        <div class="ms-card">
+            <h3>The Red-Stained Lip</h3>
+            <p>Poets from Kalidasa to Jayadeva fixated on lips reddened by betel juice. The <em>adhara</em> stained crimson became the supreme marker of erotic readiness and beauty.</p>
+            <span class="card-tag-label">Kavya Poetry</span>
+        </div>
+        <div class="ms-card">
+            <h3>Exchange &amp; Consent</h3>
+            <p>The transfer of a half-chewed betel leaf between mouths appears repeatedly as a metaphor for mutual desire. Accepting paan signaled willingness; refusing it, rejection.</p>
+            <span class="card-tag-label">Ritual Semiotics</span>
+        </div>
+        <div class="ms-card">
+            <h3>Aromatic Architecture</h3>
+            <p>Camphor, cardamom, clove, lime &mdash; the ingredients of paan formed a sensory landscape. Erotic texts describe scent as a pathway to arousal, and tambula was the master vehicle.</p>
+            <span class="card-tag-label">Sensory Studies</span>
+        </div>
+        <div class="ms-card">
+            <h3>Courtly Power Play</h3>
+            <p>In Rajasekhara and Bhavabhuti's works, offering paan was a political as well as romantic gesture. Who prepared it, who served it encoded hierarchies of desire and rank.</p>
+            <span class="card-tag-label">Court Literature</span>
+        </div>
+        <div class="ms-card">
+            <h3>Post-Coital Ritual</h3>
+            <p>The <em>Ratirahasya</em> and <em>Anangaranga</em> both prescribe tambula after lovemaking &mdash; not merely as refreshment, but as a symbolic closure sealing the experience.</p>
+            <span class="card-tag-label">Kama Shastra</span>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<div class="featured-quote">
+    <blockquote>"She placed the betel leaf upon her tongue and closed her eyes, and in that gesture was contained every unspoken syllable of desire."</blockquote>
+    <cite>Adapted from Amaru's Amarushataka &middot; c. 7th Century CE</cite>
+</div>
+
+<!-- TIMELINE -->
+<section>
+    <div class="section-title">III &middot; A History in Verse</div>
+    <div class="hud-box hud-box-alt">
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>c. 3rd Century CE</h4>
+                <p>Vatsyayana's <em>Kamasutra</em> codifies tambula preparation as one of the sixty-four arts, embedding paan into the erotic curriculum of the cultured citizen.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>c. 5th Century CE</h4>
+                <p>Kalidasa's <em>Kumarasambhava</em> and <em>Meghaduta</em> deploy betel-stained lips as recurring motifs of feminine beauty and longing across the seasons.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>c. 7th Century CE</h4>
+                <p>Amaru's <em>Amarushataka</em> elevates the paan exchange to high art &mdash; each verse a micro-drama of desire channeled through the offering of a single leaf.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>c. 12th Century CE</h4>
+                <p>Jayadeva's <em>Gita Govinda</em> interweaves tambula with the divine eroticism of Radha and Krishna, sacralizing the betel ritual within devotional poetry.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>c. 15th Century CE</h4>
+                <p>Kalyanamalla's <em>Anangaranga</em> provides detailed prescriptions for paan ingredients tailored to different stages and moods of lovemaking.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2>Enter the <span class="accent">Collection</span></h2>
+    <p>Contribute research, translations, or commentary to this growing archive of tambula in the erotic verses of Sanskrit.</p>
+    <a href="#" class="cta-btn">Join the Inquiry &rarr;</a>
+</div>
+
+<footer>
+    <div class="footer-fleuron">&#10047; &#10086; &#10047;</div>
+    <p>Composed for students &amp; lovers of Sanskrit &middot; MMXXVI</p>
+</footer>
+
+</body>
+</html>

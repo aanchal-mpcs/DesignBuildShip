@@ -1,1 +1,339 @@
-<\!DOCTYPE html><html><head><title>Version 17</title></head><body><h1>Landing Page — Version 17</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Leaf of Desire — Broadsheet Editorial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #f5f1eb;
+            color: #1a1a1a;
+            font-family: 'Source Sans 3', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .back-link {
+            position: fixed;
+            top: 24px;
+            left: 28px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c0392b;
+            z-index: 10;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.6; }
+
+        /* Top bar — v4 layout */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+        }
+        .top-bar .issue {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+        }
+        .top-bar .date {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        /* Divider lines — newspaper double rules */
+        .divider-line {
+            height: 1px;
+            background: #1a1a1a;
+            margin: 0 48px;
+        }
+        .divider-double {
+            height: 4px;
+            border-top: 2px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+            margin: 0 48px;
+        }
+
+        /* Hero — v4 oversized layout + v10 type */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 48px 40px;
+            max-width: 1200px;
+        }
+
+        .byline-top {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #c0392b;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            line-height: 0.95;
+            color: #1a1a1a;
+            margin-bottom: 32px;
+        }
+
+        .title-line-1 {
+            font-size: 7vw;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .title-line-2 {
+            font-size: 7vw;
+            display: block;
+            font-style: italic;
+            font-weight: 400;
+            color: #c0392b;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .title-line-3 {
+            font-size: 5vw;
+            display: block;
+            color: #888;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        /* Sub-hero — v4 layout */
+        .hero-sub {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 48px 24px;
+            gap: 40px;
+        }
+
+        .hero-sub .left {
+            max-width: 520px;
+        }
+
+        .hero-sub .left p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.85;
+            color: #444;
+        }
+
+        .hero-sub .left .deck {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .hero-sub .left .attribution {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+            margin-top: 14px;
+        }
+
+        .cta-editorial {
+            display: inline-block;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #f5f1eb;
+            background: #1a1a1a;
+            padding: 16px 44px;
+            flex-shrink: 0;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .cta-editorial:hover {
+            background: #c0392b;
+            transform: translateY(-1px);
+        }
+
+        /* Pull quote strip */
+        .quote-strip {
+            padding: 36px 48px;
+            border-top: 3px solid #1a1a1a;
+            border-bottom: 3px solid #1a1a1a;
+            margin: 0 48px;
+            text-align: center;
+        }
+        .quote-strip blockquote {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 22px;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .quote-strip cite {
+            display: block;
+            font-style: normal;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+            margin-top: 14px;
+        }
+
+        /* Ticker — v4 layout, v10 type */
+        .ticker-wrapper {
+            background: #1a1a1a;
+            padding: 14px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: auto;
+        }
+        .ticker {
+            display: inline-block;
+            animation: scroll-left 30s linear infinite;
+        }
+        .ticker span {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #f5f1eb;
+            margin-right: 48px;
+        }
+        .ticker span.accent {
+            color: #c0392b;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Footer line */
+        .footer-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 18px 48px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+        .footer-line a { color: #c0392b; }
+
+        @media (max-width: 768px) {
+            .title-line-1, .title-line-2 { font-size: 12vw; }
+            .title-line-3 { font-size: 8vw; }
+            .hero { padding: 40px 24px 24px; }
+            .hero-sub {
+                flex-direction: column;
+                padding: 0 24px 24px;
+                align-items: flex-start;
+            }
+            .top-bar { padding: 20px 24px; }
+            .divider-line, .divider-double { margin: 0 24px; }
+            .quote-strip { margin: 0 24px; padding: 24px; }
+            .quote-strip blockquote { font-size: 18px; }
+            .footer-line { padding: 16px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">&larr; Back</a>
+
+    <header class="top-bar">
+        <span class="issue">Vol. CXXVIII &middot; No. 42</span>
+        <span class="date">Friday, March 27, 2026</span>
+    </header>
+
+    <div class="divider-double"></div>
+
+    <main class="hero">
+        <div class="byline-top">Special Report &middot; Community &middot; Scholarship</div>
+        <h1>
+            <span class="title-line-1">The Leaf</span>
+            <span class="title-line-2">of Desire</span>
+            <span class="title-line-3">Paan &amp; Sanskrit Eros</span>
+        </h1>
+    </main>
+
+    <div class="hero-sub">
+        <div class="left">
+            <p class="deck">How a humble betel leaf became the most charged symbol of desire across five centuries of Sanskrit poetry, ritual, and courtly life.</p>
+            <p>Vatsyayana listed betel preparation among the sixty-four arts. Kalidasa adorned his verses with crimson-stained lips. Amaru turned the offering of a single leaf into a micro-drama of longing. This community project traces the erotic life of the tambula across the classical Sanskrit canon &mdash; from the Kamasutra to the courts of medieval India.</p>
+            <p class="attribution">By the Editorial Collective &middot; The Tambula Project</p>
+        </div>
+        <a href="#" class="cta-editorial">Read Now</a>
+    </div>
+
+    <div class="divider-line" style="margin-top: 24px;"></div>
+
+    <div class="quote-strip">
+        <blockquote>"She placed the betel upon his lip with a hand that trembled &mdash; not from fear, but from the weight of what the gesture promised."</blockquote>
+        <cite>Amarushataka, attributed to Amaru, c. 7th century CE</cite>
+    </div>
+
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span>Kalidasa</span>
+            <span class="accent">Tambula</span>
+            <span>Shringara Rasa</span>
+            <span class="accent">Kama Sutra</span>
+            <span>Amaru Shataka</span>
+            <span class="accent">Courtly Love</span>
+            <span>Betel Rituals</span>
+            <span class="accent">Rasa Theory</span>
+            <span>Gita Govinda</span>
+            <span class="accent">Desire</span>
+            <span>Kalidasa</span>
+            <span class="accent">Tambula</span>
+            <span>Shringara Rasa</span>
+            <span class="accent">Kama Sutra</span>
+            <span>Amaru Shataka</span>
+            <span class="accent">Courtly Love</span>
+            <span>Betel Rituals</span>
+            <span class="accent">Rasa Theory</span>
+            <span>Gita Govinda</span>
+            <span class="accent">Desire</span>
+        </div>
+    </div>
+
+    <div class="footer-line">
+        <span>&copy; 2026 The Tambula Gazette</span>
+        <span>Typeset in Libre Baskerville &amp; Source Sans</span>
+        <a href="../index.html">&larr; Back to Index</a>
+    </div>
+</body>
+</html>

@@ -1,1 +1,270 @@
-<\!DOCTYPE html><html><head><title>Version 02</title></head><body><h1>Landing Page — Version 02</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Leaf of Desire — Dark Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a0a0a;
+            color: #e8dcc8;
+            font-family: 'Raleway', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 28px;
+            left: 32px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            color: #d4a76a;
+            text-decoration: none;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 80px 32px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at 50% 30%, #3a0e0e 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, #2a1008 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, #1a0505 0%, transparent 50%),
+                #1a0a0a;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                rgba(196, 30, 58, 0.04) 40%,
+                rgba(196, 30, 58, 0.06) 60%,
+                transparent 100%
+            );
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: #d4a76a;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 1.0;
+            color: #f0e6d3;
+            margin-bottom: 8px;
+            text-shadow: 0 0 80px rgba(196, 30, 58, 0.15);
+        }
+
+        h1 em {
+            font-style: italic;
+            color: #c41e3a;
+        }
+
+        .gold-rule {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #d4a76a, transparent);
+            margin: 32px auto;
+            border: none;
+        }
+
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            font-style: italic;
+            color: #c8a882;
+            line-height: 1.7;
+            max-width: 540px;
+            margin: 0 auto 20px;
+        }
+
+        .body-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: #a89480;
+            max-width: 500px;
+            margin: 0 auto 48px;
+        }
+
+        .cta {
+            display: inline-block;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #fff;
+            background: #c41e3a;
+            padding: 16px 52px;
+            text-decoration: none;
+            border: none;
+            box-shadow:
+                0 0 30px rgba(196, 30, 58, 0.3),
+                0 0 60px rgba(196, 30, 58, 0.1);
+            transition: box-shadow 0.4s, transform 0.2s;
+        }
+
+        .cta:hover {
+            box-shadow:
+                0 0 40px rgba(196, 30, 58, 0.5),
+                0 0 80px rgba(196, 30, 58, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .bottom-accent {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 32px;
+            z-index: 2;
+        }
+
+        .bottom-accent span {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #5a4030;
+        }
+
+        .corner-ornament {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-color: #d4a76a22;
+            border-style: solid;
+            z-index: 1;
+        }
+
+        .corner-ornament.tl {
+            top: 32px;
+            left: 32px;
+            border-width: 1px 0 0 1px;
+        }
+
+        .corner-ornament.tr {
+            top: 32px;
+            right: 32px;
+            border-width: 1px 1px 0 0;
+        }
+
+        .corner-ornament.bl {
+            bottom: 32px;
+            left: 32px;
+            border-width: 0 0 1px 1px;
+        }
+
+        .corner-ornament.br {
+            bottom: 32px;
+            right: 32px;
+            border-width: 0 1px 1px 0;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .tagline {
+                font-size: 1.1rem;
+            }
+            .hero {
+                padding: 60px 20px;
+            }
+            .bottom-accent {
+                gap: 16px;
+            }
+            .bottom-accent span {
+                font-size: 0.55rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">&larr; Back</a>
+
+    <section class="hero">
+        <div class="corner-ornament tl"></div>
+        <div class="corner-ornament tr"></div>
+        <div class="corner-ornament bl"></div>
+        <div class="corner-ornament br"></div>
+
+        <div class="hero-content">
+            <div class="label">A Literary Exploration</div>
+
+            <h1>The Leaf<br>of <em>Desire</em></h1>
+
+            <hr class="gold-rule">
+
+            <p class="tagline">
+                Where the betel leaf meets the beloved's lips,<br>
+                there begins the poetry of longing.
+            </p>
+
+            <p class="body-text">
+                In the dimly lit chambers of Sanskrit verse, <em>tambula</em> was never
+                merely a leaf. It was a messenger between lovers, a prelude to intimacy,
+                a ritual of seduction preserved in poetry across millennia. Discover
+                how the poets of ancient India wove desire into every fold.
+            </p>
+
+            <a href="#" class="cta">Enter the Archive</a>
+        </div>
+
+        <div class="bottom-accent">
+            <span>Kalidasa</span>
+            <span>Kama Sutra</span>
+            <span>Rasa</span>
+            <span>Shringara</span>
+            <span>Tambula</span>
+        </div>
+    </section>
+</body>
+</html>

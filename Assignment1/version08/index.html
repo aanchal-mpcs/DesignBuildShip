@@ -1,1 +1,532 @@
-<\!DOCTYPE html><html><head><title>Version 08</title></head><body><h1>Landing Page — Version 08</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paan & Sanskrit Erotica &mdash; Far Out!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fdf0d5;
+            color: #5c3d2e;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            background: #e8622c;
+            color: #fdf0d5;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            background: #5c3d2e;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: #e8622c;
+            color: #fdf0d5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 30px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Retro circles */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(212, 160, 60, 0.3);
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(92, 61, 46, 0.2);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .hero-badge {
+            background: #d4a03c;
+            color: #5c3d2e;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Righteous', cursive;
+            font-size: clamp(40px, 8vw, 90px);
+            line-height: 1.15;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 span {
+            color: #d4a03c;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            margin-top: 30px;
+            max-width: 500px;
+            line-height: 1.8;
+            opacity: 0.85;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-cta {
+            margin-top: 40px;
+            display: inline-block;
+            background: #fdf0d5;
+            color: #e8622c;
+            padding: 16px 44px;
+            border-radius: 50px;
+            font-family: 'Righteous', cursive;
+            font-size: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-cta:hover {
+            background: #5c3d2e;
+            color: #fdf0d5;
+        }
+
+        /* WAVE DIVIDER */
+        .wave-down {
+            display: block;
+            width: 100%;
+            height: 80px;
+            background: #fdf0d5;
+            clip-path: ellipse(55% 100% at 50% 100%);
+            margin-top: -80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .wave-up-orange {
+            display: block;
+            width: 100%;
+            height: 80px;
+            background: #e8622c;
+            clip-path: ellipse(55% 100% at 50% 0%);
+        }
+
+        .wave-down-brown {
+            display: block;
+            width: 100%;
+            height: 80px;
+            background: #fdf0d5;
+            clip-path: ellipse(55% 100% at 50% 100%);
+            margin-top: -80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .wave-up-cream {
+            display: block;
+            width: 100%;
+            height: 80px;
+            background: #5c3d2e;
+            clip-path: ellipse(55% 100% at 50% 0%);
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 80px 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-family: 'Righteous', cursive;
+            font-size: clamp(28px, 5vw, 48px);
+            color: #e8622c;
+            margin-bottom: 30px;
+        }
+
+        .about p {
+            font-size: 16px;
+            line-height: 2;
+            color: #7a5a4a;
+            max-width: 620px;
+            margin: 0 auto 20px;
+        }
+
+        /* GROOVY CARDS */
+        .cards-section {
+            background: #e8622c;
+            padding: 0 30px 80px;
+        }
+
+        .cards-section h2 {
+            font-family: 'Righteous', cursive;
+            font-size: clamp(28px, 5vw, 48px);
+            text-align: center;
+            color: #fdf0d5;
+            padding: 80px 0 50px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #fdf0d5;
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(212, 160, 60, 0.2);
+            top: -20px;
+            right: -20px;
+        }
+
+        .card-num {
+            font-family: 'Righteous', cursive;
+            font-size: 48px;
+            color: #d4a03c;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-family: 'Righteous', cursive;
+            font-size: 22px;
+            color: #e8622c;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            font-size: 14px;
+            line-height: 1.9;
+            color: #7a5a4a;
+        }
+
+        /* QUOTE SECTION */
+        .quote-section {
+            background: #5c3d2e;
+            color: #fdf0d5;
+            padding: 0 30px 80px;
+        }
+
+        .quote-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .quote-inner blockquote {
+            font-family: 'Righteous', cursive;
+            font-size: clamp(22px, 4vw, 36px);
+            line-height: 1.6;
+            color: #d4a03c;
+        }
+
+        .quote-inner cite {
+            display: block;
+            margin-top: 24px;
+            font-style: normal;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(253, 240, 213, 0.5);
+        }
+
+        .quote-inner p {
+            margin-top: 40px;
+            font-size: 16px;
+            line-height: 2;
+            color: rgba(253, 240, 213, 0.75);
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* STATS ROW */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0;
+            background: #d4a03c;
+            color: #5c3d2e;
+        }
+
+        .stat {
+            flex: 1;
+            min-width: 180px;
+            padding: 50px 20px;
+            text-align: center;
+            border-right: 2px solid rgba(92, 61, 46, 0.15);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-num {
+            font-family: 'Righteous', cursive;
+            font-size: 48px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            font-weight: 700;
+        }
+
+        /* JOIN */
+        .join {
+            padding: 80px 30px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .join h2 {
+            font-family: 'Righteous', cursive;
+            font-size: clamp(28px, 5vw, 48px);
+            color: #e8622c;
+            margin-bottom: 20px;
+        }
+
+        .join p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #7a5a4a;
+            margin-bottom: 30px;
+        }
+
+        .join-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .join-form input {
+            padding: 16px 24px;
+            border: 3px solid #e8622c;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            background: #fdf0d5;
+            color: #5c3d2e;
+            width: 280px;
+            outline: none;
+        }
+
+        .join-form input:focus {
+            border-color: #d4a03c;
+        }
+
+        .join-form button {
+            padding: 16px 36px;
+            border: none;
+            border-radius: 50px;
+            background: #e8622c;
+            color: #fdf0d5;
+            font-family: 'Righteous', cursive;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .join-form button:hover {
+            background: #5c3d2e;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #5c3d2e;
+            color: rgba(253, 240, 213, 0.5);
+            text-align: center;
+            padding: 40px 30px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        footer a {
+            color: #d4a03c;
+        }
+
+        @media (max-width: 600px) {
+            .stat { min-width: 50%; border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../index.html" class="back-link">&larr; Back</a>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">Community &middot; Scholarship &middot; Groovy Vibes</div>
+        <h1>The <span>Paan</span> in Sanskrit Erotic Literature</h1>
+        <p class="hero-sub">Exploring the betel leaf as symbol of desire, art, and ritual in the ancient world's most sensual poetry.</p>
+        <a href="#about" class="hero-cta">Dig In &darr;</a>
+    </section>
+
+    <div class="wave-down"></div>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <h2>What's This All About?</h2>
+        <p>
+            The betel leaf &mdash; or <em>tambula</em> &mdash; isn't just a mouth freshener. In Sanskrit erotic literature, it's a loaded symbol: intimacy folded into a leaf, desire stained red on willing lips, courtship rituals encoded in the art of preparation.
+        </p>
+        <p>
+            From Vatsyayana's Kamasutra to the lyric intensity of the Amarushataka, we're tracing every thread of this overlooked motif. Our community of scholars, translators, and curious souls meets at the intersection of ancient sensuality and modern scholarship.
+        </p>
+    </section>
+
+    <!-- CARDS -->
+    <div class="wave-up-orange"></div>
+    <section class="cards-section">
+        <h2>What We Explore</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-num">01</div>
+                <h3>The Sixty-Four Arts</h3>
+                <p>Paan preparation as one of the essential erotic arts listed in the Kamasutra. Understanding its place in the cultured life of desire.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">02</div>
+                <h3>Lips Like Bimba Fruit</h3>
+                <p>The paan-stained lip as poetic motif. Tracking how kavya poets turned a simple habit into the most charged erotic image in Sanskrit verse.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">03</div>
+                <h3>Ritual of the Offering</h3>
+                <p>Tambula-dana: the gift of paan as foreplay, negotiation, and consent. How a betel leaf said what words could not.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">04</div>
+                <h3>The Courtesan's Art</h3>
+                <p>Women wielding paan as power. From ganika to queen, the betel leaf as instrument of female agency in erotic narratives.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">05</div>
+                <h3>Beyond the Bedroom</h3>
+                <p>Paan in courtly life, diplomatic rituals, and religious offerings. How the erotic bleeds into the social and the sacred.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">06</div>
+                <h3>Living Traditions</h3>
+                <p>From ancient text to modern paan shop. How the sensual culture of tambula survived centuries and still thrives in South Asia today.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE -->
+    <div class="wave-down-brown" style="background: #5c3d2e; clip-path: ellipse(55% 100% at 50% 100%); margin-top: -80px;"></div>
+    <section class="quote-section">
+        <div class="quote-inner">
+            <blockquote>
+                "With reddened lips she smiled &mdash; the betel's mark a seal upon the night's unspoken promises."
+            </blockquote>
+            <cite>Gita Govinda, Jayadeva</cite>
+            <p>
+                Sanskrit erotic literature never separated pleasure from aesthetics. The poets wrote about desire the way artisans work with gold &mdash; carefully, beautifully, and without shame. We honour that tradition.
+            </p>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-num">128</div>
+            <div class="stat-label">Articles</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">47</div>
+            <div class="stat-label">Contributors</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">16</div>
+            <div class="stat-label">Translations</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">2k+</div>
+            <div class="stat-label">Readers</div>
+        </div>
+    </section>
+
+    <!-- JOIN -->
+    <section class="join">
+        <h2>Join the Scene</h2>
+        <p>Weekly readings, fresh translations, and a community that takes ancient pleasure seriously. Hop in.</p>
+        <div class="join-form">
+            <input type="email" placeholder="Your email, baby">
+            <button>Subscribe</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 The Tambula Project &middot; Made with love &amp; betel leaves &middot; <a href="../index.html">&larr; Back to Index</a></p>
+    </footer>
+
+</body>
+</html>

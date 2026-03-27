@@ -1,1 +1,565 @@
-<\!DOCTYPE html><html><head><title>Version 10</title></head><body><h1>Landing Page — Version 10</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tambula Gazette</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f1eb;
+            color: #1a1a1a;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+            padding: 12px 0;
+        }
+
+        .back-link:hover {
+            color: #c0392b;
+        }
+
+        /* PAGE WRAPPER */
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* MASTHEAD */
+        .masthead {
+            text-align: center;
+            padding: 30px 0 0;
+            border-bottom: 4px double #1a1a1a;
+        }
+
+        .masthead-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: #888;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: clamp(36px, 7vw, 72px);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .masthead-motto {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 14px;
+            color: #666;
+            padding: 10px 0 14px;
+        }
+
+        /* DATE LINE */
+        .dateline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        .dateline .edition {
+            color: #c0392b;
+            font-weight: 700;
+        }
+
+        /* HEADLINE */
+        .headline {
+            padding: 30px 0 24px;
+            text-align: center;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .headline-kicker {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #c0392b;
+            margin-bottom: 12px;
+        }
+
+        .headline h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: clamp(24px, 4.5vw, 44px);
+            line-height: 1.3;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .headline-deck {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 16px;
+            color: #555;
+            margin-top: 14px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .byline {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-top: 14px;
+        }
+
+        /* MAIN CONTENT GRID */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .main-col {
+            padding: 24px 30px 30px 0;
+            border-right: 1px solid #ccc;
+        }
+
+        .main-col-text {
+            column-count: 2;
+            column-gap: 28px;
+            column-rule: 1px solid #ddd;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 14px;
+            line-height: 1.85;
+            color: #333;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .main-col-text p {
+            margin-bottom: 14px;
+        }
+
+        .main-col-text p:first-child::first-letter {
+            font-size: 52px;
+            float: left;
+            line-height: 1;
+            padding-right: 8px;
+            padding-top: 4px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            padding: 24px 0 30px 24px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 28px;
+        }
+
+        .sidebar-section h3 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+        }
+
+        .sidebar-section p, .sidebar-section li {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .sidebar-section ul {
+            list-style: none;
+        }
+
+        .sidebar-section li {
+            padding: 6px 0;
+            border-bottom: 1px dotted #ddd;
+        }
+
+        .sidebar-section li:last-child {
+            border-bottom: none;
+        }
+
+        /* PULL QUOTE */
+        .pull-quote {
+            border-top: 3px solid #1a1a1a;
+            border-bottom: 3px solid #1a1a1a;
+            padding: 20px 0;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .pull-quote blockquote {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 20px;
+            line-height: 1.6;
+            color: #1a1a1a;
+        }
+
+        .pull-quote cite {
+            display: block;
+            font-style: normal;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* CLASSIFIED AD */
+        .classified {
+            border: 2px solid #1a1a1a;
+            padding: 16px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .classified-title {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .classified p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .classified .classified-cta {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 20px;
+            border: 1px solid #1a1a1a;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .classified .classified-cta:hover {
+            background: #1a1a1a;
+            color: #f5f1eb;
+        }
+
+        /* LOWER SECTION — 3-column stories */
+        .lower-stories {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .lower-story {
+            padding: 24px 20px;
+            border-right: 1px solid #ccc;
+        }
+
+        .lower-story:last-child {
+            border-right: none;
+        }
+
+        .lower-story h4 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .lower-story .story-kicker {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            margin-bottom: 8px;
+        }
+
+        .lower-story p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 13px;
+            line-height: 1.75;
+            color: #444;
+        }
+
+        /* SUBSCRIBE BAR */
+        .subscribe-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 24px 0;
+            border-bottom: 1px solid #ccc;
+            flex-wrap: wrap;
+        }
+
+        .subscribe-bar span {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .subscribe-bar input {
+            padding: 10px 16px;
+            border: 1px solid #999;
+            background: #fff;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 14px;
+            width: 240px;
+        }
+
+        .subscribe-bar input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+
+        .subscribe-bar button {
+            padding: 10px 24px;
+            background: #1a1a1a;
+            color: #f5f1eb;
+            border: none;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .subscribe-bar button:hover {
+            background: #c0392b;
+        }
+
+        /* FOOTER */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0 40px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+        }
+
+        footer a {
+            color: #c0392b;
+        }
+
+        @media (max-width: 700px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-col {
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 1px solid #ccc;
+            }
+            .main-col-text {
+                column-count: 1;
+            }
+            .sidebar {
+                padding-left: 0;
+            }
+            .lower-stories {
+                grid-template-columns: 1fr;
+            }
+            .lower-story {
+                border-right: none;
+                border-bottom: 1px solid #ccc;
+            }
+            .lower-story:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+
+        <!-- MASTHEAD -->
+        <header class="masthead">
+            <div class="masthead-top">
+                <a href="../index.html" class="back-link">&larr; Back to Index</a>
+                <span>Vol. CXXVIII &middot; No. 42</span>
+                <span>Price: Free</span>
+            </div>
+            <h1>The Tambula Gazette</h1>
+            <div class="masthead-motto">"All the Desire That's Fit to Print"</div>
+        </header>
+
+        <!-- DATELINE -->
+        <div class="dateline">
+            <span>Friday, March 27, 2026</span>
+            <span>Community &middot; Scholarship &middot; Translation</span>
+            <span class="edition">Digital Edition</span>
+        </div>
+
+        <!-- HEADLINE -->
+        <section class="headline">
+            <div class="headline-kicker">Special Report</div>
+            <h2>The Role of Paan in Sanskrit Erotic Literature: A Forgotten Motif Reclaimed</h2>
+            <p class="headline-deck">How a humble betel leaf became the most charged symbol of desire across five centuries of Sanskrit poetry, ritual, and courtly life.</p>
+            <p class="byline">By the Editorial Collective &middot; The Tambula Project</p>
+        </section>
+
+        <!-- MAIN CONTENT -->
+        <div class="content-grid">
+            <div class="main-col">
+                <div class="main-col-text">
+                    <p>In the grand architecture of Sanskrit erotic literature, few symbols carry the weight of the tambula &mdash; the betel leaf. Mentioned in the Kamasutra among the sixty-four arts essential to the cultured lover, referenced across centuries of kavya poetry from Kalidasa to Jayadeva, and central to the rituals of courtship described in the dramatic literature, paan occupies a position of extraordinary significance that modern scholarship has largely overlooked.</p>
+
+                    <p>Vatsyayana, writing in the early centuries of the Common Era, did not list betel preparation casually. The chatushashti kalas represented nothing less than the complete education of the nagaraka &mdash; the urbane sophisticate whose mastery of pleasure was inseparable from his mastery of art. To prepare paan was to demonstrate refinement; to offer it was to initiate the language of desire.</p>
+
+                    <p>The poets of the Amarushataka made this explicit. Verse after verse deploys the paan-stained lip as its central erotic image: crimson, fragrant, trembling with unspoken words. The betel leaf became a metonymy for the kiss itself, and by extension, for the entire spectrum of physical intimacy that Sanskrit literature explored with a frankness that would not be matched in Western letters for a millennium.</p>
+
+                    <p>What makes this motif remarkable is its range. In the kama shastra texts, paan appears as practical technique &mdash; a preparation of the body for erotic encounter. In the kavya tradition, it transforms into pure aesthetics: colour, scent, taste arranged into verse. In the dramatic literature, it functions as stage direction: the offering of tambula signals the shift from social discourse to intimate possibility.</p>
+
+                    <p>This community project aims to trace every instance, catalogue every reference, and translate every relevant passage. We operate across disciplines &mdash; philology, cultural history, gender studies, food studies &mdash; because the tambula itself operated across every dimension of classical Indian life. The betel leaf was never merely botanical. It was, and remains, a technology of desire.</p>
+                </div>
+
+                <!-- PULL QUOTE -->
+                <div class="pull-quote">
+                    <blockquote>"She placed the betel upon his lip with a hand that trembled &mdash; not from fear, but from the weight of what the gesture promised."</blockquote>
+                    <cite>Amarushataka, attributed to Amaru, c. 7th century CE</cite>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <!-- IN THIS ISSUE -->
+                <div class="sidebar-section">
+                    <h3>In This Issue</h3>
+                    <ul>
+                        <li>The Sixty-Four Arts: Paan's Place in the Kamasutra</li>
+                        <li>Red Lips, Red Desire: The Tambula Motif in Kavya</li>
+                        <li>Women and Agency in Betel Exchange Rituals</li>
+                        <li>From Text to Table: Living Paan Traditions</li>
+                        <li>New Translations: Ratirahasya, Ch. 4</li>
+                    </ul>
+                </div>
+
+                <!-- BY THE NUMBERS -->
+                <div class="sidebar-section">
+                    <h3>By the Numbers</h3>
+                    <p>
+                        <strong>128</strong> articles published<br>
+                        <strong>47</strong> contributing scholars<br>
+                        <strong>16</strong> new translations<br>
+                        <strong>2,400+</strong> newsletter readers<br>
+                        <strong>23</strong> primary texts surveyed
+                    </p>
+                </div>
+
+                <!-- CLASSIFIED -->
+                <div class="sidebar-section">
+                    <div class="classified">
+                        <div class="classified-title">Wanted</div>
+                        <p>Sanskrit readers fluent in classical kavya. Volunteer translators for the Open Tambula Archive. All skill levels welcome. Academic credit available.</p>
+                        <a href="#" class="classified-cta">Apply Now</a>
+                    </div>
+                </div>
+
+                <!-- ANOTHER CLASSIFIED -->
+                <div class="sidebar-section">
+                    <div class="classified">
+                        <div class="classified-title">Reading Group</div>
+                        <p>Next session: April 3, 2026. Topic: Jayadeva's Gita Govinda, Cantos V-VII. All are welcome. Translations provided.</p>
+                        <a href="#" class="classified-cta">RSVP</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOWER STORIES -->
+        <section class="lower-stories">
+            <div class="lower-story">
+                <div class="story-kicker">Philology</div>
+                <h4>New Critical Edition of the Ratirahasya Reveals Overlooked Tambula Verses</h4>
+                <p>A recently completed critical edition by Prof. Meena Sharma identifies twelve previously unattributed verses in Kokkoka's medieval erotic manual that centre on betel preparation as erotic technique.</p>
+            </div>
+            <div class="lower-story">
+                <div class="story-kicker">Culture</div>
+                <h4>The Paan Shop as Living Archive: A Photo Essay from Varanasi</h4>
+                <p>Photographer Rajan Iyer documents the paanwalas of Varanasi's old city, connecting contemporary craft to the tambula traditions described in thousand-year-old Sanskrit texts.</p>
+            </div>
+            <div class="lower-story">
+                <div class="story-kicker">Translation</div>
+                <h4>Amarushataka Verses 38-52: New English Renderings Now Available</h4>
+                <p>The Open Tambula Archive publishes its latest batch of translations, covering the most erotically charged section of Amaru's celebrated collection of love lyrics.</p>
+            </div>
+        </section>
+
+        <!-- SUBSCRIBE -->
+        <div class="subscribe-bar">
+            <span>Subscribe to the Gazette &mdash;</span>
+            <input type="email" placeholder="Your email address">
+            <button>Subscribe</button>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <span>&copy; 2026 The Tambula Gazette</span>
+            <span>Typeset in Libre Baskerville &amp; Source Sans</span>
+            <a href="../index.html">&larr; Back to Index</a>
+        </footer>
+
+    </div>
+
+</body>
+</html>

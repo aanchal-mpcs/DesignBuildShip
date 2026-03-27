@@ -1,1 +1,482 @@
-<\!DOCTYPE html><html><head><title>Version 12</title></head><body><h1>Landing Page — Version 12</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Betel Leaf Garden &mdash; Paan in Sanskrit Erotic Literature</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --forest: #3a5a40;
+            --sage: #a3b18a;
+            --cream: #dad7cd;
+            --dark-green: #2d4a35;
+            --light: #f0ede8;
+            --moss: #588157;
+            --deep: #1a2e1f;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--deep);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--forest); text-decoration: none; transition: all 0.3s; }
+        a:hover { color: var(--moss); }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--forest);
+            background: rgba(163, 177, 138, 0.3);
+            border-radius: 40px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+        .back-link:hover { background: rgba(163, 177, 138, 0.5); }
+
+        /* CSS Leaf Shape */
+        .css-leaf {
+            width: 120px;
+            height: 160px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--forest) 100%);
+            border-radius: 4px 80% 4px 80%;
+            position: relative;
+            margin: 0 auto;
+            transform: rotate(-15deg);
+            box-shadow: 4px 8px 24px rgba(58, 90, 64, 0.2);
+        }
+        .css-leaf::after {
+            content: '';
+            position: absolute;
+            top: 20%; left: 45%;
+            width: 2px;
+            height: 60%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(5deg);
+            border-radius: 2px;
+        }
+        .css-leaf-sm {
+            width: 40px;
+            height: 54px;
+        }
+        .css-leaf-sm::after {
+            top: 20%; left: 45%;
+            width: 1px;
+            height: 55%;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 24px;
+            background: linear-gradient(180deg, var(--light) 0%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .hero-motif {
+            font-size: 2rem;
+            letter-spacing: 12px;
+            color: var(--sage);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--forest);
+            max-width: 700px;
+            margin-bottom: 20px;
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            max-width: 520px;
+            color: var(--moss);
+            margin-bottom: 40px;
+        }
+
+        .hero-leaf-row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            opacity: 0.5;
+            margin-top: 20px;
+        }
+
+        .pill-tag {
+            display: inline-block;
+            background: var(--forest);
+            color: var(--cream);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 8px 20px;
+            border-radius: 40px;
+        }
+
+        /* Section */
+        section {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .section-header .leaf-icon { font-size: 1.4rem; }
+        .section-header h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--forest);
+        }
+
+        /* Organic cards */
+        .organic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .organic-card {
+            background: var(--light);
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .organic-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(58, 90, 64, 0.12);
+        }
+        .organic-card::before {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 80px; height: 80px;
+            background: var(--sage);
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .organic-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--dark-green);
+            margin-bottom: 10px;
+        }
+        .organic-card p {
+            font-size: 0.9rem;
+            color: #5a6b5e;
+            line-height: 1.8;
+        }
+        .organic-card .tag {
+            display: inline-block;
+            background: rgba(58, 90, 64, 0.1);
+            color: var(--forest);
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-top: 16px;
+        }
+
+        /* Quote band */
+        .quote-band {
+            background: var(--forest);
+            color: var(--cream);
+            padding: 80px 24px;
+            text-align: center;
+        }
+        .quote-band blockquote {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        .quote-band cite {
+            display: block;
+            margin-top: 20px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-style: normal;
+            letter-spacing: 1px;
+            color: var(--sage);
+        }
+        .quote-band .leaf-decor {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Feature section with large leaf */
+        .feature-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin: 40px 0;
+        }
+        @media (max-width: 700px) {
+            .feature-split { grid-template-columns: 1fr; }
+        }
+
+        .feature-split .text h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 16px;
+        }
+        .feature-split .text p {
+            color: #5a6b5e;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .leaf-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(163,177,138,0.2), rgba(88,129,87,0.1));
+            border-radius: 50%;
+            position: relative;
+        }
+        .leaf-showcase .css-leaf {
+            width: 140px;
+            height: 190px;
+        }
+        .leaf-showcase::before {
+            content: '';
+            position: absolute;
+            width: 240px; height: 240px;
+            border: 1px dashed var(--sage);
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        /* Ingredient list */
+        .ingredients {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .ingredient {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: var(--dark-green);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: var(--light);
+            border-radius: 32px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .newsletter h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            color: var(--forest);
+            margin-bottom: 12px;
+        }
+        .newsletter p {
+            color: #5a6b5e;
+            max-width: 400px;
+            margin: 0 auto 24px;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn {
+            display: inline-block;
+            background: var(--forest);
+            color: var(--cream);
+            padding: 14px 36px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .newsletter-btn:hover {
+            background: var(--dark-green);
+            color: var(--cream);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(58, 90, 64, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 0.8rem;
+            color: var(--moss);
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link">&larr; Back</a>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-motif">&#127807; &#127811; &#127807;</div>
+    <h1>The Betel Leaf in Sanskrit Erotic Literature</h1>
+    <p class="hero-sub">A botanical journey through the gardens of classical Indian desire, where the humble paan leaf became poetry's most sensuous metaphor.</p>
+    <span class="pill-tag">Community Research &amp; Exploration</span>
+    <div class="hero-leaf-row">
+        <div class="css-leaf-sm css-leaf"></div>
+        <div class="css-leaf-sm css-leaf" style="transform: rotate(10deg);"></div>
+        <div class="css-leaf-sm css-leaf" style="transform: rotate(-30deg);"></div>
+    </div>
+</div>
+
+<!-- INTRO CARDS -->
+<section>
+    <div class="section-header">
+        <span class="leaf-icon">&#127807;</span>
+        <h2>Roots of Desire</h2>
+    </div>
+    <div class="organic-grid">
+        <div class="organic-card">
+            <h3>The Sixty-Four Arts</h3>
+            <p>Vatsyayana's Kamasutra lists tambula preparation among the essential skills of a cultured lover. The betel leaf was not incidental &mdash; it was foundational to the grammar of courtship.</p>
+            <span class="tag">&#127811; Kamasutra</span>
+        </div>
+        <div class="organic-card">
+            <h3>Crimson Lips, Green Leaves</h3>
+            <p>From Kalidasa to Amaru, the image of betel-reddened lips recurs as the definitive sign of beauty and readiness. The leaf's color transforms the body into a canvas of longing.</p>
+            <span class="tag">&#127807; Poetry</span>
+        </div>
+        <div class="organic-card">
+            <h3>A Garden of Scent</h3>
+            <p>Camphor, cardamom, musk, and lime &mdash; the aromatic preparation of paan mirrored the layered nature of desire itself. Each ingredient was chosen for its effect on the senses.</p>
+            <span class="tag">&#127811; Aromatics</span>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-band">
+    <div class="leaf-decor">&#127807;</div>
+    <blockquote>"Her lower lip, reddened by the betel, put to shame the beauty of the young coral &mdash; and the bimba fruit grew envious in its branch."</blockquote>
+    <cite>&mdash; After Kalidasa, Kumarasambhava</cite>
+</div>
+
+<!-- FEATURE: The Leaf -->
+<section>
+    <div class="feature-split">
+        <div class="leaf-showcase">
+            <div class="css-leaf"></div>
+        </div>
+        <div class="text">
+            <h3>The Leaf Itself: Piper Betle</h3>
+            <p>The heart-shaped betel leaf (Piper betle) is a climbing vine native to South and Southeast Asia. Its association with love likely stems from its very shape &mdash; cordiform, tender, and deeply veined.</p>
+            <p>In Sanskrit, <em>tambula</em> or <em>nagavalli</em> (the creeper of the serpent) connects the plant to both earthly pleasure and cosmic symbolism. The vine that climbs and embraces became the poet's metaphor for clinging love.</p>
+        </div>
+    </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section>
+    <div class="section-header">
+        <span class="leaf-icon">&#127811;</span>
+        <h2>The Ritual Ingredients</h2>
+    </div>
+    <p style="color:#5a6b5e; margin-bottom: 20px;">Classical texts prescribed specific combinations for different occasions of love:</p>
+    <div class="ingredients">
+        <div class="ingredient">&#127807; Betel Leaf</div>
+        <div class="ingredient">&#9898; Slaked Lime</div>
+        <div class="ingredient">&#127808; Areca Nut</div>
+        <div class="ingredient">&#10022; Camphor</div>
+        <div class="ingredient">&#9670; Cardamom</div>
+        <div class="ingredient">&#10045; Clove</div>
+        <div class="ingredient">&#9672; Musk</div>
+        <div class="ingredient">&#9733; Kesar (Saffron)</div>
+    </div>
+</section>
+
+<!-- MORE CARDS -->
+<section>
+    <div class="section-header">
+        <span class="leaf-icon">&#127807;</span>
+        <h2>Deeper into the Garden</h2>
+    </div>
+    <div class="organic-grid">
+        <div class="organic-card">
+            <h3>Exchange of Breath</h3>
+            <p>Sharing a chewed betel leaf between lovers appears in multiple texts as the most intimate non-sexual act. It mingled breath, taste, and desire in a single gesture of trust.</p>
+            <span class="tag">&#127807; Intimacy</span>
+        </div>
+        <div class="organic-card">
+            <h3>The Morning After</h3>
+            <p>Post-coital paan is prescribed in the Ratirahasya as essential. The shared leaf closes the circle of lovemaking, returning lovers from the extraordinary to the tender ordinary.</p>
+            <span class="tag">&#127811; Ritual</span>
+        </div>
+        <div class="organic-card">
+            <h3>Political Paan</h3>
+            <p>In courtly kavya, who prepared the king's tambula and who received it first encoded power structures. The betel tray was a stage for both romance and governance.</p>
+            <span class="tag">&#127807; Court Life</span>
+        </div>
+        <div class="organic-card">
+            <h3>Sacred Eroticism</h3>
+            <p>Jayadeva's Gita Govinda transforms the betel exchange between Radha and Krishna into a theological event &mdash; divine love expressed through the humblest botanical gesture.</p>
+            <span class="tag">&#127811; Devotion</span>
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section>
+    <div class="newsletter">
+        <h2>Grow With Us &#127807;</h2>
+        <p>Join our community of scholars, translators, and enthusiasts exploring the botany of desire in Sanskrit literature.</p>
+        <a href="#" class="newsletter-btn">Join the Garden</a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 The Betel Leaf Garden &mdash; A Botanical Literary Community</p>
+</footer>
+
+</body>
+</html>

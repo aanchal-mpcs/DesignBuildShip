@@ -1,1 +1,455 @@
-<\!DOCTYPE html><html><head><title>Version 13</title></head><body><h1>Landing Page — Version 13</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMBULA &mdash; Paan in Sanskrit Erotic Literature</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gold: #b8860b;
+            --gold-light: #d4a846;
+            --grey: #888888;
+            --grey-light: #e8e8e8;
+            --grey-dark: #333333;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--black);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--black); text-decoration: none; transition: all 0.3s; }
+        a:hover { color: var(--gold); }
+
+        /* Back */
+        .back-link {
+            position: fixed;
+            top: 32px;
+            left: 32px;
+            z-index: 100;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--grey);
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--black); }
+
+        /* Utility */
+        .uppercase { text-transform: uppercase; }
+        .tracking-wide { letter-spacing: 4px; }
+        .tracking-wider { letter-spacing: 6px; }
+        .small-text { font-size: 0.65rem; font-weight: 500; }
+        .hairline { border: none; border-top: 0.5px solid var(--grey-light); margin: 0; }
+        .gold-hairline { border: none; border-top: 0.5px solid var(--gold); margin: 0; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
+        }
+
+        .hero-overline {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            color: var(--black);
+            margin-bottom: 32px;
+        }
+        .hero h1 em {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-body {
+            max-width: 480px;
+            font-size: 0.85rem;
+            color: var(--grey);
+            line-height: 2;
+            margin-bottom: 48px;
+        }
+
+        .hero-line {
+            width: 60px;
+            height: 0.5px;
+            background: var(--gold);
+            margin: 0 auto 48px;
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 40px;
+        }
+        .hero-nav a {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--grey);
+            padding-bottom: 4px;
+            border-bottom: 0.5px solid transparent;
+        }
+        .hero-nav a:hover {
+            color: var(--black);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Section */
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 48px;
+        }
+
+        /* Two column */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        @media (max-width: 700px) {
+            .two-col { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        .two-col h2 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .two-col p {
+            font-size: 0.85rem;
+            color: var(--grey-dark);
+            line-height: 2;
+        }
+
+        /* Image placeholder */
+        .image-placeholder {
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, #f5f5f0 0%, #e8e4da 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 0.5px solid var(--grey-light);
+        }
+        .image-placeholder span {
+            font-size: 0.55rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+
+        /* Editorial grid */
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        @media (max-width: 700px) {
+            .editorial-grid { grid-template-columns: 1fr; }
+        }
+
+        .editorial-item .image-placeholder {
+            aspect-ratio: 3/4;
+            margin-bottom: 20px;
+        }
+        .editorial-item h3 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .editorial-item p {
+            font-size: 0.8rem;
+            color: var(--grey);
+            line-height: 1.9;
+        }
+        .editorial-item .meta {
+            font-size: 0.55rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 12px;
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            padding: 100px 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .pull-quote blockquote {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.7;
+            color: var(--black);
+        }
+        .pull-quote cite {
+            display: block;
+            margin-top: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            font-style: normal;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        .pull-quote .quote-line {
+            width: 40px;
+            height: 0.5px;
+            background: var(--gold);
+            margin: 32px auto 0;
+        }
+
+        /* Dark section */
+        .dark-section {
+            background: var(--black);
+            color: var(--white);
+            padding: 100px 40px;
+        }
+        .dark-section .section-label { color: var(--gold-light); }
+        .dark-section h2 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 48px;
+            line-height: 1.3;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        @media (max-width: 700px) {
+            .feature-list { grid-template-columns: 1fr; }
+        }
+        .feature-list-item {
+            border-top: 0.5px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+        }
+        .feature-list-item h4 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .feature-list-item p {
+            font-size: 0.8rem;
+            color: #999;
+            line-height: 1.9;
+        }
+        .feature-list-item .num {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.7rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 120px 40px;
+        }
+        .cta-section h2 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+        .cta-section p {
+            font-size: 0.8rem;
+            color: var(--grey);
+            max-width: 400px;
+            margin: 0 auto 36px;
+        }
+        .cta-btn {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--black);
+            padding: 18px 48px;
+            border: 0.5px solid var(--black);
+            transition: all 0.3s;
+        }
+        .cta-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 32px 40px;
+            border-top: 0.5px solid var(--grey-light);
+        }
+        footer p {
+            font-size: 0.55rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link">&larr; Back</a>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-overline">A Study in Desire</div>
+    <h1>TAMBULA<br><em>&amp; Eros</em></h1>
+    <div class="hero-line"></div>
+    <p class="hero-body">The role of the betel leaf in the erotic imagination of classical Sanskrit literature. A curated exploration of desire, ritual, and the poetics of a single leaf.</p>
+    <nav class="hero-nav">
+        <a href="#origins">Origins</a>
+        <a href="#texts">Texts</a>
+        <a href="#ritual">Ritual</a>
+        <a href="#community">Community</a>
+    </nav>
+</div>
+
+<hr class="hairline" style="max-width:1000px; margin: 0 auto;">
+
+<!-- INTRO -->
+<section id="origins">
+    <div class="section-label">01 &mdash; Origins</div>
+    <div class="two-col">
+        <div>
+            <h2>Where Botany Meets the Bedroom</h2>
+            <p>The betel vine &mdash; <em>Piper betle</em>, called <em>tambula</em> in Sanskrit &mdash; occupies a singular position in the classical Indian erotic imagination. Neither food nor medicine in the conventional sense, it existed in a liminal space: part stimulant, part cosmetic, part language of desire.</p>
+        </div>
+        <div>
+            <p>Vatsyayana placed its preparation among the sixty-four arts a cultured person must master. This was not mere etiquette. The Kamasutra understood that desire operates through layers of sensory preparation &mdash; and paan was the medium through which taste, scent, color, and touch converged into a single offering.</p>
+            <p style="margin-top: 16px;">From the third century onward, no serious work of kavya or kama-shastra could avoid it.</p>
+        </div>
+    </div>
+</section>
+
+<!-- EDITORIAL GRID -->
+<section id="texts">
+    <div class="section-label">02 &mdash; The Texts</div>
+    <div class="editorial-grid">
+        <div class="editorial-item">
+            <div class="image-placeholder"><span>Folio Illustration</span></div>
+            <h3>The Crimson Canon</h3>
+            <p>Kalidasa, Amaru, Bhartrihari &mdash; the great poets returned obsessively to betel-stained lips as the mark of erotic beauty.</p>
+            <div class="meta">Poetry &bull; 4th&ndash;7th Century</div>
+        </div>
+        <div class="editorial-item">
+            <div class="image-placeholder"><span>Palm Leaf Manuscript</span></div>
+            <h3>Treatises of the Body</h3>
+            <p>The Kamasutra, Ratirahasya, and Anangaranga each codify tambula's role in the architecture of lovemaking.</p>
+            <div class="meta">Shastra &bull; 3rd&ndash;15th Century</div>
+        </div>
+        <div class="editorial-item">
+            <div class="image-placeholder"><span>Court Painting</span></div>
+            <h3>Divine Eroticism</h3>
+            <p>Jayadeva's Gita Govinda transforms the paan exchange between Radha and Krishna into devotional ecstasy.</p>
+            <div class="meta">Bhakti &bull; 12th Century</div>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<hr class="gold-hairline" style="max-width:1000px; margin: 0 auto;">
+<div class="pull-quote">
+    <blockquote>"She offered him the betel from her own mouth &mdash; and in that crimson transit, an entire vocabulary of desire was spoken without a single word."</blockquote>
+    <cite>Adapted from Amarushataka</cite>
+    <div class="quote-line"></div>
+</div>
+<hr class="gold-hairline" style="max-width:1000px; margin: 0 auto;">
+
+<!-- DARK SECTION -->
+<div class="dark-section" id="ritual">
+    <div class="section-label" style="text-align:center;">03 &mdash; The Ritual Language</div>
+    <h2>Every gesture with the leaf<br>carried meaning</h2>
+    <div class="feature-list">
+        <div class="feature-list-item">
+            <span class="num">I</span>
+            <h4>The Offering</h4>
+            <p>To prepare paan for another was an act of devotion. The selection of ingredients, the folding of the leaf &mdash; each step was courtship in miniature.</p>
+        </div>
+        <div class="feature-list-item">
+            <span class="num">II</span>
+            <h4>The Acceptance</h4>
+            <p>Taking paan from a lover's hand signaled consent and desire. Refusal was a legible rejection &mdash; no words required in the chamber of intimacy.</p>
+        </div>
+        <div class="feature-list-item">
+            <span class="num">III</span>
+            <h4>The Exchange</h4>
+            <p>Passing the half-chewed leaf between mouths was the apex of non-coital intimacy &mdash; an act that mingled bodies through the medium of the botanical.</p>
+        </div>
+        <div class="feature-list-item">
+            <span class="num">IV</span>
+            <h4>The Afterglow</h4>
+            <p>Post-coital tambula sealed the erotic encounter. The shared leaf after lovemaking was both refreshment and ritual closure &mdash; returning lovers to the world.</p>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="community">
+    <div class="section-label">04 &mdash; Community</div>
+    <h2>Join the Discourse</h2>
+    <p>We welcome scholars, translators, and curious minds to contribute to this ongoing exploration of eros and botany in classical India.</p>
+    <a href="#" class="cta-btn">Request Access</a>
+</div>
+
+<footer>
+    <p>&copy; 2026 Tambula &amp; Eros &mdash; A Luxury Literary Journal</p>
+</footer>
+
+</body>
+</html>

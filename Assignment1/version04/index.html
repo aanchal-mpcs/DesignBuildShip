@@ -1,1 +1,276 @@
-<\!DOCTYPE html><html><head><title>Version 04</title></head><body><h1>Landing Page — Version 04</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Leaf of Desire — Editorial</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf8f4;
+            color: #1a1a1a;
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 24px;
+            left: 28px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #e04e39;
+            text-decoration: none;
+            z-index: 10;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+        }
+
+        .top-bar .issue {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        .top-bar .date {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #999;
+            letter-spacing: 0.1em;
+        }
+
+        .divider-line {
+            height: 1px;
+            background: #1a1a1a;
+            margin: 0 48px;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 48px 40px;
+            max-width: 1200px;
+        }
+
+        .byline {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #e04e39;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+            line-height: 0.95;
+            color: #1a1a1a;
+            margin-bottom: 32px;
+        }
+
+        .title-line-1 {
+            font-size: 7vw;
+            display: block;
+        }
+
+        .title-line-2 {
+            font-size: 7vw;
+            display: block;
+            font-style: italic;
+            color: #e04e39;
+        }
+
+        .title-line-3 {
+            font-size: 5vw;
+            display: block;
+            color: #888;
+        }
+
+        .hero-sub {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 48px 24px;
+            gap: 40px;
+        }
+
+        .hero-sub .left {
+            max-width: 480px;
+        }
+
+        .hero-sub .left p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            line-height: 1.75;
+            color: #555;
+        }
+
+        .cta-editorial {
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            background: #e04e39;
+            padding: 16px 44px;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .cta-editorial:hover {
+            background: #c7402e;
+            transform: translateY(-1px);
+        }
+
+        .ticker-wrapper {
+            background: #1a1a1a;
+            padding: 16px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: auto;
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: scroll-left 25s linear infinite;
+        }
+
+        .ticker span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #faf8f4;
+            margin-right: 48px;
+        }
+
+        .ticker span.accent {
+            color: #e04e39;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title-line-1,
+            .title-line-2 {
+                font-size: 12vw;
+            }
+            .title-line-3 {
+                font-size: 8vw;
+            }
+            .hero {
+                padding: 40px 24px 24px;
+            }
+            .hero-sub {
+                flex-direction: column;
+                padding: 0 24px 24px;
+                align-items: flex-start;
+            }
+            .top-bar {
+                padding: 20px 24px;
+            }
+            .divider-line {
+                margin: 0 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">&larr; Back</a>
+
+    <header class="top-bar">
+        <span class="issue">Issue No. 01</span>
+        <span class="date">Spring 2026</span>
+    </header>
+
+    <div class="divider-line"></div>
+
+    <main class="hero">
+        <div class="byline">Community Blog &middot; Sanskrit Studies &middot; Literary Criticism</div>
+        <h1>
+            <span class="title-line-1">The Leaf</span>
+            <span class="title-line-2">of Desire</span>
+            <span class="title-line-3">Paan &amp; Sanskrit Eros</span>
+        </h1>
+    </main>
+
+    <div class="hero-sub">
+        <div class="left">
+            <p>
+                An editorial deep-dive into the betel leaf's seductive legacy &mdash;
+                from Kalidasa's courtly metaphors to the Kama Sutra's intimate
+                prescriptions. How did a single leaf become the most charged symbol
+                in Sanskrit erotic literature?
+            </p>
+        </div>
+        <a href="#" class="cta-editorial">Read Now</a>
+    </div>
+
+    <div class="divider-line" style="margin-top: 24px;"></div>
+
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span>Kalidasa</span>
+            <span class="accent">Tambula</span>
+            <span>Shringara Rasa</span>
+            <span class="accent">Kama Sutra</span>
+            <span>Amaru Shataka</span>
+            <span class="accent">Courtly Love</span>
+            <span>Betel Rituals</span>
+            <span class="accent">Rasa Theory</span>
+            <span>Gita Govinda</span>
+            <span class="accent">Desire</span>
+            <span>Kalidasa</span>
+            <span class="accent">Tambula</span>
+            <span>Shringara Rasa</span>
+            <span class="accent">Kama Sutra</span>
+            <span>Amaru Shataka</span>
+            <span class="accent">Courtly Love</span>
+            <span>Betel Rituals</span>
+            <span class="accent">Rasa Theory</span>
+            <span>Gita Govinda</span>
+            <span class="accent">Desire</span>
+        </div>
+    </div>
+</body>
+</html>

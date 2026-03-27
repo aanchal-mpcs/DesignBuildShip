@@ -1,1 +1,304 @@
-<\!DOCTYPE html><html><head><title>Version 05</title></head><body><h1>Landing Page — Version 05</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Leaf of Desire — A Manuscript</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4ead5;
+            color: #3b2a1a;
+            font-family: 'Spectral', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 24px;
+            background-image:
+                radial-gradient(ellipse at 30% 20%, rgba(180, 150, 100, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(160, 130, 80, 0.1) 0%, transparent 50%);
+        }
+
+        .back-link {
+            position: fixed;
+            top: 24px;
+            left: 28px;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            color: #8a6e47;
+            text-decoration: none;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #3b2a1a;
+        }
+
+        .manuscript-page {
+            position: relative;
+            max-width: 720px;
+            width: 100%;
+            padding: 72px 80px;
+            background: #f9f2e0;
+            box-shadow:
+                0 2px 20px rgba(80, 50, 20, 0.1),
+                0 0 0 1px rgba(80, 50, 20, 0.05);
+        }
+
+        /* Decorative frame */
+        .manuscript-page::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid #c5a96a55;
+        }
+
+        .manuscript-page::after {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            right: 24px;
+            bottom: 24px;
+            border: 2px solid #c5a96a33;
+        }
+
+        .inner-frame {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Corner decorations */
+        .corner {
+            position: absolute;
+            font-size: 1.4rem;
+            color: #c5a96a88;
+            z-index: 3;
+        }
+        .corner.tl { top: 28px; left: 28px; }
+        .corner.tr { top: 28px; right: 28px; }
+        .corner.bl { bottom: 28px; left: 28px; }
+        .corner.br { bottom: 28px; right: 28px; }
+
+        .fleuron-header {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #c5a96a;
+            letter-spacing: 0.6em;
+            margin-bottom: 32px;
+        }
+
+        .overline {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            text-align: center;
+            color: #8a6e47;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.2;
+            color: #3b2a1a;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            text-align: center;
+            color: #7a5e3a;
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .rule {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 28px 0;
+            color: #c5a96a;
+            font-size: 0.9rem;
+        }
+
+        .rule::before,
+        .rule::after {
+            content: '';
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #c5a96a88, transparent);
+        }
+
+        .body-text {
+            font-family: 'Spectral', serif;
+            font-size: 1.02rem;
+            line-height: 1.95;
+            color: #4a3620;
+            text-align: justify;
+            margin-bottom: 24px;
+        }
+
+        .body-text.first-para::first-letter {
+            font-family: 'EB Garamond', serif;
+            font-size: 4.2rem;
+            float: left;
+            line-height: 0.8;
+            padding-right: 10px;
+            padding-top: 6px;
+            color: #8a6e47;
+            font-weight: 600;
+        }
+
+        .body-text em {
+            color: #6b4e28;
+        }
+
+        .fleuron-divider {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #c5a96a99;
+            letter-spacing: 0.5em;
+            margin: 28px 0;
+        }
+
+        .cta-manuscript {
+            display: block;
+            text-align: center;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: #8a6e47;
+            text-decoration: none;
+            border: 1px solid #c5a96a88;
+            padding: 12px 32px;
+            margin: 32px auto 0;
+            max-width: 280px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .cta-manuscript:hover {
+            background: #8a6e47;
+            color: #f9f2e0;
+        }
+
+        .colophon {
+            text-align: center;
+            font-family: 'EB Garamond', serif;
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #a08860;
+            margin-top: 36px;
+        }
+
+        /* Margin annotation */
+        .margin-note {
+            position: absolute;
+            right: -32px;
+            top: 280px;
+            width: 120px;
+            transform: rotate(2deg);
+            font-family: 'EB Garamond', serif;
+            font-size: 0.78rem;
+            font-style: italic;
+            color: #a08860aa;
+            line-height: 1.5;
+            text-align: left;
+            padding-left: 12px;
+            border-left: 1px solid #c5a96a44;
+        }
+
+        @media (max-width: 800px) {
+            .manuscript-page {
+                padding: 56px 36px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .margin-note {
+                position: static;
+                transform: none;
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #c5a96a44;
+                padding: 12px 0 0;
+                margin-top: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">&larr; Back</a>
+
+    <div class="manuscript-page">
+        <span class="corner tl">&#10087;</span>
+        <span class="corner tr">&#10086;</span>
+        <span class="corner bl">&#10086;</span>
+        <span class="corner br">&#10087;</span>
+
+        <div class="inner-frame">
+            <div class="fleuron-header">&#10086; &#10047; &#10087;</div>
+
+            <div class="overline">A Community Inquiry</div>
+
+            <h1>The Leaf of Desire</h1>
+
+            <p class="subtitle">On the Role of Paan in the Erotic Verses of Sanskrit</p>
+
+            <div class="rule">&#10047;</div>
+
+            <p class="body-text first-para">
+                In the age of the great poets, when courtship was an art refined to
+                its most exquisite form, the betel leaf &mdash; known to the learned as
+                <em>tambula</em> &mdash; occupied a place of singular importance. It was
+                not merely chewed; it was <em>offered</em>, with all the gravity and
+                tenderness that the word implies. To present a fold of betel to one's
+                beloved was to speak without words, to declare desire in the language
+                of fragrance and taste.
+            </p>
+
+            <div class="fleuron-divider">&#10086; &middot; &#10087;</div>
+
+            <p class="body-text">
+                Kalidasa adorned his verses with it. Vatsyayana codified its place
+                among the sixty-four arts. The <em>Amarushataka</em> trembles with its
+                mention. In the <em>nagaraka's</em> chamber, the betel-box sat beside
+                the bed, a silent accomplice to every whispered confession. This
+                community blog seeks to gather, translate, and illuminate these
+                scattered references &mdash; to reconstruct the erotic life of a leaf
+                that has perfumed a thousand years of verse.
+            </p>
+
+            <a href="#" class="cta-manuscript">Enter the Collection &rarr;</a>
+
+            <div class="margin-note">
+                cf. Kalidasa, <em>Kumarasambhava</em>, Canto VIII &mdash; "the lip stained crimson by the betel"
+            </div>
+
+            <div class="colophon">
+                &#10047; Composed for students &amp; lovers of Sanskrit &middot; MMXXVI &#10047;
+            </div>
+        </div>
+    </div>
+</body>
+</html>

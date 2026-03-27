@@ -1,1 +1,527 @@
-<\!DOCTYPE html><html><head><title>Version 11</title></head><body><h1>Landing Page — Version 11</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAAN // Neon Literary Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0f;
+            --pink: #ff2d95;
+            --cyan: #00e5ff;
+            --purple: #b24bf3;
+            --dim: #1a1a2e;
+            --text: #c8c8d4;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Scanline overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.08) 2px,
+                rgba(0, 0, 0, 0.08) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        a { color: var(--cyan); text-decoration: none; transition: all 0.3s; }
+        a:hover { color: var(--pink); text-shadow: 0 0 10px var(--pink); }
+
+        /* Back link */
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 24px;
+            z-index: 100;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            padding: 8px 16px;
+            border: 1px solid var(--cyan);
+            background: rgba(0, 229, 255, 0.05);
+            transition: all 0.3s;
+        }
+        .back-link:hover {
+            background: rgba(0, 229, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+            color: #fff;
+        }
+
+        /* HUD container */
+        .hud-box {
+            position: relative;
+            border: 1px solid rgba(178, 75, 243, 0.3);
+            background: rgba(10, 10, 15, 0.8);
+            padding: 40px;
+        }
+        .hud-box::before, .hud-box::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+        }
+        .hud-box::before {
+            top: -1px; left: -1px;
+            border-top: 2px solid var(--cyan);
+            border-left: 2px solid var(--cyan);
+            box-shadow: -2px -2px 8px rgba(0, 229, 255, 0.4);
+        }
+        .hud-box::after {
+            bottom: -1px; right: -1px;
+            border-bottom: 2px solid var(--pink);
+            border-right: 2px solid var(--pink);
+            box-shadow: 2px 2px 8px rgba(255, 45, 149, 0.4);
+        }
+
+        .hud-box-alt::before {
+            top: -1px; right: -1px; left: auto;
+            border-top: 2px solid var(--pink);
+            border-right: 2px solid var(--pink);
+            border-left: none;
+            box-shadow: 2px -2px 8px rgba(255, 45, 149, 0.4);
+        }
+        .hud-box-alt::after {
+            bottom: -1px; left: -1px; right: auto;
+            border-bottom: 2px solid var(--cyan);
+            border-left: 2px solid var(--cyan);
+            border-right: none;
+            box-shadow: -2px 2px 8px rgba(0, 229, 255, 0.4);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 24px 60px;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 500px; height: 500px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(178, 75, 243, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            text-shadow: 0 0 10px var(--cyan), 0 0 30px rgba(0, 229, 255, 0.3);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.2rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: #fff;
+            text-shadow:
+                0 0 10px var(--pink),
+                0 0 40px rgba(255, 45, 149, 0.5),
+                0 0 80px rgba(255, 45, 149, 0.2);
+            margin-bottom: 12px;
+        }
+        .hero h1 .accent-cyan {
+            color: var(--cyan);
+            text-shadow:
+                0 0 10px var(--cyan),
+                0 0 40px rgba(0, 229, 255, 0.5),
+                0 0 80px rgba(0, 229, 255, 0.2);
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            max-width: 600px;
+            color: #8888aa;
+            margin: 20px auto 40px;
+        }
+
+        .hero-divider {
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--purple), transparent);
+            margin: 0 auto 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pink);
+            text-shadow: 0 0 15px rgba(255, 45, 149, 0.5);
+        }
+        .stat-label {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #6666aa;
+            margin-top: 4px;
+        }
+
+        /* Section styling */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--purple);
+            text-shadow: 0 0 10px rgba(178, 75, 243, 0.5);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--purple), transparent);
+        }
+
+        /* Cards grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .neon-card {
+            background: var(--dim);
+            border: 1px solid rgba(178, 75, 243, 0.2);
+            padding: 32px;
+            position: relative;
+            transition: all 0.4s;
+        }
+        .neon-card:hover {
+            border-color: var(--pink);
+            box-shadow:
+                0 0 15px rgba(255, 45, 149, 0.2),
+                inset 0 0 15px rgba(255, 45, 149, 0.05);
+        }
+        .neon-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 40px; height: 2px;
+            background: var(--cyan);
+            box-shadow: 0 0 8px var(--cyan);
+        }
+
+        .neon-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .neon-card p {
+            font-size: 0.9rem;
+            color: #8888aa;
+            line-height: 1.8;
+        }
+        .neon-card .card-tag {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pink);
+            border: 1px solid rgba(255, 45, 149, 0.3);
+            padding: 4px 10px;
+            margin-top: 16px;
+        }
+
+        /* Featured quote */
+        .featured-quote {
+            margin: 80px auto;
+            max-width: 800px;
+            padding: 48px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 229, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+            position: relative;
+        }
+        .featured-quote::before {
+            content: '//';
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--purple);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            padding: 0 20px;
+        }
+        .featured-quote blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #aaaac4;
+            line-height: 1.9;
+        }
+        .featured-quote cite {
+            display: block;
+            margin-top: 16px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            font-style: normal;
+        }
+
+        /* Timeline section */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 8px;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--cyan), var(--purple), var(--pink));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px; top: 6px;
+            width: 10px; height: 10px;
+            border: 2px solid var(--cyan);
+            background: var(--bg);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+        .timeline-item h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--pink);
+            margin-bottom: 6px;
+        }
+        .timeline-item p {
+            color: #8888aa;
+            font-size: 0.9rem;
+        }
+
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 24px;
+            margin: 40px auto;
+            max-width: 1100px;
+        }
+        .cta-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(178, 75, 243, 0.4);
+            margin-bottom: 16px;
+        }
+        .cta-section p {
+            color: #6666aa;
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+        .cta-btn {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #fff;
+            padding: 16px 40px;
+            border: 1px solid var(--pink);
+            background: transparent;
+            text-shadow: 0 0 8px var(--pink);
+            box-shadow: 0 0 20px rgba(255, 45, 149, 0.2);
+            transition: all 0.3s;
+        }
+        .cta-btn:hover {
+            background: rgba(255, 45, 149, 0.1);
+            box-shadow: 0 0 40px rgba(255, 45, 149, 0.4);
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid rgba(178, 75, 243, 0.15);
+            font-size: 0.7rem;
+            color: #444466;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link">&larr; Back</a>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-tag">// Cyberpunk Literary Archive //</div>
+    <h1>THE ROLE OF <span class="accent-cyan">PAAN</span><br>IN SANSKRIT EROTIC<br>LITERATURE</h1>
+    <p class="hero-sub">Decoding the betel leaf as symbol, aphrodisiac, and ritual currency in classical Indian erotica &mdash; through a neon-lit digital lens.</p>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+        <div class="stat">
+            <div class="stat-num">1500+</div>
+            <div class="stat-label">Years of Tradition</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">47</div>
+            <div class="stat-label">Sanskrit Texts Analyzed</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">312</div>
+            <div class="stat-label">Paan References Found</div>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+    <div class="section-title">001 // Introduction</div>
+    <div class="hud-box">
+        <p>The betel leaf &mdash; <em>tambula</em> in Sanskrit &mdash; is far more than a chewable stimulant. Across centuries of kavya (poetry), natya (drama), and kama-shastra (erotic treatises), paan functions as a loaded signifier: of desire, of consent, of intimacy ritualized. This archive maps its presence across the classical canon, from the <em>Kamasutra</em> to the courts of medieval poets, illuminating how a single leaf carried the weight of an entire erotic grammar.</p>
+    </div>
+</section>
+
+<!-- CARDS -->
+<section>
+    <div class="section-title">002 // Core Themes</div>
+    <div class="card-grid">
+        <div class="neon-card">
+            <h3>Tambula as Foreplay</h3>
+            <p>Vatsyayana lists the offering of betel as one of the sixty-four arts. The act of preparing and sharing paan between lovers served as a codified prelude to intimacy &mdash; a ritual of anticipation.</p>
+            <span class="card-tag">Kamasutra</span>
+        </div>
+        <div class="neon-card">
+            <h3>The Red-Stained Lip</h3>
+            <p>Poets from Kalidasa to Jayadeva fixated on lips reddened by betel juice. The <em>adhara</em> (lower lip) stained crimson became the supreme marker of erotic readiness and beauty.</p>
+            <span class="card-tag">Kavya Poetry</span>
+        </div>
+        <div class="neon-card">
+            <h3>Exchange &amp; Consent</h3>
+            <p>The transfer of a half-chewed betel leaf between mouths appears repeatedly as a metaphor for mutual desire. Accepting paan from a lover signaled willingness; refusing it, rejection.</p>
+            <span class="card-tag">Ritual Semiotics</span>
+        </div>
+        <div class="neon-card">
+            <h3>Aromatic Architecture</h3>
+            <p>Camphor, cardamom, clove, lime &mdash; the ingredients of paan formed a sensory landscape. Erotic texts describe scent as a pathway to arousal, and tambula was the master vehicle.</p>
+            <span class="card-tag">Sensory Studies</span>
+        </div>
+        <div class="neon-card">
+            <h3>Courtly Power Play</h3>
+            <p>In Rajasekhara and Bhavabhuti's works, offering paan was a political as well as romantic gesture. Who prepared it, who served it, and who received it first encoded hierarchies of desire and rank.</p>
+            <span class="card-tag">Court Literature</span>
+        </div>
+        <div class="neon-card">
+            <h3>Post-Coital Ritual</h3>
+            <p>The <em>Ratirahasya</em> and <em>Anangaranga</em> both prescribe tambula after lovemaking &mdash; not merely as refreshment, but as a symbolic closure to the erotic act, sealing the experience.</p>
+            <span class="card-tag">Kama Shastra</span>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<div class="featured-quote">
+    <blockquote>"She placed the betel leaf upon her tongue and closed her eyes, and in that gesture was contained every unspoken syllable of desire."</blockquote>
+    <cite>Adapted from Amaru's Amarushataka, c. 7th Century CE</cite>
+</div>
+
+<!-- TIMELINE -->
+<section>
+    <div class="section-title">003 // Historical Signal Path</div>
+    <div class="hud-box hud-box-alt">
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>c. 3rd Century CE</h4>
+                <p>Vatsyayana's <em>Kamasutra</em> codifies tambula preparation as one of the sixty-four arts a cultured person must master, embedding paan into the erotic curriculum.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>c. 5th Century CE</h4>
+                <p>Kalidasa's <em>Kumarasambhava</em> and <em>Meghaduta</em> deploy betel-stained lips as recurring motifs of feminine beauty and longing.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>c. 7th Century CE</h4>
+                <p>Amaru's <em>Amarushataka</em> elevates the paan exchange to high art &mdash; each verse a micro-drama of desire channeled through the leaf.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>c. 12th Century CE</h4>
+                <p>Jayadeva's <em>Gita Govinda</em> interweaves tambula with the divine eroticism of Radha and Krishna, sacralizing the betel ritual.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>c. 15th Century CE</h4>
+                <p>Kalyanamalla's <em>Anangaranga</em> provides detailed prescriptions for paan ingredients tailored to different stages of lovemaking.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2>JOIN THE <span style="color:var(--cyan); text-shadow: 0 0 20px rgba(0,229,255,0.4);">ARCHIVE</span></h2>
+    <p>Contribute research, translations, or commentary to this growing digital repository of tambula in Sanskrit erotica.</p>
+    <a href="#" class="cta-btn">Initialize Access</a>
+</div>
+
+<footer>
+    &copy; 2026 &mdash; Neon Tambula Archive &mdash; A Digital Humanities Project
+</footer>
+
+</body>
+</html>

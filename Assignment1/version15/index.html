@@ -1,1 +1,644 @@
-<\!DOCTYPE html><html><head><title>Version 15</title></head><body><h1>Landing Page — Version 15</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambula Mandira &mdash; The Sacred Geometry of Desire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ruby: #9b1b30;
+            --sapphire: #1b3a6b;
+            --emerald: #1b6b3a;
+            --gold: #c9a84c;
+            --deep-bg: #0f0c18;
+            --dark-bg: #15112a;
+            --card-bg: #1a1530;
+            --text: #d4c8b8;
+            --text-dim: #8a7e72;
+        }
+
+        body {
+            background: var(--deep-bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--gold); text-decoration: none; transition: all 0.3s; }
+        a:hover { color: #e0c06c; }
+
+        /* Back link */
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--gold);
+            background: rgba(15, 12, 24, 0.8);
+            padding: 8px 16px;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .back-link:hover {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        /* CSS Medallion */
+        .medallion {
+            width: 260px;
+            height: 260px;
+            position: relative;
+            margin: 0 auto;
+        }
+        .medallion .ring {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .medallion .ring-1 {
+            width: 260px; height: 260px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+        }
+        .medallion .ring-2 {
+            width: 220px; height: 220px;
+            border: 2px solid rgba(201, 168, 76, 0.3);
+        }
+        .medallion .ring-3 {
+            width: 180px; height: 180px;
+            border: 1px solid var(--ruby);
+        }
+        .medallion .ring-4 {
+            width: 140px; height: 140px;
+            border: 2px solid rgba(201, 168, 76, 0.5);
+        }
+        .medallion .ring-5 {
+            width: 100px; height: 100px;
+            border: 1px solid var(--sapphire);
+        }
+        .medallion .ring-6 {
+            width: 60px; height: 60px;
+            background: radial-gradient(circle, var(--gold) 0%, rgba(201, 168, 76, 0) 70%);
+            opacity: 0.6;
+        }
+
+        /* Decorative dots on rings */
+        .medallion .dot {
+            position: absolute;
+            width: 6px; height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            top: 50%; left: 50%;
+        }
+        .medallion .dot-1 { transform: translate(-50%, -130px); }
+        .medallion .dot-2 { transform: translate(-50%, 124px); }
+        .medallion .dot-3 { transform: translate(-130px, -50%); }
+        .medallion .dot-4 { transform: translate(124px, -50%); }
+        .medallion .dot-5 { transform: translate(83px, -93px); width: 4px; height: 4px; background: var(--ruby); }
+        .medallion .dot-6 { transform: translate(-89px, 87px); width: 4px; height: 4px; background: var(--ruby); }
+        .medallion .dot-7 { transform: translate(-89px, -93px); width: 4px; height: 4px; background: var(--emerald); }
+        .medallion .dot-8 { transform: translate(83px, 87px); width: 4px; height: 4px; background: var(--emerald); }
+
+        /* Petal shapes (pseudo-element mandala petals) */
+        .medallion .petal-ring {
+            position: absolute;
+            width: 180px; height: 180px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .medallion .petal {
+            position: absolute;
+            width: 16px; height: 40px;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 50%;
+            top: 50%; left: 50%;
+            transform-origin: center center;
+        }
+        .medallion .petal:nth-child(1) { transform: translate(-50%, -70px) rotate(0deg); }
+        .medallion .petal:nth-child(2) { transform: translate(-50%, -70px) rotate(0deg); margin-left: -70px; margin-top: 22px; transform: rotate(90deg); }
+        .medallion .petal:nth-child(3) { transform: translate(-50%, 30px) rotate(0deg); }
+        .medallion .petal:nth-child(4) { transform: translate(-50%, 30px) rotate(0deg); margin-left: 70px; margin-top: -22px; transform: rotate(90deg); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(26, 21, 48, 1) 0%, var(--deep-bg) 70%);
+        }
+
+        .hero-sanskrit {
+            font-family: 'Yatra One', cursive;
+            font-size: 1rem;
+            color: var(--gold);
+            opacity: 0.6;
+            margin-bottom: 32px;
+            letter-spacing: 4px;
+        }
+
+        .hero h1 {
+            font-family: 'Yatra One', cursive;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.2;
+            color: var(--gold);
+            margin: 32px 0 16px;
+            text-shadow: 0 0 40px rgba(201, 168, 76, 0.2);
+        }
+
+        .hero-sub {
+            font-size: 0.95rem;
+            max-width: 560px;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--gold);
+            opacity: 0.4;
+            font-size: 0.8rem;
+            margin-bottom: 40px;
+        }
+        .hero-divider .line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hero-tag {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold);
+        }
+
+        /* Section */
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-header h2 {
+            font-family: 'Yatra One', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .section-header .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text-dim);
+            font-size: 0.7rem;
+        }
+        .section-header .ornament .orn-line {
+            width: 40px;
+            height: 1px;
+            background: var(--ruby);
+        }
+
+        /* Jewel cards */
+        .jewel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .jewel-card {
+            background: var(--card-bg);
+            padding: 36px;
+            position: relative;
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            text-align: center;
+        }
+        /* Corner ornaments */
+        .jewel-card::before, .jewel-card::after {
+            content: '';
+            position: absolute;
+            width: 16px; height: 16px;
+        }
+        .jewel-card::before {
+            top: 8px; left: 8px;
+            border-top: 1px solid var(--gold);
+            border-left: 1px solid var(--gold);
+        }
+        .jewel-card::after {
+            bottom: 8px; right: 8px;
+            border-bottom: 1px solid var(--gold);
+            border-right: 1px solid var(--gold);
+        }
+
+        .jewel-card .jewel-icon {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .jewel-ruby { border: 1px solid var(--ruby); color: var(--ruby); }
+        .jewel-sapphire { border: 1px solid var(--sapphire); color: var(--sapphire); }
+        .jewel-emerald { border: 1px solid var(--emerald); color: var(--emerald); }
+
+        .jewel-card h3 {
+            font-family: 'Yatra One', cursive;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .jewel-card p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.9;
+        }
+
+        /* Quote section */
+        .temple-quote {
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+            background: var(--dark-bg);
+        }
+        .temple-quote::before, .temple-quote::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .temple-quote::before { top: 0; }
+        .temple-quote::after { bottom: 0; }
+
+        .temple-quote blockquote {
+            font-family: 'Yatra One', cursive;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--text);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+        .temple-quote cite {
+            display: block;
+            margin-top: 24px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ruby);
+            font-style: normal;
+        }
+
+        /* Pillars section - two columns */
+        .pillars {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        @media (max-width: 700px) {
+            .pillars { grid-template-columns: 1fr; }
+        }
+
+        .pillar h3 {
+            font-family: 'Yatra One', cursive;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+        }
+        .pillar p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        /* Timeline with sacred marks */
+        .sacred-timeline {
+            position: relative;
+            padding: 0 0 0 50px;
+        }
+        .sacred-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 16px;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--ruby), var(--gold), var(--emerald), var(--sapphire));
+        }
+        .sacred-timeline-item {
+            position: relative;
+            margin-bottom: 36px;
+        }
+        .sacred-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -42px; top: 4px;
+            width: 14px; height: 14px;
+            border: 2px solid var(--gold);
+            background: var(--deep-bg);
+            transform: rotate(45deg);
+        }
+        .sacred-timeline-item h4 {
+            font-family: 'Yatra One', cursive;
+            font-size: 0.95rem;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+        .sacred-timeline-item p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Central decorative panel */
+        .ornamental-panel {
+            background: var(--dark-bg);
+            padding: 60px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .ornamental-panel::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 400px; height: 400px;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(201, 168, 76, 0.06);
+            border-radius: 50%;
+        }
+        .ornamental-panel::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 300px; height: 300px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            border: 1px solid rgba(155, 27, 48, 0.1);
+        }
+
+        .ornamental-panel h2 {
+            font-family: 'Yatra One', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .ornamental-panel p {
+            max-width: 500px;
+            margin: 0 auto 32px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            position: relative;
+        }
+        .sacred-btn {
+            display: inline-block;
+            font-family: 'Yatra One', cursive;
+            font-size: 0.95rem;
+            color: var(--gold);
+            padding: 14px 40px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .sacred-btn:hover {
+            background: rgba(201, 168, 76, 0.1);
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+        }
+
+        /* Small mandala for section breaks */
+        .mini-mandala {
+            width: 40px; height: 40px;
+            margin: 0 auto 32px;
+            position: relative;
+        }
+        .mini-mandala::before {
+            content: '';
+            position: absolute;
+            width: 40px; height: 40px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            top: 0; left: 0;
+        }
+        .mini-mandala::after {
+            content: '';
+            position: absolute;
+            width: 26px; height: 26px;
+            border: 1px solid var(--ruby);
+            transform: rotate(45deg);
+            top: 7px; left: 7px;
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link">&larr; Back</a>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-sanskrit">&#x0950; tambulam &#x0950;</div>
+
+    <div class="medallion">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="ring ring-4"></div>
+        <div class="ring ring-5"></div>
+        <div class="ring ring-6"></div>
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+        <div class="dot dot-4"></div>
+        <div class="dot dot-5"></div>
+        <div class="dot dot-6"></div>
+        <div class="dot dot-7"></div>
+        <div class="dot dot-8"></div>
+    </div>
+
+    <h1>Tambula Mandira</h1>
+    <p class="hero-sub">A sacred exploration of the betel leaf's role in Sanskrit erotic literature &mdash; where botanical offering meets divine desire, and every gesture carries the geometry of longing.</p>
+
+    <div class="hero-divider">
+        <span class="line"></span>
+        <span>&#x2726;</span>
+        <span class="line"></span>
+    </div>
+
+    <div class="hero-tags">
+        <span class="hero-tag">Kamasutra</span>
+        <span class="hero-tag">Kavya</span>
+        <span class="hero-tag">Sacred Ritual</span>
+    </div>
+</div>
+
+<!-- CARDS -->
+<section>
+    <div class="section-header">
+        <div class="mini-mandala"></div>
+        <h2>The Pillars of Tambula</h2>
+        <div class="ornament">
+            <span class="orn-line"></span>
+            <span>Six Facets of the Sacred Leaf</span>
+            <span class="orn-line"></span>
+        </div>
+    </div>
+
+    <div class="jewel-grid">
+        <div class="jewel-card">
+            <div class="jewel-icon jewel-ruby">I</div>
+            <h3>The Sixty-Four Arts</h3>
+            <p>Vatsyayana inscribed tambula preparation into the foundational curriculum of desire. To know love, one must first know the leaf.</p>
+        </div>
+        <div class="jewel-card">
+            <div class="jewel-icon jewel-sapphire">II</div>
+            <h3>Adhara: The Lower Lip</h3>
+            <p>Betel-crimson lips became the supreme symbol of beauty across centuries of kavya. The leaf transforms the body into a sacred text.</p>
+        </div>
+        <div class="jewel-card">
+            <div class="jewel-icon jewel-emerald">III</div>
+            <h3>The Offering</h3>
+            <p>To prepare paan for a beloved was devotion made manifest &mdash; each ingredient a prayer, each fold a gesture of surrender.</p>
+        </div>
+        <div class="jewel-card">
+            <div class="jewel-icon jewel-ruby">IV</div>
+            <h3>The Exchange</h3>
+            <p>Passing the chewed leaf between mouths was the most intimate non-sexual act in classical literature &mdash; a communion of breath and trust.</p>
+        </div>
+        <div class="jewel-card">
+            <div class="jewel-icon jewel-sapphire">V</div>
+            <h3>Divine Eros</h3>
+            <p>Jayadeva elevated the paan exchange between Radha and Krishna to theological event. Desire and devotion became one through the leaf.</p>
+        </div>
+        <div class="jewel-card">
+            <div class="jewel-icon jewel-emerald">VI</div>
+            <h3>The Seal</h3>
+            <p>Post-coital tambula sealed the erotic rite. The Ratirahasya prescribes it as essential closure &mdash; the final sacred gesture of the union.</p>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<div class="temple-quote">
+    <div class="mini-mandala"></div>
+    <blockquote>"Her lower lip, reddened by the betel, was a threshold between the sacred and the sensual &mdash; to cross it was to enter the temple of desire itself."</blockquote>
+    <cite>After Kalidasa &bull; Kumarasambhava</cite>
+</div>
+
+<!-- TWO PILLARS -->
+<section>
+    <div class="section-header">
+        <div class="mini-mandala"></div>
+        <h2>Twin Pillars</h2>
+        <div class="ornament">
+            <span class="orn-line"></span>
+            <span>The Botanical and the Devotional</span>
+            <span class="orn-line"></span>
+        </div>
+    </div>
+    <div class="pillars">
+        <div class="pillar">
+            <h3>The Botanical Dimension</h3>
+            <p>Piper betle, the heart-shaped climbing vine, is native to the monsoon regions of South Asia. Its Sanskrit names &mdash; tambula, nagavalli (serpent creeper) &mdash; connect it to both earthly pleasure and cosmic mythology.</p>
+            <p>The leaf's shape (cordiform), its tendency to climb and embrace, its aromatic compounds that stimulate the palate &mdash; all made it a natural symbol for poets mapping the geography of desire.</p>
+        </div>
+        <div class="pillar">
+            <h3>The Devotional Dimension</h3>
+            <p>In temple ritual, paan is offered to deities as part of the shodashopachara (sixteen-step worship). The same leaf that passed between lovers' mouths was placed before the divine &mdash; collapsing the boundary between eros and bhakti.</p>
+            <p>Jayadeva understood this: his Gita Govinda treats the tambula exchange between Radha and Krishna as simultaneously erotic and devotional, each gesture radiating outward like a mandala of meaning.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+    <div class="section-header">
+        <div class="mini-mandala"></div>
+        <h2>Sacred Chronology</h2>
+        <div class="ornament">
+            <span class="orn-line"></span>
+            <span>Tracing the Leaf Through Time</span>
+            <span class="orn-line"></span>
+        </div>
+    </div>
+    <div class="sacred-timeline">
+        <div class="sacred-timeline-item">
+            <h4>c. 3rd Century CE &mdash; The Foundation</h4>
+            <p>Vatsyayana's Kamasutra establishes tambula preparation as one of the sixty-four arts, grounding the betel leaf in the formal architecture of erotic knowledge.</p>
+        </div>
+        <div class="sacred-timeline-item">
+            <h4>c. 5th Century CE &mdash; The Poetic Flowering</h4>
+            <p>Kalidasa immortalizes betel-stained lips in Kumarasambhava and Meghaduta, creating the template that generations of poets would follow.</p>
+        </div>
+        <div class="sacred-timeline-item">
+            <h4>c. 7th Century CE &mdash; The Verse Perfected</h4>
+            <p>Amaru's Amarushataka distills the entire erotic drama of paan exchange into exquisite miniature verses of longing and fulfillment.</p>
+        </div>
+        <div class="sacred-timeline-item">
+            <h4>c. 12th Century CE &mdash; The Divine Union</h4>
+            <p>Jayadeva's Gita Govinda sacralizes the paan exchange, transforming it from courtly gesture to divine rite between Radha and Krishna.</p>
+        </div>
+        <div class="sacred-timeline-item">
+            <h4>c. 15th Century CE &mdash; The Codification</h4>
+            <p>Kalyanamalla's Anangaranga provides systematic prescriptions for paan ingredients tailored to the stages and moods of lovemaking.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<div class="ornamental-panel">
+    <div class="mini-mandala"></div>
+    <h2>Enter the Mandira</h2>
+    <p>Join our community of scholars and seekers exploring the sacred geometry of desire in Sanskrit literature.</p>
+    <a href="#" class="sacred-btn">Begin the Journey</a>
+</div>
+
+<footer>
+    &copy; 2026 Tambula Mandira &mdash; A Sacred Literary Community
+</footer>
+
+</body>
+</html>

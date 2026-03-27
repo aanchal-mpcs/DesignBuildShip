@@ -1,1 +1,520 @@
-<\!DOCTYPE html><html><head><title>Version 14</title></head><body><h1>Landing Page — Version 14</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAAN ZINE &mdash; rip it open</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Karla:ital,wght@0,300;0,400;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --yellow: #fff700;
+            --off-white: #f5f1eb;
+            --paper: #faf8f4;
+            --ink: #1a1a1a;
+            --red: #d62828;
+            --blue: #264653;
+        }
+
+        body {
+            background: var(--off-white);
+            color: var(--ink);
+            font-family: 'Karla', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Noise texture effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        a { color: var(--ink); }
+
+        /* Back */
+        .back-link {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.85rem;
+            color: var(--ink);
+            background: var(--yellow);
+            padding: 6px 14px;
+            transform: rotate(-2deg);
+            border: 2px dashed var(--ink);
+            text-decoration: none;
+        }
+        .back-link:hover { transform: rotate(0deg); }
+
+        /* Stamp badge */
+        .stamp {
+            display: inline-block;
+            border: 3px solid var(--red);
+            color: var(--red);
+            font-family: 'Special Elite', cursive;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            transform: rotate(-4deg);
+            position: relative;
+        }
+        .stamp::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 1px solid var(--red);
+            transform: translate(3px, 3px);
+            opacity: 0.3;
+        }
+
+        /* Highlighter effect */
+        .highlight {
+            background: var(--yellow);
+            padding: 2px 6px;
+            display: inline;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        /* Torn paper edge */
+        .torn-top {
+            position: relative;
+            margin-top: 40px;
+        }
+        .torn-top::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0; right: 0;
+            height: 20px;
+            background: linear-gradient(135deg, var(--off-white) 33.33%, transparent 33.33%) 0 0,
+                        linear-gradient(225deg, var(--off-white) 33.33%, transparent 33.33%) 0 0;
+            background-size: 20px 20px;
+        }
+
+        .torn-bottom {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .torn-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0; right: 0;
+            height: 20px;
+            background: linear-gradient(315deg, var(--off-white) 33.33%, transparent 33.33%) 0 0,
+                        linear-gradient(45deg, var(--off-white) 33.33%, transparent 33.33%) 0 0;
+            background-size: 20px 20px;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        /* Scattered stickers */
+        .sticker {
+            position: absolute;
+            font-family: 'Special Elite', cursive;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+        }
+        .sticker-1 {
+            top: 12%; right: 8%;
+            background: var(--yellow);
+            transform: rotate(12deg);
+            border: 2px solid var(--ink);
+        }
+        .sticker-2 {
+            bottom: 15%; left: 6%;
+            background: var(--red);
+            color: white;
+            transform: rotate(-8deg);
+            border-radius: 50%;
+            width: 90px; height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.3;
+        }
+        .sticker-3 {
+            top: 20%; left: 5%;
+            border: 2px dashed var(--blue);
+            color: var(--blue);
+            transform: rotate(-3deg);
+        }
+
+        .hero h1 {
+            font-family: 'Special Elite', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            transform: rotate(-2deg);
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .hero h1 .strikethrough {
+            text-decoration: line-through;
+            opacity: 0.4;
+        }
+        .hero h1 .yellow-box {
+            background: var(--yellow);
+            padding: 0 12px;
+            display: inline-block;
+            transform: rotate(1deg);
+        }
+
+        .hero-sub {
+            font-family: 'Special Elite', cursive;
+            font-size: 1rem;
+            max-width: 500px;
+            transform: rotate(0.5deg);
+            color: #555;
+            margin-bottom: 32px;
+        }
+
+        .hero-tape {
+            width: 120px;
+            height: 30px;
+            background: rgba(255, 247, 0, 0.5);
+            transform: rotate(-45deg);
+            position: absolute;
+            top: 60px;
+            left: 15%;
+        }
+
+        /* Messy section */
+        .zine-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .zine-heading {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            display: inline-block;
+            border-bottom: 4px solid var(--yellow);
+            padding-bottom: 4px;
+        }
+
+        /* Collage cards */
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .collage-card {
+            background: var(--paper);
+            padding: 24px;
+            border: 1px dashed #ccc;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .collage-card:nth-child(1) { transform: rotate(-1.5deg); }
+        .collage-card:nth-child(2) { transform: rotate(1deg); }
+        .collage-card:nth-child(3) { transform: rotate(-0.5deg); }
+        .collage-card:nth-child(4) { transform: rotate(2deg); }
+        .collage-card:nth-child(5) { transform: rotate(-1deg); }
+        .collage-card:nth-child(6) { transform: rotate(0.5deg); }
+
+        .collage-card:hover { transform: rotate(0deg) scale(1.02); z-index: 2; }
+
+        .collage-card::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 16px;
+            background: rgba(255, 247, 0, 0.6);
+        }
+
+        .collage-card h3 {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+        .collage-card p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        .collage-card .card-stamp {
+            display: inline-block;
+            margin-top: 12px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            border: 1px solid var(--red);
+            padding: 2px 8px;
+            transform: rotate(-2deg);
+        }
+
+        /* Big quote section */
+        .zine-quote {
+            background: var(--ink);
+            color: var(--off-white);
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+        }
+        .zine-quote blockquote {
+            font-family: 'Special Elite', cursive;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            transform: rotate(-0.5deg);
+        }
+        .zine-quote blockquote .highlight-dark {
+            background: var(--yellow);
+            color: var(--ink);
+            padding: 2px 6px;
+        }
+        .zine-quote cite {
+            display: block;
+            margin-top: 20px;
+            font-family: 'Karla', sans-serif;
+            font-size: 0.75rem;
+            color: #999;
+            font-style: normal;
+            letter-spacing: 2px;
+        }
+
+        /* Ransom note heading */
+        .ransom {
+            font-size: 2rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        .ransom span {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 2px;
+        }
+        .ransom .r1 { font-family: 'Special Elite', cursive; background: var(--yellow); transform: rotate(-2deg); }
+        .ransom .r2 { font-family: 'Karla', sans-serif; font-weight: 800; border: 2px solid var(--ink); transform: rotate(1deg); }
+        .ransom .r3 { font-family: 'Special Elite', cursive; background: var(--red); color: white; transform: rotate(-1deg); }
+        .ransom .r4 { font-family: 'Karla', sans-serif; font-style: italic; text-decoration: underline; transform: rotate(2deg); }
+        .ransom .r5 { font-family: 'Special Elite', cursive; background: var(--ink); color: var(--yellow); transform: rotate(-3deg); }
+
+        /* List section */
+        .zine-list {
+            list-style: none;
+            max-width: 600px;
+        }
+        .zine-list li {
+            padding: 16px 0;
+            border-bottom: 1px dashed #ccc;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 30px;
+        }
+        .zine-list li::before {
+            content: '\2717';
+            position: absolute;
+            left: 0;
+            font-family: 'Special Elite', cursive;
+            font-size: 1.2rem;
+            color: var(--red);
+        }
+        .zine-list li strong {
+            font-family: 'Special Elite', cursive;
+        }
+
+        /* Doodle divider */
+        .doodle-divider {
+            text-align: center;
+            padding: 30px;
+            font-size: 1.5rem;
+            letter-spacing: 12px;
+            color: #ccc;
+        }
+
+        /* CTA */
+        .zine-cta {
+            text-align: center;
+            padding: 60px 24px;
+            position: relative;
+        }
+        .zine-cta h2 {
+            font-family: 'Special Elite', cursive;
+            font-size: 2.5rem;
+            transform: rotate(-1deg);
+            margin-bottom: 16px;
+        }
+        .zine-cta p {
+            color: #666;
+            max-width: 400px;
+            margin: 0 auto 24px;
+            font-size: 0.9rem;
+        }
+        .zine-btn {
+            display: inline-block;
+            font-family: 'Special Elite', cursive;
+            font-size: 1rem;
+            background: var(--ink);
+            color: var(--yellow);
+            padding: 14px 32px;
+            border: 3px solid var(--ink);
+            transform: rotate(-1deg);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .zine-btn:hover {
+            background: var(--yellow);
+            color: var(--ink);
+            transform: rotate(1deg);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.75rem;
+            color: #999;
+            border-top: 2px dashed #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link">&larr; BACK</a>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-tape"></div>
+
+    <div class="sticker sticker-1">READ THIS!!</div>
+    <div class="sticker sticker-2">100% DIY</div>
+    <div class="sticker sticker-3">est. 300 CE</div>
+
+    <div class="stamp" style="margin-bottom: 32px;">Issue No. 01</div>
+
+    <h1><span class="strikethrough">POLITE</span><br><span class="yellow-box">PAAN</span> ZINE</h1>
+
+    <p class="hero-sub">The betel leaf in Sanskrit erotic literature, ripped from the pages of ancient texts and slapped onto cheap paper. No gatekeeping. No pretension. Just the raw stuff.</p>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+        <span class="stamp" style="font-size:0.6rem;">Sanskrit</span>
+        <span class="stamp" style="font-size:0.6rem; border-color: var(--blue); color: var(--blue);">Erotica</span>
+        <span class="stamp" style="font-size:0.6rem;">Counterculture</span>
+    </div>
+</div>
+
+<!-- SECTION: WTF IS TAMBULA -->
+<div class="zine-section torn-top torn-bottom" style="background: var(--paper); padding: 60px 24px;">
+    <div class="ransom">
+        <span class="r1">WHAT</span>
+        <span class="r2">THE</span>
+        <span class="r3">HECK</span>
+        <span class="r4">IS</span>
+        <span class="r5">TAMBULA?</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 700px;">
+        <div>
+            <p>It's a betel leaf. <span class="highlight">Just a leaf.</span> But for over a thousand years, Sanskrit poets and sex-manual authors treated it like the most loaded object in the bedroom.</p>
+        </div>
+        <div>
+            <p>Vatsyayana (yeah, the Kamasutra guy) said every cultured person had to know how to prepare paan. Not optional. It was <span class="highlight">one of the 64 arts</span> you needed to be considered civilized.</p>
+        </div>
+    </div>
+</div>
+
+<!-- CARDS -->
+<div class="zine-section">
+    <h2 class="zine-heading">THE EVIDENCE</h2>
+    <div class="collage-grid">
+        <div class="collage-card">
+            <h3>Red Lips = Hot</h3>
+            <p>Every. Single. Poet. Kalidasa, Amaru, Bhartrihari &mdash; they were OBSESSED with lips stained red from betel. It was the #1 beauty standard for like 1000 years.</p>
+            <span class="card-stamp">Poetry</span>
+        </div>
+        <div class="collage-card">
+            <h3>Mouth-to-Mouth Leaf</h3>
+            <p>Passing a half-chewed paan between mouths was the ultimate move. More intimate than a kiss. It meant "I trust you with my spit and my desire."</p>
+            <span class="card-stamp">Intimacy</span>
+        </div>
+        <div class="collage-card">
+            <h3>Post-Sex Snack</h3>
+            <p>The Ratirahasya literally prescribes paan after doing the deed. Not a suggestion &mdash; a prescription. Shared tambula = proper closure of the erotic act.</p>
+            <span class="card-stamp">Ritual</span>
+        </div>
+        <div class="collage-card">
+            <h3>Consent by Leaf</h3>
+            <p>Accept the paan = yes. Refuse it = no thanks. An entire consent framework encoded in the gesture of taking or rejecting a folded betel leaf.</p>
+            <span class="card-stamp">Semiotics</span>
+        </div>
+        <div class="collage-card">
+            <h3>Aromatic Warfare</h3>
+            <p>Camphor, cardamom, clove, saffron, musk &mdash; the ingredient list reads like a spell. Every scent was chosen to hit different parts of the desire circuit.</p>
+            <span class="card-stamp">Sensory</span>
+        </div>
+        <div class="collage-card">
+            <h3>Power Plays</h3>
+            <p>In royal courts, who prepared the king's paan and who got served first was POLITICAL. The betel tray was a chessboard of desire and hierarchy.</p>
+            <span class="card-stamp">Court</span>
+        </div>
+    </div>
+</div>
+
+<div class="doodle-divider">* * * * *</div>
+
+<!-- QUOTE -->
+<div class="zine-quote torn-top torn-bottom">
+    <blockquote>"She placed the <span class="highlight-dark">betel leaf upon her tongue</span> and closed her eyes, and in that gesture was contained every unspoken syllable of desire."</blockquote>
+    <cite>&mdash; Adapted from Amaru's Amarushataka, c. 7th Century CE</cite>
+</div>
+
+<!-- THE TIMELINE (as list) -->
+<div class="zine-section">
+    <h2 class="zine-heading">THE RAW TIMELINE</h2>
+    <ul class="zine-list">
+        <li><strong>~300 CE:</strong> Vatsyayana drops the Kamasutra. Paan = official art of love. Not optional.</li>
+        <li><strong>~400 CE:</strong> Kalidasa writes poems about betel-stained lips that poets are still copying today.</li>
+        <li><strong>~700 CE:</strong> Amaru's Amarushataka: 100 verses, half of them involve paan somehow.</li>
+        <li><strong>~1200 CE:</strong> Jayadeva's Gita Govinda makes the Radha-Krishna paan exchange SACRED.</li>
+        <li><strong>~1460 CE:</strong> Kalyanamalla's Anangaranga: detailed paan recipes for different stages of lovemaking. Seriously.</li>
+    </ul>
+</div>
+
+<div class="doodle-divider">~ ~ ~ ~ ~</div>
+
+<!-- CTA -->
+<div class="zine-cta">
+    <h2>CONTRIBUTE TO<br>THE <span style="background: var(--yellow); padding: 0 8px;">ZINE</span></h2>
+    <p>Got translations? Hot takes? Weird footnotes from obscure Sanskrit texts? We want it all. This zine is by the people, for the people.</p>
+    <a href="#" class="zine-btn">SUBMIT YOUR STUFF</a>
+</div>
+
+<footer>
+    &copy; 2026 PAAN ZINE &mdash; photocopied with love &mdash; steal this zine
+</footer>
+
+</body>
+</html>

@@ -1,1 +1,519 @@
-<\!DOCTYPE html><html><head><title>Version 18</title></head><body><h1>Landing Page — Version 18</h1><p>Coming soon.</p><a href='../index.html'>Back to Index</a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambula Mandira &mdash; Sacred Deco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ruby: #9b1b30;
+            --sapphire: #1b3a6b;
+            --emerald: #1b6b3a;
+            --gold: #c9a84c;
+            --bg: #0f0c18;
+            --bg-alt: #15112a;
+            --card-bg: #1a1530;
+            --text: #d4c8b8;
+            --text-dim: #8a7e72;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--gold); text-decoration: none; transition: all 0.3s; }
+        a:hover { color: #e0c66a; }
+
+        /* Fixed corner ornaments — v9 layout */
+        .ornament {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            pointer-events: none;
+            z-index: 998;
+        }
+        .ornament.tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+        .ornament.tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+        .ornament.bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+        .ornament.br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+        .back-link {
+            position: fixed;
+            top: 24px;
+            left: 68px;
+            z-index: 999;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            padding: 8px 20px;
+        }
+        .back-link:hover { background: rgba(201, 168, 76, 0.1); }
+
+        /* Gold line utilities — v9 */
+        .gold-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .gold-line-thick {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 5%, var(--gold) 20%, var(--gold) 80%, transparent 95%);
+        }
+
+        /* Sunburst — v9 layout */
+        .sunburst-container {
+            display: flex;
+            justify-content: center;
+            padding: 100px 0 40px;
+        }
+        .sunburst {
+            width: 120px;
+            height: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .sunburst::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: repeating-conic-gradient(
+                from 0deg,
+                transparent 0deg 8deg,
+                rgba(201, 168, 76, 0.08) 8deg 10deg
+            );
+        }
+
+        /* Fan — v9 layout */
+        .fan {
+            width: 200px;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .fan-line {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            height: 100px;
+            background: var(--gold);
+            transform-origin: bottom center;
+            opacity: 0.3;
+        }
+
+        /* Header — v9 layout, v15 type */
+        .header {
+            text-align: center;
+            padding: 0 30px 60px;
+        }
+        .header-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--ruby);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-family: 'Yatra One', cursive;
+            font-size: clamp(36px, 7vw, 80px);
+            color: var(--gold);
+            line-height: 1.2;
+            text-shadow: 0 0 40px rgba(201, 168, 76, 0.15);
+        }
+        .header h1 .thin {
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.3em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-top: 14px;
+            text-shadow: none;
+        }
+        .header-sub {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 2;
+        }
+
+        /* Geometric border frame — v9 layout */
+        .geo-border {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        .geo-frame {
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 60px 50px;
+            position: relative;
+        }
+        .geo-frame::before, .geo-frame::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--gold);
+        }
+        .geo-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .geo-frame::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+        .geo-frame h2 {
+            font-family: 'Yatra One', cursive;
+            font-size: clamp(24px, 4vw, 40px);
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .geo-frame p {
+            font-size: 0.9rem;
+            line-height: 2.1;
+            color: var(--text-dim);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Features grid — v9 layout */
+        .features {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .feature {
+            padding: 50px 40px;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            text-align: center;
+            position: relative;
+        }
+        .feature::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 1px;
+            background: var(--ruby);
+        }
+        .feature h3 {
+            font-family: 'Yatra One', cursive;
+            font-size: 1.15rem;
+            color: var(--gold);
+            margin-top: 20px;
+            margin-bottom: 14px;
+        }
+        .feature p {
+            font-size: 0.82rem;
+            line-height: 2;
+            color: var(--text-dim);
+        }
+
+        /* Quote — v9 layout */
+        .quote-section {
+            text-align: center;
+            padding: 80px 30px;
+        }
+        .quote-diamond {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--ruby);
+            transform: rotate(45deg);
+            margin: 0 auto 40px;
+        }
+        .quote-section blockquote {
+            font-family: 'Yatra One', cursive;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--gold);
+            line-height: 1.8;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .quote-section cite {
+            display: block;
+            margin-top: 28px;
+            font-family: 'Poppins', sans-serif;
+            font-style: normal;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--ruby);
+        }
+
+        /* Symmetrical columns — v9 layout */
+        .columns {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px 80px;
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            gap: 0;
+            align-items: start;
+        }
+        .col-text {
+            font-size: 0.85rem;
+            line-height: 2.2;
+            color: var(--text-dim);
+        }
+        .col-text p + p { margin-top: 20px; }
+
+        .col-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding-top: 6px;
+        }
+        .col-divider .line {
+            width: 1px;
+            height: 100%;
+            min-height: 300px;
+            background: linear-gradient(180deg, var(--ruby), var(--gold), var(--emerald));
+        }
+        .col-divider .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        /* Subscribe — v9 layout */
+        .subscribe {
+            text-align: center;
+            padding: 80px 30px;
+        }
+        .subscribe h2 {
+            font-family: 'Yatra One', cursive;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .subscribe p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 36px;
+            line-height: 1.8;
+        }
+        .subscribe-form {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .subscribe-form input {
+            flex: 1;
+            padding: 14px 20px;
+            background: transparent;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 300;
+            outline: none;
+        }
+        .subscribe-form input:focus { border-color: var(--gold); }
+        .subscribe-form input::placeholder { color: var(--text-dim); }
+        .subscribe-form button {
+            padding: 14px 28px;
+            background: var(--gold);
+            border: 1px solid var(--gold);
+            color: var(--bg);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .subscribe-form button:hover { background: #e0c66a; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 30px 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 700px) {
+            .features { grid-template-columns: 1fr; }
+            .columns { grid-template-columns: 1fr; }
+            .col-divider { display: none; }
+            .ornament { display: none; }
+            .geo-frame { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Corner ornaments -->
+    <div class="ornament tl"></div>
+    <div class="ornament tr"></div>
+    <div class="ornament bl"></div>
+    <div class="ornament br"></div>
+
+    <a href="../index.html" class="back-link">&larr; Back</a>
+
+    <!-- Sunburst -->
+    <div class="sunburst-container">
+        <div class="sunburst"></div>
+    </div>
+
+    <!-- Header -->
+    <section class="header">
+        <div class="header-label">&#x0950; An Exhibition of Text &amp; Desire &#x0950;</div>
+        <h1>
+            Tambula Mandira
+            <span class="thin">The Sacred Geometry of Desire in Sanskrit</span>
+        </h1>
+        <p class="header-sub">
+            A scholarly community devoted to the betel leaf and its luminous presence across centuries of poetry, ritual, and intimate art.
+        </p>
+    </section>
+
+    <div class="gold-line"></div>
+
+    <!-- Fan -->
+    <div style="padding: 50px 0;">
+        <div class="fan">
+            <div class="fan-line" style="transform: rotate(-60deg);"></div>
+            <div class="fan-line" style="transform: rotate(-45deg);"></div>
+            <div class="fan-line" style="transform: rotate(-30deg);"></div>
+            <div class="fan-line" style="transform: rotate(-15deg);"></div>
+            <div class="fan-line" style="transform: rotate(0deg);"></div>
+            <div class="fan-line" style="transform: rotate(15deg);"></div>
+            <div class="fan-line" style="transform: rotate(30deg);"></div>
+            <div class="fan-line" style="transform: rotate(45deg);"></div>
+            <div class="fan-line" style="transform: rotate(60deg);"></div>
+        </div>
+    </div>
+
+    <!-- About — geometric frame -->
+    <div class="geo-border">
+        <div class="geo-frame">
+            <h2>The Archive</h2>
+            <p>
+                From the geometric precision of Vatsyayana's categories to the lyric abandon of Jayadeva's verses, the betel leaf appears again and again &mdash; a golden thread woven through the fabric of Sanskrit desire. This community exists to trace that thread with the care it demands.
+            </p>
+        </div>
+    </div>
+
+    <div style="height: 80px;"></div>
+    <div class="gold-line"></div>
+
+    <!-- Features grid -->
+    <section class="features">
+        <div class="feature">
+            <h3>The Sixty-Four Arts</h3>
+            <p>Paan preparation as one of the chatushashti kalas &mdash; the sixty-four arts of the cultured lover. Its place in the architecture of desire.</p>
+        </div>
+        <div class="feature">
+            <h3>Adhara: The Lower Lip</h3>
+            <p>Kavya poets who transformed the betel-stained lip into literature's most intimate image. Close readings of Amaru, Bhartrihari, and Kalidasa.</p>
+        </div>
+        <div class="feature">
+            <h3>The Sacred Offering</h3>
+            <p>Tambula-dana: the ceremonial offering of paan as erotic prelude. How gesture became language in the grammar of courtship and devotion.</p>
+        </div>
+        <div class="feature">
+            <h3>Divine Eros</h3>
+            <p>Jayadeva elevated the paan exchange between Radha and Krishna to theological event. Desire and devotion became one through the leaf.</p>
+        </div>
+    </section>
+
+    <div class="gold-line-thick"></div>
+
+    <!-- Quote -->
+    <section class="quote-section">
+        <div class="quote-diamond"></div>
+        <blockquote>
+            "Her lower lip, reddened by the betel, was a threshold between the sacred and the sensual &mdash; to cross it was to enter the temple of desire itself."
+        </blockquote>
+        <cite>After Kalidasa &bull; Kumarasambhava</cite>
+    </section>
+
+    <div class="gold-line"></div>
+
+    <!-- Two columns -->
+    <section class="columns" style="padding-top: 80px;">
+        <div class="col-text">
+            <p>
+                The Kamasutra does not merely mention paan in passing. It elevates tambula preparation to the rank of essential knowledge &mdash; a skill as necessary to the cultivated lover as music, painting, or the art of conversation. Vatsyayana understood that seduction is composed of accumulated details, and the betel leaf was among the most potent.
+            </p>
+            <p>
+                In the courts of classical India, the exchange of paan was a language unto itself. To offer paan was to declare interest; to accept it, to acknowledge desire. The spices mixed within each carried symbolic weight, transforming a botanical preparation into an encrypted message of longing.
+            </p>
+        </div>
+        <div class="col-divider">
+            <div class="dot"></div>
+            <div class="line"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="col-text">
+            <p>
+                Our community approaches these texts with both scholarly rigour and genuine reverence. We reject the colonial impulse to sanitize or exoticize. Sanskrit erotic literature stands as one of humanity's great achievements in articulating desire &mdash; and the betel leaf is one of its most elegant symbols.
+            </p>
+            <p>
+                We host fortnightly reading sessions, maintain an open-access translation archive, and publish original research connecting classical tambula imagery to contemporary South Asian cultural practices. Whether you are a philologist, a cultural historian, or a lover of ancient verse, you belong here.
+            </p>
+        </div>
+    </section>
+
+    <div class="gold-line-thick"></div>
+
+    <!-- Subscribe -->
+    <section class="subscribe">
+        <h2>Enter the Mandira</h2>
+        <p>Fortnightly dispatches on translation, poetry, and the erotics of the betel leaf.</p>
+        <div class="subscribe-form">
+            <input type="email" placeholder="Your email address">
+            <button>Join</button>
+        </div>
+    </section>
+
+    <div class="gold-line"></div>
+
+    <footer>
+        <p>Tambula Mandira &middot; MMXXVI &middot; <a href="../index.html">&larr; Back to Index</a></p>
+    </footer>
+
+</body>
+</html>

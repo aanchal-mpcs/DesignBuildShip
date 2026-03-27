@@ -404,8 +404,16 @@
     .card[data-version="17"] .card-preview::before { content: ''; position: absolute; top: 12px; left: 12px; right: 12px; height: 4px; border-top: 2px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
     .card[data-version="17"] .card-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 28px; background: #1a1a1a; }
 
-    /* Placeholder cards (18-25) keep generic dark style */
-    .card[data-version="18"] .card-preview,
+    /* v18 Sacred Deco — deep purple bg, gold, jewel tones */
+    .card[data-version="18"] .card-preview { background: #0f0c18; }
+    .card[data-version="18"] .card-preview .version-number { color: #1a1530; }
+    .card[data-version="18"] .card-preview .preview-label { color: #c9a84c; font-family: 'Yatra One', serif; font-size: 1.1rem; }
+    .card[data-version="18"] .card-tag { color: #9b1b30; }
+    .card[data-version="18"]:hover { box-shadow: 0 20px 50px rgba(201,168,76,0.15); }
+    .card[data-version="18"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 50%; width: 70px; height: 70px; transform: translate(-50%,-50%); border: 1px solid rgba(201,168,76,0.2); border-radius: 50%; }
+    .card[data-version="18"] .card-preview::after { content: ''; position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; transform: translate(-50%,-50%) rotate(45deg); border: 1px solid rgba(155,27,48,0.25); }
+
+    /* Placeholder cards (19-25) keep generic dark style */
     .card[data-version="19"] .card-preview,
     .card[data-version="20"] .card-preview,
     .card[data-version="21"] .card-preview,
@@ -786,15 +794,15 @@
     <a href="version18/index.html" class="card" data-version="18">
       <div class="card-preview">
         <span class="version-number">18</span>
-        <span class="preview-label">TBD</span>
+        <span class="preview-label">Yatra One</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 18</div>
-        <h2>Landing Page v18</h2>
-        <p>Eighteenth iteration — serif-heavy editorial style.</p>
+        <h2>Sacred Deco</h2>
+        <p>v15 typography (Yatra One, jewel tones) meets v9 layout (sunburst, fans, geometric frames, columns).</p>
       </div>
       <div class="card-footer">
-        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="status"><span class="dot"></span>Ready</span>
         <span class="arrow">&rarr;</span>
       </div>
     </a>

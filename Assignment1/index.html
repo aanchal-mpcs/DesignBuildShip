@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Assignment 1 — 25 Landing Page Versions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Serif+Display&family=EB+Garamond:ital,wght@0,500;1,400&family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@500&family=Libre+Baskerville:ital@0;1&family=Orbitron:wght@700&family=Playfair+Display:ital,wght@0,700;1,400&family=Poiret+One&family=Righteous&family=Space+Mono&family=Special+Elite&family=Yatra+One&family=Zen+Antique&display=swap" rel="stylesheet">
   <style>
     /* ===== Variables ===== */
     :root {
@@ -255,7 +258,7 @@
     /* v01 Warm Classical — cream, brown, gold ornate */
     .card[data-version="1"] .card-preview { background: #faf6f0; }
     .card[data-version="1"] .card-preview .version-number { color: #c9956b; }
-    .card[data-version="1"] .card-preview .preview-label { color: #8b4513; font-family: Georgia, serif; font-style: italic; }
+    .card[data-version="1"] .card-preview .preview-label { color: #8b4513; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; }
     .card[data-version="1"] .card-tag { color: #8b4513; }
     .card[data-version="1"]:hover { box-shadow: 0 20px 50px rgba(139,69,19,0.2); }
     .card[data-version="1"] .card-preview::before { content: '❧ ◆ ❧'; position: absolute; bottom: 12px; width: 100%; text-align: center; color: #c9956b; font-size: 0.9rem; letter-spacing: 0.5em; }
@@ -264,7 +267,7 @@
     /* v02 Dark Sensual — deep reds, gold on black */
     .card[data-version="2"] .card-preview { background: #1a0a0a; }
     .card[data-version="2"] .card-preview .version-number { color: #3a1515; }
-    .card[data-version="2"] .card-preview .preview-label { color: #d4a76a; font-family: Georgia, serif; font-style: italic; }
+    .card[data-version="2"] .card-preview .preview-label { color: #d4a76a; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; }
     .card[data-version="2"] .card-tag { color: #c41e3a; }
     .card[data-version="2"]:hover { box-shadow: 0 20px 50px rgba(196,30,58,0.25); }
     .card[data-version="2"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 50%; width: 120px; height: 120px; transform: translate(-50%,-50%); border-radius: 50%; background: radial-gradient(circle, rgba(196,30,58,0.3) 0%, transparent 70%); }
@@ -273,7 +276,7 @@
     /* v03 Clean Modern — white, teal accent */
     .card[data-version="3"] .card-preview { background: #f8f9fa; }
     .card[data-version="3"] .card-preview .version-number { color: #e0e0e0; }
-    .card[data-version="3"] .card-preview .preview-label { color: #2a7f7f; font-family: system-ui, sans-serif; font-style: normal; font-weight: 600; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; }
+    .card[data-version="3"] .card-preview .preview-label { color: #2a7f7f; font-family: 'Inter', sans-serif; font-style: normal; font-weight: 500; font-size: 0.95rem; letter-spacing: 0; text-transform: none; }
     .card[data-version="3"] .card-tag { color: #2a7f7f; }
     .card[data-version="3"]:hover { box-shadow: 0 20px 50px rgba(42,127,127,0.2); }
     .card[data-version="3"] .card-preview::before { content: ''; position: absolute; top: 20%; left: 0; width: 4px; height: 60%; background: #2a7f7f; }
@@ -282,7 +285,7 @@
     /* v04 Editorial Magazine — off-white, vermillion */
     .card[data-version="4"] .card-preview { background: #faf5f0; }
     .card[data-version="4"] .card-preview .version-number { color: #f0e0d0; font-size: 6rem; font-weight: 900; }
-    .card[data-version="4"] .card-preview .preview-label { color: #e04e39; font-family: system-ui; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7rem; }
+    .card[data-version="4"] .card-preview .preview-label { color: #e04e39; font-family: 'DM Serif Display', serif; font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 1.1rem; }
     .card[data-version="4"] .card-tag { color: #e04e39; }
     .card[data-version="4"]:hover { box-shadow: 0 20px 50px rgba(224,78,57,0.2); }
     .card[data-version="4"] .card-preview::after { content: 'PAAN ● POETRY ● DESIRE ● PAAN ● POETRY ●'; position: absolute; bottom: 0; left: 0; right: 0; padding: 6px 0; background: #e04e39; color: white; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-align: center; overflow: hidden; white-space: nowrap; }
@@ -290,7 +293,7 @@
     /* v05 Vintage Manuscript — parchment, brown */
     .card[data-version="5"] .card-preview { background: #f4ead5; border-bottom: 2px double #c9b896; }
     .card[data-version="5"] .card-preview .version-number { color: #d8cbb5; font-family: Georgia; }
-    .card[data-version="5"] .card-preview .preview-label { color: #5c4a32; font-family: Georgia; font-style: italic; }
+    .card[data-version="5"] .card-preview .preview-label { color: #5c4a32; font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.05rem; }
     .card[data-version="5"] .card-tag { color: #8b6914; }
     .card[data-version="5"]:hover { box-shadow: 0 20px 50px rgba(92,74,50,0.2); }
     .card[data-version="5"] .card-preview::before { content: '❦'; position: absolute; top: 10px; left: 10px; color: #c9b896; font-size: 1.5rem; }
@@ -299,7 +302,7 @@
     /* v06 Brutalist — black, neon green */
     .card[data-version="6"] .card-preview { background: #000; border-bottom: 3px solid #00ff00; }
     .card[data-version="6"] .card-preview .version-number { color: #111; font-family: monospace; }
-    .card[data-version="6"] .card-preview .preview-label { color: #00ff00; font-family: monospace; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; }
+    .card[data-version="6"] .card-preview .preview-label { color: #00ff00; font-family: 'Space Mono', monospace; font-style: normal; text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
     .card[data-version="6"] .card-tag { color: #00ff00; }
     .card[data-version="6"]:hover { box-shadow: 0 20px 50px rgba(0,255,0,0.15); }
     .card[data-version="6"] .card-preview::before { content: '[ ]'; position: absolute; top: 10px; right: 12px; color: #00ff00; font-family: monospace; font-size: 0.8rem; }
@@ -308,7 +311,7 @@
     /* v07 Minimalist Zen — near-white, sage */
     .card[data-version="7"] .card-preview { background: #fafaf8; }
     .card[data-version="7"] .card-preview .version-number { color: #f0f0ec; font-weight: 300; }
-    .card[data-version="7"] .card-preview .preview-label { color: #8faa80; font-style: normal; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.15em; }
+    .card[data-version="7"] .card-preview .preview-label { color: #8faa80; font-family: 'Zen Antique', serif; font-style: normal; font-weight: 400; font-size: 1rem; letter-spacing: 0; }
     .card[data-version="7"] .card-tag { color: #8faa80; }
     .card[data-version="7"]:hover { box-shadow: 0 20px 50px rgba(143,170,128,0.15); }
     .card[data-version="7"] .card-preview::after { content: ''; position: absolute; top: 50%; left: 35%; width: 30%; height: 1px; background: #d0d0c8; }
@@ -316,7 +319,7 @@
     /* v08 Retro 70s — orange, brown, cream */
     .card[data-version="8"] .card-preview { background: linear-gradient(180deg, #fdf0d5 0%, #e8622c 100%); }
     .card[data-version="8"] .card-preview .version-number { color: rgba(255,255,255,0.2); }
-    .card[data-version="8"] .card-preview .preview-label { color: #5c3d2e; font-weight: 700; }
+    .card[data-version="8"] .card-preview .preview-label { color: #5c3d2e; font-family: 'Righteous', sans-serif; font-weight: 400; font-size: 1.05rem; }
     .card[data-version="8"] .card-tag { color: #e8622c; }
     .card[data-version="8"]:hover { box-shadow: 0 20px 50px rgba(232,98,44,0.25); }
     .card[data-version="8"] .card-preview::before { content: ''; position: absolute; bottom: -20px; left: -20px; width: 80px; height: 80px; border-radius: 50%; background: #d4a03c; opacity: 0.4; }
@@ -325,7 +328,7 @@
     /* v09 Art Deco — gold on navy */
     .card[data-version="9"] .card-preview { background: #1a1a2e; }
     .card[data-version="9"] .card-preview .version-number { color: #252545; }
-    .card[data-version="9"] .card-preview .preview-label { color: #c9a84c; font-style: normal; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.7rem; }
+    .card[data-version="9"] .card-preview .preview-label { color: #c9a84c; font-family: 'Poiret One', sans-serif; font-style: normal; text-transform: none; letter-spacing: 0.05em; font-size: 1.1rem; }
     .card[data-version="9"] .card-tag { color: #c9a84c; }
     .card[data-version="9"]:hover { box-shadow: 0 20px 50px rgba(201,168,76,0.2); }
     .card[data-version="9"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100px; height: 100px; transform: translate(-50%,-50%); border: 1px solid rgba(201,168,76,0.3); }
@@ -334,7 +337,7 @@
     /* v10 Newspaper — parchment, black, red */
     .card[data-version="10"] .card-preview { background: #f5f1eb; }
     .card[data-version="10"] .card-preview .version-number { color: #e5e0d8; font-family: Georgia; }
-    .card[data-version="10"] .card-preview .preview-label { color: #222; font-family: Georgia; font-style: italic; font-size: 0.8rem; }
+    .card[data-version="10"] .card-preview .preview-label { color: #222; font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 1rem; }
     .card[data-version="10"] .card-tag { color: #c0392b; }
     .card[data-version="10"]:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
     .card[data-version="10"] .card-preview::before { content: ''; position: absolute; top: 12px; left: 12px; right: 12px; height: 2px; background: #222; }
@@ -343,7 +346,7 @@
     /* v11 Neon Night — dark, neon glow */
     .card[data-version="11"] .card-preview { background: #0a0a0f; }
     .card[data-version="11"] .card-preview .version-number { color: #151520; }
-    .card[data-version="11"] .card-preview .preview-label { color: #ff2d95; font-family: system-ui; font-weight: 700; text-shadow: 0 0 10px rgba(255,45,149,0.6); }
+    .card[data-version="11"] .card-preview .preview-label { color: #ff2d95; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.85rem; text-shadow: 0 0 10px rgba(255,45,149,0.6); }
     .card[data-version="11"] .card-tag { color: #ff2d95; }
     .card[data-version="11"]:hover { box-shadow: 0 20px 50px rgba(255,45,149,0.2); }
     .card[data-version="11"] .card-preview::before { content: ''; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; border: 1px solid rgba(0,229,255,0.2); }
@@ -352,7 +355,7 @@
     /* v12 Botanical — greens, cream */
     .card[data-version="12"] .card-preview { background: linear-gradient(135deg, #dad7cd, #a3b18a); }
     .card[data-version="12"] .card-preview .version-number { color: rgba(255,255,255,0.15); }
-    .card[data-version="12"] .card-preview .preview-label { color: #3a5a40; font-weight: 600; }
+    .card[data-version="12"] .card-preview .preview-label { color: #3a5a40; font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; }
     .card[data-version="12"] .card-tag { color: #3a5a40; }
     .card[data-version="12"]:hover { box-shadow: 0 20px 50px rgba(58,90,64,0.2); }
     .card[data-version="12"] .card-preview::after { content: '🍃'; position: absolute; bottom: 10px; right: 14px; font-size: 1.8rem; opacity: 0.5; }
@@ -360,7 +363,7 @@
     /* v13 Luxury Fashion — black, white, gold */
     .card[data-version="13"] .card-preview { background: #0a0a0a; }
     .card[data-version="13"] .card-preview .version-number { color: #151515; }
-    .card[data-version="13"] .card-preview .preview-label { color: #b8860b; font-family: Georgia; font-style: normal; text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.65rem; }
+    .card[data-version="13"] .card-preview .preview-label { color: #b8860b; font-family: 'Bodoni Moda', serif; font-style: normal; text-transform: none; letter-spacing: 0; font-size: 1.1rem; }
     .card[data-version="13"] .card-tag { color: #b8860b; }
     .card[data-version="13"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.2); }
     .card[data-version="13"] .card-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #b8860b, transparent); }
@@ -368,7 +371,7 @@
     /* v14 Indie Zine — off-white, yellow highlight */
     .card[data-version="14"] .card-preview { background: #f5f5f0; }
     .card[data-version="14"] .card-preview .version-number { color: #e8e8e0; font-family: monospace; transform: rotate(-3deg); }
-    .card[data-version="14"] .card-preview .preview-label { color: #222; font-family: monospace; background: #fff700; padding: 2px 8px; font-style: normal; font-weight: 700; }
+    .card[data-version="14"] .card-preview .preview-label { color: #222; font-family: 'Special Elite', monospace; background: #fff700; padding: 2px 8px; font-style: normal; font-weight: 400; font-size: 1rem; }
     .card[data-version="14"] .card-tag { color: #c0392b; }
     .card[data-version="14"]:hover { box-shadow: 0 20px 50px rgba(255,247,0,0.15); }
     .card[data-version="14"] .card-preview::before { content: ''; position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border: 2px dashed #c0392b; border-radius: 50%; transform: rotate(12deg); }
@@ -377,7 +380,7 @@
     /* v15 Temple Sacred — jewel tones, gold */
     .card[data-version="15"] .card-preview { background: linear-gradient(135deg, #1a0a20, #1b3a6b); }
     .card[data-version="15"] .card-preview .version-number { color: rgba(201,168,76,0.1); }
-    .card[data-version="15"] .card-preview .preview-label { color: #c9a84c; font-style: normal; letter-spacing: 0.15em; }
+    .card[data-version="15"] .card-preview .preview-label { color: #c9a84c; font-family: 'Yatra One', serif; font-style: normal; letter-spacing: 0; font-size: 1.1rem; }
     .card[data-version="15"] .card-tag { color: #9b1b30; }
     .card[data-version="15"]:hover { box-shadow: 0 20px 50px rgba(155,27,48,0.2); }
     .card[data-version="15"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; transform: translate(-50%,-50%); border: 2px solid rgba(201,168,76,0.3); border-radius: 50%; }
@@ -386,7 +389,7 @@
     /* v16 Manuscript + Neon Layout — dark bg, gold accents, serif */
     .card[data-version="16"] .card-preview { background: #0e0b06; }
     .card[data-version="16"] .card-preview .version-number { color: #1a1508; font-family: Georgia; }
-    .card[data-version="16"] .card-preview .preview-label { color: #c5a96a; font-family: Georgia; font-style: italic; }
+    .card[data-version="16"] .card-preview .preview-label { color: #c5a96a; font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.05rem; }
     .card[data-version="16"] .card-tag { color: #c5a96a; }
     .card[data-version="16"]:hover { box-shadow: 0 20px 50px rgba(197,169,106,0.15); }
     .card[data-version="16"] .card-preview::before { content: '❦'; position: absolute; top: 10px; left: 14px; color: #c5a96a; font-size: 1rem; opacity: 0.4; }
@@ -503,7 +506,7 @@
     <a href="version01/index.html" class="card" data-version="1">
       <div class="card-preview">
         <span class="version-number">01</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Cormorant Garamond</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 01</div>
@@ -519,7 +522,7 @@
     <a href="version02/index.html" class="card" data-version="2">
       <div class="card-preview">
         <span class="version-number">02</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Playfair Display</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 02</div>
@@ -535,7 +538,7 @@
     <a href="version03/index.html" class="card" data-version="3">
       <div class="card-preview">
         <span class="version-number">03</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Inter</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 03</div>
@@ -551,7 +554,7 @@
     <a href="version04/index.html" class="card" data-version="4">
       <div class="card-preview">
         <span class="version-number">04</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">DM Serif Display</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 04</div>
@@ -567,7 +570,7 @@
     <a href="version05/index.html" class="card" data-version="5">
       <div class="card-preview">
         <span class="version-number">05</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">EB Garamond</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 05</div>
@@ -583,7 +586,7 @@
     <a href="version06/index.html" class="card" data-version="6">
       <div class="card-preview">
         <span class="version-number">06</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Space Mono</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 06</div>
@@ -599,7 +602,7 @@
     <a href="version07/index.html" class="card" data-version="7">
       <div class="card-preview">
         <span class="version-number">07</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Zen Antique</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 07</div>
@@ -615,7 +618,7 @@
     <a href="version08/index.html" class="card" data-version="8">
       <div class="card-preview">
         <span class="version-number">08</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Righteous</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 08</div>
@@ -631,7 +634,7 @@
     <a href="version09/index.html" class="card" data-version="9">
       <div class="card-preview">
         <span class="version-number">09</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Poiret One</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 09</div>
@@ -647,7 +650,7 @@
     <a href="version10/index.html" class="card" data-version="10">
       <div class="card-preview">
         <span class="version-number">10</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Libre Baskerville</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 10</div>
@@ -663,7 +666,7 @@
     <a href="version11/index.html" class="card" data-version="11">
       <div class="card-preview">
         <span class="version-number">11</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Orbitron</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 11</div>
@@ -679,7 +682,7 @@
     <a href="version12/index.html" class="card" data-version="12">
       <div class="card-preview">
         <span class="version-number">12</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Fraunces</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 12</div>
@@ -695,7 +698,7 @@
     <a href="version13/index.html" class="card" data-version="13">
       <div class="card-preview">
         <span class="version-number">13</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Bodoni Moda</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 13</div>
@@ -711,7 +714,7 @@
     <a href="version14/index.html" class="card" data-version="14">
       <div class="card-preview">
         <span class="version-number">14</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Special Elite</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 14</div>
@@ -727,7 +730,7 @@
     <a href="version15/index.html" class="card" data-version="15">
       <div class="card-preview">
         <span class="version-number">15</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">Yatra One</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 15</div>
@@ -743,7 +746,7 @@
     <a href="version16/index.html" class="card" data-version="16">
       <div class="card-preview">
         <span class="version-number">16</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">EB Garamond</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 16</div>
@@ -759,7 +762,7 @@
     <a href="version17/index.html" class="card" data-version="17">
       <div class="card-preview">
         <span class="version-number">17</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 17</div>
@@ -775,7 +778,7 @@
     <a href="version18/index.html" class="card" data-version="18">
       <div class="card-preview">
         <span class="version-number">18</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 18</div>
@@ -791,7 +794,7 @@
     <a href="version19/index.html" class="card" data-version="19">
       <div class="card-preview">
         <span class="version-number">19</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 19</div>
@@ -807,7 +810,7 @@
     <a href="version20/index.html" class="card" data-version="20">
       <div class="card-preview">
         <span class="version-number">20</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 20</div>
@@ -823,7 +826,7 @@
     <a href="version21/index.html" class="card" data-version="21">
       <div class="card-preview">
         <span class="version-number">21</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 21</div>
@@ -839,7 +842,7 @@
     <a href="version22/index.html" class="card" data-version="22">
       <div class="card-preview">
         <span class="version-number">22</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 22</div>
@@ -855,7 +858,7 @@
     <a href="version23/index.html" class="card" data-version="23">
       <div class="card-preview">
         <span class="version-number">23</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 23</div>
@@ -871,7 +874,7 @@
     <a href="version24/index.html" class="card" data-version="24">
       <div class="card-preview">
         <span class="version-number">24</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 24</div>
@@ -887,7 +890,7 @@
     <a href="version25/index.html" class="card" data-version="25">
       <div class="card-preview">
         <span class="version-number">25</span>
-        <span class="preview-label">Preview</span>
+        <span class="preview-label">TBD</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 25</div>

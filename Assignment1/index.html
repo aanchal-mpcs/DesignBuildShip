@@ -438,23 +438,38 @@
     .card[data-version="21"] .card-tag { color: #b8860b; }
     .card[data-version="21"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.15); }
 
-    /* Placeholder cards (22-25) keep generic dark style */
-    .card[data-version="19"] .card-preview,
-    .card[data-version="20"] .card-preview,
-    .card[data-version="21"] .card-preview,
-    .card[data-version="22"] .card-preview,
-    .card[data-version="23"] .card-preview,
-    .card[data-version="24"] .card-preview,
-    .card[data-version="25"] .card-preview { background: linear-gradient(135deg, #1a1a24, #252535); }
-    .card[data-version="17"] .card-tag,
-    .card[data-version="18"] .card-tag,
-    .card[data-version="19"] .card-tag,
-    .card[data-version="20"] .card-tag,
-    .card[data-version="21"] .card-tag,
-    .card[data-version="22"] .card-tag,
-    .card[data-version="23"] .card-tag,
-    .card[data-version="24"] .card-tag,
-    .card[data-version="25"] .card-tag { color: var(--text-muted); }
+    /* v22 Readable Italics — warm parchment + brown, same as v21 but with italic hint */
+    .card[data-version="22"] .card-preview { background: linear-gradient(180deg, #f4f0ea 50%, #2a2520 50%); }
+    .card[data-version="22"] .card-preview .version-number { color: #e8e4dc; font-family: 'Bodoni Moda', serif; font-weight: 900; }
+    .card[data-version="22"] .card-preview .preview-label { color: #b8860b; font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 1.15rem; font-style: italic; }
+    .card[data-version="22"] .card-tag { color: #b8860b; }
+    .card[data-version="22"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.15); }
+
+    /* v23 Refined Timeline — same palette, timeline emphasis */
+    .card[data-version="23"] .card-preview { background: #2a2520; }
+    .card[data-version="23"] .card-preview .version-number { color: #352e28; font-family: 'Bodoni Moda', serif; font-weight: 900; }
+    .card[data-version="23"] .card-preview .preview-label { color: #c4bab0; font-family: 'EB Garamond', serif; font-weight: 600; font-size: 1.05rem; font-style: italic; }
+    .card[data-version="23"] .card-tag { color: #b8860b; }
+    .card[data-version="23"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.15); }
+    .card[data-version="23"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 20px; width: 1.5px; height: 50%; transform: translateY(-50%); background: linear-gradient(to bottom, #b8860b, rgba(184,134,11,0.2)); }
+    .card[data-version="23"] .card-preview::after { content: '◆'; position: absolute; top: 32%; left: 16px; font-size: 0.45rem; color: #b8860b; }
+
+    /* v24 Desire Before Explanation — dark quote-first, split feel */
+    .card[data-version="24"] .card-preview { background: #2a2520; }
+    .card[data-version="24"] .card-preview .version-number { color: #352e28; font-family: 'Bodoni Moda', serif; font-weight: 900; }
+    .card[data-version="24"] .card-preview .preview-label { color: #e8e0d6; font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 1rem; font-style: italic; }
+    .card[data-version="24"] .card-tag { color: #b8860b; }
+    .card[data-version="24"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.12); }
+    .card[data-version="24"] .card-preview::after { content: '"'; position: absolute; top: 12px; right: 18px; font-family: 'Bodoni Moda', serif; font-size: 3rem; color: rgba(184,134,11,0.15); line-height: 1; }
+
+    /* v25 Final Polish — warm parchment, desaturated green hint */
+    .card[data-version="25"] .card-preview { background: linear-gradient(180deg, #f4f0ea 60%, #e0ddd4 100%); }
+    .card[data-version="25"] .card-preview .version-number { color: #e8e4dc; font-family: 'Bodoni Moda', serif; font-weight: 900; }
+    .card[data-version="25"] .card-preview .preview-label { color: #b8860b; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 1.05rem; }
+    .card[data-version="25"] .card-tag { color: #b8860b; }
+    .card[data-version="25"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.15); }
+    .card[data-version="25"] .card-preview::before { content: '❦'; position: absolute; top: 10px; left: 14px; color: #b8860b; font-size: 0.9rem; opacity: 0.35; }
+    .card[data-version="25"] .card-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8a9a78, #b8a878, #8a9a78); opacity: 0.3; }
 
     /* ===== Footer ===== */
     .footer {

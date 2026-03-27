@@ -422,7 +422,16 @@
     .card[data-version="19"] .card-preview::before { content: '❦'; position: absolute; top: 10px; right: 14px; color: #b8860b; font-size: 0.9rem; opacity: 0.4; }
     .card[data-version="19"] .card-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 0.5px; background: linear-gradient(90deg, transparent, #b8860b, transparent); }
 
-    /* Placeholder cards (20-25) keep generic dark style */
+    /* v20 Illustrated Edition — v19 + real images, warm tones */
+    .card[data-version="20"] .card-preview { background: linear-gradient(135deg, #faf8f4, #e8e4da); }
+    .card[data-version="20"] .card-preview .version-number { color: #ece6d8; font-family: 'Bodoni Moda', serif; font-weight: 900; }
+    .card[data-version="20"] .card-preview .preview-label { color: #b8860b; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 1.05rem; font-style: italic; }
+    .card[data-version="20"] .card-tag { color: #b8860b; }
+    .card[data-version="20"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.15); }
+    .card[data-version="20"] .card-preview::before { content: '🖼'; position: absolute; top: 10px; right: 14px; font-size: 1.2rem; opacity: 0.4; }
+    .card[data-version="20"] .card-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #b8860b, #d4a846, #b8860b); }
+
+    /* Placeholder cards (21-25) keep generic dark style */
     .card[data-version="19"] .card-preview,
     .card[data-version="20"] .card-preview,
     .card[data-version="21"] .card-preview,
@@ -835,15 +844,15 @@
     <a href="version20/index.html" class="card" data-version="20">
       <div class="card-preview">
         <span class="version-number">20</span>
-        <span class="preview-label">TBD</span>
+        <span class="preview-label">Bodoni Moda</span>
       </div>
       <div class="card-body">
         <div class="card-tag">Version 20</div>
-        <h2>Landing Page v20</h2>
-        <p>Twentieth iteration — high contrast accessibility focus.</p>
+        <h2>Illustrated Edition</h2>
+        <p>v19 with real public domain art: Gita Govinda miniatures, nayika paintings, bidri paan boxes from The Met &amp; Wikimedia.</p>
       </div>
       <div class="card-footer">
-        <span class="status"><span class="dot"></span>Placeholder</span>
+        <span class="status"><span class="dot"></span>Ready</span>
         <span class="arrow">&rarr;</span>
       </div>
     </a>

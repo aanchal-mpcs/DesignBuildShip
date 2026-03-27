@@ -241,28 +241,169 @@
       transform: translateX(0);
     }
 
-    /* ===== Color Themes per Row ===== */
-    .card:nth-child(5n+1) .card-preview { background: linear-gradient(135deg, #1e1b4b, #312e81); }
-    .card:nth-child(5n+1) .card-tag { color: var(--accent-1); }
+    /* ===== Per-card preview mini-layout ===== */
+    .card-preview {
+      position: relative;
+      overflow: hidden;
+    }
 
-    .card:nth-child(5n+2) .card-preview { background: linear-gradient(135deg, #2d1a35, #4a1942); }
-    .card:nth-child(5n+2) .card-tag { color: var(--accent-2); }
+    .card-preview .mini-element {
+      position: absolute;
+      pointer-events: none;
+    }
 
-    .card:nth-child(5n+3) .card-preview { background: linear-gradient(135deg, #0f2b2b, #134e4a); }
-    .card:nth-child(5n+3) .card-tag { color: var(--accent-3); }
+    /* v01 Warm Classical — cream, brown, gold ornate */
+    .card[data-version="1"] .card-preview { background: #faf6f0; }
+    .card[data-version="1"] .card-preview .version-number { color: #c9956b; }
+    .card[data-version="1"] .card-preview .preview-label { color: #8b4513; font-family: Georgia, serif; font-style: italic; }
+    .card[data-version="1"] .card-tag { color: #8b4513; }
+    .card[data-version="1"]:hover { box-shadow: 0 20px 50px rgba(139,69,19,0.2); }
+    .card[data-version="1"] .card-preview::before { content: '❧ ◆ ❧'; position: absolute; bottom: 12px; width: 100%; text-align: center; color: #c9956b; font-size: 0.9rem; letter-spacing: 0.5em; }
+    .card[data-version="1"] .card-preview::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #8b4513, #c9956b, #d4a76a, #c9956b, #8b4513); }
 
-    .card:nth-child(5n+4) .card-preview { background: linear-gradient(135deg, #2a1f0a, #422d0b); }
-    .card:nth-child(5n+4) .card-tag { color: var(--accent-4); }
+    /* v02 Dark Sensual — deep reds, gold on black */
+    .card[data-version="2"] .card-preview { background: #1a0a0a; }
+    .card[data-version="2"] .card-preview .version-number { color: #3a1515; }
+    .card[data-version="2"] .card-preview .preview-label { color: #d4a76a; font-family: Georgia, serif; font-style: italic; }
+    .card[data-version="2"] .card-tag { color: #c41e3a; }
+    .card[data-version="2"]:hover { box-shadow: 0 20px 50px rgba(196,30,58,0.25); }
+    .card[data-version="2"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 50%; width: 120px; height: 120px; transform: translate(-50%,-50%); border-radius: 50%; background: radial-gradient(circle, rgba(196,30,58,0.3) 0%, transparent 70%); }
+    .card[data-version="2"] .card-preview::after { content: ''; position: absolute; bottom: 40%; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, #d4a76a, transparent); }
 
-    .card:nth-child(5n+5) .card-preview { background: linear-gradient(135deg, #2a0f0f, #451a1a); }
-    .card:nth-child(5n+5) .card-tag { color: var(--accent-5); }
+    /* v03 Clean Modern — white, teal accent */
+    .card[data-version="3"] .card-preview { background: #f8f9fa; }
+    .card[data-version="3"] .card-preview .version-number { color: #e0e0e0; }
+    .card[data-version="3"] .card-preview .preview-label { color: #2a7f7f; font-family: system-ui, sans-serif; font-style: normal; font-weight: 600; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; }
+    .card[data-version="3"] .card-tag { color: #2a7f7f; }
+    .card[data-version="3"]:hover { box-shadow: 0 20px 50px rgba(42,127,127,0.2); }
+    .card[data-version="3"] .card-preview::before { content: ''; position: absolute; top: 20%; left: 0; width: 4px; height: 60%; background: #2a7f7f; }
+    .card[data-version="3"] .card-preview::after { content: '□ □ □'; position: absolute; bottom: 16px; left: 20px; color: #ccc; font-size: 0.8rem; letter-spacing: 0.8em; }
 
-    /* Hover glow per theme */
-    .card:nth-child(5n+1):hover { box-shadow: 0 20px 50px rgba(99,102,241,0.15); }
-    .card:nth-child(5n+2):hover { box-shadow: 0 20px 50px rgba(236,72,153,0.15); }
-    .card:nth-child(5n+3):hover { box-shadow: 0 20px 50px rgba(20,184,166,0.15); }
-    .card:nth-child(5n+4):hover { box-shadow: 0 20px 50px rgba(245,158,11,0.15); }
-    .card:nth-child(5n+5):hover { box-shadow: 0 20px 50px rgba(239,68,68,0.15); }
+    /* v04 Editorial Magazine — off-white, vermillion */
+    .card[data-version="4"] .card-preview { background: #faf5f0; }
+    .card[data-version="4"] .card-preview .version-number { color: #f0e0d0; font-size: 6rem; font-weight: 900; }
+    .card[data-version="4"] .card-preview .preview-label { color: #e04e39; font-family: system-ui; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7rem; }
+    .card[data-version="4"] .card-tag { color: #e04e39; }
+    .card[data-version="4"]:hover { box-shadow: 0 20px 50px rgba(224,78,57,0.2); }
+    .card[data-version="4"] .card-preview::after { content: 'PAAN ● POETRY ● DESIRE ● PAAN ● POETRY ●'; position: absolute; bottom: 0; left: 0; right: 0; padding: 6px 0; background: #e04e39; color: white; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-align: center; overflow: hidden; white-space: nowrap; }
+
+    /* v05 Vintage Manuscript — parchment, brown */
+    .card[data-version="5"] .card-preview { background: #f4ead5; border-bottom: 2px double #c9b896; }
+    .card[data-version="5"] .card-preview .version-number { color: #d8cbb5; font-family: Georgia; }
+    .card[data-version="5"] .card-preview .preview-label { color: #5c4a32; font-family: Georgia; font-style: italic; }
+    .card[data-version="5"] .card-tag { color: #8b6914; }
+    .card[data-version="5"]:hover { box-shadow: 0 20px 50px rgba(92,74,50,0.2); }
+    .card[data-version="5"] .card-preview::before { content: '❦'; position: absolute; top: 10px; left: 10px; color: #c9b896; font-size: 1.5rem; }
+    .card[data-version="5"] .card-preview::after { content: '❦'; position: absolute; bottom: 14px; right: 10px; color: #c9b896; font-size: 1.5rem; transform: rotate(180deg); }
+
+    /* v06 Brutalist — black, neon green */
+    .card[data-version="6"] .card-preview { background: #000; border-bottom: 3px solid #00ff00; }
+    .card[data-version="6"] .card-preview .version-number { color: #111; font-family: monospace; }
+    .card[data-version="6"] .card-preview .preview-label { color: #00ff00; font-family: monospace; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; }
+    .card[data-version="6"] .card-tag { color: #00ff00; }
+    .card[data-version="6"]:hover { box-shadow: 0 20px 50px rgba(0,255,0,0.15); }
+    .card[data-version="6"] .card-preview::before { content: '[ ]'; position: absolute; top: 10px; right: 12px; color: #00ff00; font-family: monospace; font-size: 0.8rem; }
+    .card[data-version="6"] .card-preview::after { content: '///'; position: absolute; bottom: 10px; left: 12px; color: #00ff00; font-family: monospace; font-size: 1.5rem; font-weight: 900; }
+
+    /* v07 Minimalist Zen — near-white, sage */
+    .card[data-version="7"] .card-preview { background: #fafaf8; }
+    .card[data-version="7"] .card-preview .version-number { color: #f0f0ec; font-weight: 300; }
+    .card[data-version="7"] .card-preview .preview-label { color: #8faa80; font-style: normal; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.15em; }
+    .card[data-version="7"] .card-tag { color: #8faa80; }
+    .card[data-version="7"]:hover { box-shadow: 0 20px 50px rgba(143,170,128,0.15); }
+    .card[data-version="7"] .card-preview::after { content: ''; position: absolute; top: 50%; left: 35%; width: 30%; height: 1px; background: #d0d0c8; }
+
+    /* v08 Retro 70s — orange, brown, cream */
+    .card[data-version="8"] .card-preview { background: linear-gradient(180deg, #fdf0d5 0%, #e8622c 100%); }
+    .card[data-version="8"] .card-preview .version-number { color: rgba(255,255,255,0.2); }
+    .card[data-version="8"] .card-preview .preview-label { color: #5c3d2e; font-weight: 700; }
+    .card[data-version="8"] .card-tag { color: #e8622c; }
+    .card[data-version="8"]:hover { box-shadow: 0 20px 50px rgba(232,98,44,0.25); }
+    .card[data-version="8"] .card-preview::before { content: ''; position: absolute; bottom: -20px; left: -20px; width: 80px; height: 80px; border-radius: 50%; background: #d4a03c; opacity: 0.4; }
+    .card[data-version="8"] .card-preview::after { content: ''; position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; border-radius: 50%; background: #5c3d2e; opacity: 0.25; }
+
+    /* v09 Art Deco — gold on navy */
+    .card[data-version="9"] .card-preview { background: #1a1a2e; }
+    .card[data-version="9"] .card-preview .version-number { color: #252545; }
+    .card[data-version="9"] .card-preview .preview-label { color: #c9a84c; font-style: normal; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.7rem; }
+    .card[data-version="9"] .card-tag { color: #c9a84c; }
+    .card[data-version="9"]:hover { box-shadow: 0 20px 50px rgba(201,168,76,0.2); }
+    .card[data-version="9"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100px; height: 100px; transform: translate(-50%,-50%); border: 1px solid rgba(201,168,76,0.3); }
+    .card[data-version="9"] .card-preview::after { content: ''; position: absolute; top: 50%; left: 50%; width: 70px; height: 70px; transform: translate(-50%,-50%) rotate(45deg); border: 1px solid rgba(201,168,76,0.25); }
+
+    /* v10 Newspaper — parchment, black, red */
+    .card[data-version="10"] .card-preview { background: #f5f1eb; }
+    .card[data-version="10"] .card-preview .version-number { color: #e5e0d8; font-family: Georgia; }
+    .card[data-version="10"] .card-preview .preview-label { color: #222; font-family: Georgia; font-style: italic; font-size: 0.8rem; }
+    .card[data-version="10"] .card-tag { color: #c0392b; }
+    .card[data-version="10"]:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+    .card[data-version="10"] .card-preview::before { content: ''; position: absolute; top: 12px; left: 12px; right: 12px; height: 2px; background: #222; }
+    .card[data-version="10"] .card-preview::after { content: ''; position: absolute; top: 16px; left: 12px; right: 12px; height: 1px; background: #222; }
+
+    /* v11 Neon Night — dark, neon glow */
+    .card[data-version="11"] .card-preview { background: #0a0a0f; }
+    .card[data-version="11"] .card-preview .version-number { color: #151520; }
+    .card[data-version="11"] .card-preview .preview-label { color: #ff2d95; font-family: system-ui; font-weight: 700; text-shadow: 0 0 10px rgba(255,45,149,0.6); }
+    .card[data-version="11"] .card-tag { color: #ff2d95; }
+    .card[data-version="11"]:hover { box-shadow: 0 20px 50px rgba(255,45,149,0.2); }
+    .card[data-version="11"] .card-preview::before { content: ''; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; border: 1px solid rgba(0,229,255,0.2); }
+    .card[data-version="11"] .card-preview::after { content: ''; position: absolute; top: 16px; left: 16px; width: 8px; height: 8px; border-top: 2px solid #00e5ff; border-left: 2px solid #00e5ff; }
+
+    /* v12 Botanical — greens, cream */
+    .card[data-version="12"] .card-preview { background: linear-gradient(135deg, #dad7cd, #a3b18a); }
+    .card[data-version="12"] .card-preview .version-number { color: rgba(255,255,255,0.15); }
+    .card[data-version="12"] .card-preview .preview-label { color: #3a5a40; font-weight: 600; }
+    .card[data-version="12"] .card-tag { color: #3a5a40; }
+    .card[data-version="12"]:hover { box-shadow: 0 20px 50px rgba(58,90,64,0.2); }
+    .card[data-version="12"] .card-preview::after { content: '🍃'; position: absolute; bottom: 10px; right: 14px; font-size: 1.8rem; opacity: 0.5; }
+
+    /* v13 Luxury Fashion — black, white, gold */
+    .card[data-version="13"] .card-preview { background: #0a0a0a; }
+    .card[data-version="13"] .card-preview .version-number { color: #151515; }
+    .card[data-version="13"] .card-preview .preview-label { color: #b8860b; font-family: Georgia; font-style: normal; text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.65rem; }
+    .card[data-version="13"] .card-tag { color: #b8860b; }
+    .card[data-version="13"]:hover { box-shadow: 0 20px 50px rgba(184,134,11,0.2); }
+    .card[data-version="13"] .card-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #b8860b, transparent); }
+
+    /* v14 Indie Zine — off-white, yellow highlight */
+    .card[data-version="14"] .card-preview { background: #f5f5f0; }
+    .card[data-version="14"] .card-preview .version-number { color: #e8e8e0; font-family: monospace; transform: rotate(-3deg); }
+    .card[data-version="14"] .card-preview .preview-label { color: #222; font-family: monospace; background: #fff700; padding: 2px 8px; font-style: normal; font-weight: 700; }
+    .card[data-version="14"] .card-tag { color: #c0392b; }
+    .card[data-version="14"]:hover { box-shadow: 0 20px 50px rgba(255,247,0,0.15); }
+    .card[data-version="14"] .card-preview::before { content: ''; position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border: 2px dashed #c0392b; border-radius: 50%; transform: rotate(12deg); }
+    .card[data-version="14"] .card-preview::after { content: '✂'; position: absolute; bottom: 8px; left: 12px; color: #999; font-size: 1.2rem; transform: rotate(-20deg); }
+
+    /* v15 Temple Sacred — jewel tones, gold */
+    .card[data-version="15"] .card-preview { background: linear-gradient(135deg, #1a0a20, #1b3a6b); }
+    .card[data-version="15"] .card-preview .version-number { color: rgba(201,168,76,0.1); }
+    .card[data-version="15"] .card-preview .preview-label { color: #c9a84c; font-style: normal; letter-spacing: 0.15em; }
+    .card[data-version="15"] .card-tag { color: #9b1b30; }
+    .card[data-version="15"]:hover { box-shadow: 0 20px 50px rgba(155,27,48,0.2); }
+    .card[data-version="15"] .card-preview::before { content: ''; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; transform: translate(-50%,-50%); border: 2px solid rgba(201,168,76,0.3); border-radius: 50%; }
+    .card[data-version="15"] .card-preview::after { content: ''; position: absolute; top: 50%; left: 50%; width: 40px; height: 40px; transform: translate(-50%,-50%) rotate(45deg); border: 1px solid rgba(201,168,76,0.2); }
+
+    /* Placeholder cards (16-25) keep generic dark style */
+    .card[data-version="16"] .card-preview,
+    .card[data-version="17"] .card-preview,
+    .card[data-version="18"] .card-preview,
+    .card[data-version="19"] .card-preview,
+    .card[data-version="20"] .card-preview,
+    .card[data-version="21"] .card-preview,
+    .card[data-version="22"] .card-preview,
+    .card[data-version="23"] .card-preview,
+    .card[data-version="24"] .card-preview,
+    .card[data-version="25"] .card-preview { background: linear-gradient(135deg, #1a1a24, #252535); }
+    .card[data-version="16"] .card-tag,
+    .card[data-version="17"] .card-tag,
+    .card[data-version="18"] .card-tag,
+    .card[data-version="19"] .card-tag,
+    .card[data-version="20"] .card-tag,
+    .card[data-version="21"] .card-tag,
+    .card[data-version="22"] .card-tag,
+    .card[data-version="23"] .card-tag,
+    .card[data-version="24"] .card-tag,
+    .card[data-version="25"] .card-tag { color: var(--text-muted); }
 
     /* ===== Footer ===== */
     .footer {

@@ -7,7 +7,8 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/search", label: "Search" },
   { href: "/community", label: "Community" },
-  { href: "/my-books", label: "Reading List" },
+  { href: "/digest", label: "Digest" },
+  { href: "/my-books", label: "My List" },
 ];
 
 export default function NavLinks() {

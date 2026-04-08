@@ -1,12 +1,6 @@
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 
-interface UserProfile {
-  clerk_id: string;
-  name: string | null;
-  email: string | null;
-}
-
 interface Favorite {
   id: string;
   title: string;
@@ -14,6 +8,18 @@ interface Favorite {
   cover_url: string | null;
   ol_key: string;
   status: string;
+  created_at: string;
+  finished_at: string | null;
+}
+
+interface Review {
+  rating: number;
+}
+
+interface Challenge {
+  id: string;
+  goal: number;
+  year: number;
 }
 
 const statusLabel: Record<string, string> = {
@@ -43,7 +49,7 @@ export default async function UserPage({
 
   const { data: user } = await supabase
     .from("users")
-    .select("clerk_id, name, email")
+    .select("clerk_id, name, email, created_at")
     .eq("clerk_id", id)
     .single();
 
@@ -57,7 +63,7 @@ export default async function UserPage({
 
   const { data: books } = await supabase
     .from("favorites")
-    .select("id, title, author, cover_url, ol_key, status")
+    .select("id, title, author, cover_url, ol_key, status, created_at, finished_at")
     .eq("user_id", id)
     .eq("is_public", true)
     .order("created_at", { ascending: false });
@@ -65,6 +71,38 @@ export default async function UserPage({
   const favorites = (books ?? []) as Favorite[];
   const displayName = user.name ?? user.email ?? "Anonymous";
 
+  // Stats
+  const currentYear = new Date().getFullYear();
+  const finishedTotal = favorites.filter((b) => b.status === "finished").length;
+  const finishedThisYear = favorites.filter(
+    (b) => b.status === "finished" && b.finished_at && new Date(b.finished_at).getFullYear() === currentYear
+  ).length;
+  const readingNow = favorites.filter((b) => b.status === "reading").length;
+
+  // Average rating
+  const { data: reviewData } = await supabase
+    .from("reviews")
+    .select("rating")
+    .eq("user_id", id);
+
+  const reviews = (reviewData ?? []) as Review[];
+  const avgRating = reviews.length > 0
+    ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+    : null;
+
+  // Reading challenge
+  const { data: challengeData } = await supabase
+    .from("challenges")
+    .select("id, goal, year")
+    .eq("user_id", id)
+    .eq("year", currentYear)
+    .single();
+
+  const challenge = challengeData as Challenge | null;
+
+  // Top genres from subjects — skip for now, would need separate query
+
+  // Group by status
   const grouped: Record<string, Favorite[]> = {
     reading: [],
     want_to_read: [],
@@ -74,24 +112,67 @@ export default async function UserPage({
     grouped[book.status]?.push(book);
   }
 
+  const memberSince = user.created_at ? new Date(user.created_at).toLocaleDateString("en-US", { month: "long", year: "numeric" }) : null;
+
   return (
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
-            {displayName}&apos;s Reading List
+            {displayName}
           </h1>
-          <p className="mt-2 text-stone-500">
-            {favorites.length} {favorites.length === 1 ? "book" : "books"}
-          </p>
+          {memberSince && <p className="text-sm text-stone-400 mt-1">Member since {memberSince}</p>}
+
+          {/* Stats */}
+          <div className="mt-5 flex flex-wrap gap-6">
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-stone-900 dark:text-stone-100">{favorites.length}</span>
+              <span className="text-xs text-stone-500">books</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-stone-900 dark:text-stone-100">{finishedTotal}</span>
+              <span className="text-xs text-stone-500">finished</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-stone-900 dark:text-stone-100">{readingNow}</span>
+              <span className="text-xs text-stone-500">reading</span>
+            </div>
+            {avgRating && (
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-amber-500">{avgRating} <span className="text-sm">★</span></span>
+                <span className="text-xs text-stone-500">avg rating ({reviews.length} reviews)</span>
+              </div>
+            )}
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-stone-900 dark:text-stone-100">{finishedThisYear}</span>
+              <span className="text-xs text-stone-500">finished in {currentYear}</span>
+            </div>
+          </div>
+
+          {/* Reading challenge */}
+          {challenge && (
+            <div className="mt-6 max-w-sm">
+              <div className="flex items-center justify-between text-sm mb-1.5">
+                <span className="font-medium text-stone-700 dark:text-stone-300">{currentYear} Reading Challenge</span>
+                <span className="text-stone-500">{finishedThisYear} / {challenge.goal}</span>
+              </div>
+              <div className="h-3 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-emerald-500 transition-all"
+                  style={{ width: `${Math.min(100, (finishedThisYear / challenge.goal) * 100)}%` }}
+                />
+              </div>
+              {finishedThisYear >= challenge.goal && (
+                <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1 font-medium">Challenge complete!</p>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {favorites.length === 0 && (
-          <p className="text-stone-400 text-center py-16 text-lg">
-            No books on this list yet.
-          </p>
+          <p className="text-stone-400 text-center py-16 text-lg">No public books on this list yet.</p>
         )}
 
         {(["reading", "want_to_read", "finished"] as const).map((status) => {
@@ -102,40 +183,23 @@ export default async function UserPage({
             <section key={status} className="mb-10 sm:mb-14">
               <h2 className="text-lg sm:text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4 sm:mb-6">
                 {statusLabel[status]}
-                <span className="ml-2 text-sm font-normal text-stone-400">
-                  {items.length}
-                </span>
+                <span className="ml-2 text-sm font-normal text-stone-400">{items.length}</span>
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
                 {items.map((book) => {
                   const bookKey = book.ol_key.replace("/works/", "");
                   return (
-                    <a
-                      key={book.id}
-                      href={`/book/${bookKey}`}
-                      className="group flex flex-col"
-                    >
+                    <a key={book.id} href={`/book/${bookKey}`} className="group flex flex-col">
                       <div className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-sm transition-all duration-200 group-hover:shadow-lg group-hover:-translate-y-1">
                         {book.cover_url ? (
-                          <Image
-                            src={book.cover_url}
-                            alt={`Cover of ${book.title}`}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, (max-width: 1024px) 22vw, 16vw"
-                          />
+                          <Image src={book.cover_url} alt={`Cover of ${book.title}`} fill className="object-cover"
+                            sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, (max-width: 1024px) 22vw, 16vw" />
                         ) : (
-                          <div className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-xs text-center px-3">
-                            No cover
-                          </div>
+                          <div className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-xs text-center px-3">No cover</div>
                         )}
                       </div>
-                      <h3 className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium leading-snug line-clamp-2 text-stone-800 dark:text-stone-200">
-                        {book.title}
-                      </h3>
-                      <p className="mt-0.5 text-[11px] sm:text-xs text-stone-500 line-clamp-1">
-                        {book.author}
-                      </p>
+                      <h3 className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium leading-snug line-clamp-2 text-stone-800 dark:text-stone-200">{book.title}</h3>
+                      <p className="mt-0.5 text-[11px] sm:text-xs text-stone-500 line-clamp-1">{book.author}</p>
                     </a>
                   );
                 })}

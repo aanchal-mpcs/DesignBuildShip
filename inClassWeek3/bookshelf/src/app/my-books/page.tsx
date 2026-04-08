@@ -43,6 +43,9 @@ export default function MyBooksPage() {
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<Status | "all">("all");
   const [sortKey, setSortKey] = useState<SortKey>("date-desc");
+  const [challengeGoal, setChallengeGoal] = useState<number | null>(null);
+  const [challengeInput, setChallengeInput] = useState("");
+  const [showChallengeForm, setShowChallengeForm] = useState(false);
 
   useEffect(() => {
     if (!userId) return;
@@ -63,6 +66,18 @@ export default function MyBooksPage() {
     }
 
     fetchBooks();
+
+    // Load reading challenge
+    const year = new Date().getFullYear();
+    supabase
+      .from("challenges")
+      .select("goal")
+      .eq("user_id", userId)
+      .eq("year", year)
+      .single()
+      .then(({ data }) => {
+        if (data) setChallengeGoal(data.goal);
+      });
   }, [userId]);
 
   async function handleStatusChange(id: string, newStatus: Status) {
@@ -145,6 +160,63 @@ export default function MyBooksPage() {
               ? "Loading..."
               : `${books.length} ${books.length === 1 ? "book" : "books"} on your list`}
           </p>
+
+          {/* Actions */}
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a href={`/api/export?user_id=${userId}`}
+              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800">
+              Export CSV
+            </a>
+            <a href="/shelves"
+              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800">
+              My Shelves
+            </a>
+            <a href="/recommendations"
+              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800">
+              Recommendations
+            </a>
+          </div>
+
+          {/* Reading challenge */}
+          {!loading && (
+            <div className="mt-5 max-w-sm">
+              {challengeGoal ? (
+                <>
+                  <div className="flex items-center justify-between text-sm mb-1.5">
+                    <span className="font-medium text-stone-700 dark:text-stone-300">{new Date().getFullYear()} Reading Challenge</span>
+                    <span className="text-stone-500">{counts.finished} / {challengeGoal}</span>
+                  </div>
+                  <div className="h-3 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+                    <div className="h-full rounded-full bg-emerald-500 transition-all"
+                      style={{ width: `${Math.min(100, (counts.finished / challengeGoal) * 100)}%` }} />
+                  </div>
+                  {counts.finished >= challengeGoal && (
+                    <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1 font-medium">Challenge complete!</p>
+                  )}
+                </>
+              ) : showChallengeForm ? (
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  const goal = parseInt(challengeInput);
+                  if (!goal || !userId) return;
+                  await supabase.from("challenges").upsert({ user_id: userId, goal, year: new Date().getFullYear() }, { onConflict: "user_id,year" });
+                  setChallengeGoal(goal);
+                  setShowChallengeForm(false);
+                }} className="flex gap-2 items-center">
+                  <span className="text-sm text-stone-600 dark:text-stone-400">I want to read</span>
+                  <input type="number" min="1" value={challengeInput} onChange={(e) => setChallengeInput(e.target.value)}
+                    className="w-16 rounded-md border border-stone-300 bg-white px-2 py-1 text-sm text-center dark:border-stone-700 dark:bg-stone-900 dark:text-white" placeholder="10" />
+                  <span className="text-sm text-stone-600 dark:text-stone-400">books in {new Date().getFullYear()}</span>
+                  <button type="submit" className="rounded-md bg-stone-900 px-3 py-1 text-xs font-medium text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900">Set</button>
+                </form>
+              ) : (
+                <button onClick={() => setShowChallengeForm(true)}
+                  className="text-sm text-stone-500 hover:text-stone-700 dark:hover:text-stone-300">
+                  + Set a reading challenge for {new Date().getFullYear()}
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

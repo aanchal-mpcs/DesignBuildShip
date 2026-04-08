@@ -8,7 +8,7 @@ interface Favorite {
   cover_url: string | null;
   ol_key: string;
   user_id: string;
-  users: { name: string | null; email: string | null } | null;
+  users: { name: string | null; email: string | null }[] | null;
 }
 
 async function getFavorites() {
@@ -35,7 +35,8 @@ export default async function Home() {
   const grouped = new Map<string, { name: string; books: Favorite[] }>();
   for (const fav of favorites) {
     if (!grouped.has(fav.user_id)) {
-      const name = fav.users?.name ?? fav.users?.email ?? "Anonymous";
+      const user = fav.users?.[0];
+      const name = user?.name ?? user?.email ?? "Anonymous";
       grouped.set(fav.user_id, { name, books: [] });
     }
     grouped.get(fav.user_id)!.books.push(fav);

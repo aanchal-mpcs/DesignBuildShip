@@ -18,18 +18,23 @@ export default function MyBooksPage() {
   const [books, setBooks] = useState<Favorite[]>([]);
   const [loading, setLoading] = useState(true);
   const [removing, setRemoving] = useState<Set<string>>(new Set());
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!userId) return;
 
     async function fetchBooks() {
-      const { data } = await supabase
+      const { data, error: fetchError } = await supabase
         .from("favorites")
         .select("id, title, author, cover_url, ol_key")
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 
-      setBooks(data ?? []);
+      if (fetchError) {
+        setError("Failed to load your books. Please refresh.");
+      } else {
+        setBooks(data ?? []);
+      }
       setLoading(false);
     }
 
@@ -38,13 +43,28 @@ export default function MyBooksPage() {
 
   async function handleRemove(id: string) {
     setRemoving((prev) => new Set(prev).add(id));
-    await supabase.from("favorites").delete().eq("id", id);
-    setBooks((prev) => prev.filter((b) => b.id !== id));
-    setRemoving((prev) => {
-      const next = new Set(prev);
-      next.delete(id);
-      return next;
-    });
+    setError(null);
+
+    const { error: deleteError } = await supabase
+      .from("favorites")
+      .delete()
+      .eq("id", id);
+
+    if (deleteError) {
+      setError("Failed to remove book. Please try again.");
+      setRemoving((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+    } else {
+      setBooks((prev) => prev.filter((b) => b.id !== id));
+      setRemoving((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+    }
   }
 
   if (!userId) {
@@ -73,6 +93,22 @@ export default function MyBooksPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 py-10">
+        {error && (
+          <div
+            role="alert"
+            className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-400"
+          >
+            {error}
+          </div>
+        )}
+
+        {loading && (
+          <div className="flex justify-center py-20" role="status">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-stone-300 border-t-stone-900 dark:border-stone-700 dark:border-t-stone-100" />
+            <span className="sr-only">Loading your books</span>
+          </div>
+        )}
+
         {!loading && books.length === 0 && (
           <div className="text-center py-24">
             <p className="text-stone-400 text-lg">
@@ -95,13 +131,16 @@ export default function MyBooksPage() {
                   {book.cover_url ? (
                     <Image
                       src={book.cover_url}
-                      alt={book.title}
+                      alt={`Cover of ${book.title}`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
                     />
                   ) : (
-                    <div className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-xs text-center px-3">
+                    <div
+                      className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-xs text-center px-3"
+                      aria-label={`No cover available for ${book.title}`}
+                    >
                       No cover
                     </div>
                   )}

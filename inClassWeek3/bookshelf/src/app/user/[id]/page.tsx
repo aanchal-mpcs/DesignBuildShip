@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
+import FollowButton from "@/components/FollowButton";
 
 interface Favorite {
   id: string;
@@ -112,6 +113,17 @@ export default async function UserPage({
     grouped[book.status]?.push(book);
   }
 
+  // Follower counts
+  const { count: followerCount } = await supabase
+    .from("follows")
+    .select("id", { count: "exact", head: true })
+    .eq("following_id", id);
+
+  const { count: followingCount } = await supabase
+    .from("follows")
+    .select("id", { count: "exact", head: true })
+    .eq("follower_id", id);
+
   const memberSince = user.created_at ? new Date(user.created_at).toLocaleDateString("en-US", { month: "long", year: "numeric" }) : null;
 
   return (
@@ -122,6 +134,12 @@ export default async function UserPage({
             {displayName}
           </h1>
           {memberSince && <p className="text-sm text-stone-400 mt-1">Member since {memberSince}</p>}
+
+          <FollowButton
+            targetUserId={id}
+            initialFollowers={followerCount ?? 0}
+            initialFollowing={followingCount ?? 0}
+          />
 
           {/* Stats */}
           <div className="mt-5 flex flex-wrap gap-6">

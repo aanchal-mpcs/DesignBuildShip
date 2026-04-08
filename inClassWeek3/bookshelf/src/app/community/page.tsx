@@ -52,10 +52,24 @@ export default async function CommunityPage() {
     booksByUser.get(fav.user_id)!.push(fav);
   }
 
-  const members: UserWithBooks[] = (users ?? []).map((u) => ({
+  // Get follower counts
+  const { data: followData } = await supabase
+    .from("follows")
+    .select("following_id");
+
+  const followerCounts = new Map<string, number>();
+  for (const f of followData ?? []) {
+    followerCounts.set(f.following_id, (followerCounts.get(f.following_id) ?? 0) + 1);
+  }
+
+  const members: (UserWithBooks & { followers: number })[] = (users ?? []).map((u) => ({
     ...u,
     books: booksByUser.get(u.clerk_id) ?? [],
+    followers: followerCounts.get(u.clerk_id) ?? 0,
   }));
+
+  // Sort by followers (influencer vibe), then by book count
+  members.sort((a, b) => b.followers - a.followers || b.books.length - a.books.length);
 
   const totalMembers = members.length;
   const totalBooks = (allFavorites ?? []).length;
@@ -133,8 +147,10 @@ export default async function CommunityPage() {
                       {displayName}
                     </h2>
                     <p className="text-xs text-stone-400 mt-0.5">
-                      {member.books.length}{" "}
-                      {member.books.length === 1 ? "book" : "books"}
+                      {member.books.length} {member.books.length === 1 ? "book" : "books"}
+                      {member.followers > 0 && (
+                        <span className="ml-2">{member.followers} {member.followers === 1 ? "follower" : "followers"}</span>
+                      )}
                     </p>
                   </div>
                   <div className="flex gap-2">

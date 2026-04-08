@@ -8,6 +8,7 @@ import {
 } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import SyncUser from "@/components/SyncUser";
+import NavLinks from "@/components/NavLinks";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,8 +22,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bookshelf",
-  description: "A shared class bookshelf",
+  title: "Book Club",
+  description: "A shared class book club",
 };
 
 export default function RootLayout({
@@ -44,28 +45,9 @@ export default function RootLayout({
                   href="/"
                   className="text-xl font-bold tracking-tight text-stone-900 dark:text-stone-100"
                 >
-                  Bookshelf
+                  Book Club
                 </a>
-                <div className="flex items-center gap-1">
-                  <a
-                    href="/"
-                    className="rounded-md px-3 py-1.5 text-sm font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-100"
-                  >
-                    Home
-                  </a>
-                  <a
-                    href="/search"
-                    className="rounded-md px-3 py-1.5 text-sm font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-100"
-                  >
-                    Search
-                  </a>
-                  <a
-                    href="/my-books"
-                    className="rounded-md px-3 py-1.5 text-sm font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-100"
-                  >
-                    My Books
-                  </a>
-                </div>
+                <NavLinks />
               </div>
               <div className="flex items-center gap-3">
                 <Show when="signed-out">

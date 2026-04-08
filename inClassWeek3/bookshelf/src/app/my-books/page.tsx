@@ -4,6 +4,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { supabase } from "@/lib/supabase";
+import { sortBooks, type SortKey } from "@/lib/sort-filter";
+import SortFilterBar from "@/components/SortFilterBar";
+
+type Status = "want_to_read" | "reading" | "finished";
 
 interface Favorite {
   id: string;
@@ -11,7 +15,25 @@ interface Favorite {
   author: string;
   cover_url: string | null;
   ol_key: string;
+  status: Status;
+  is_public: boolean;
+  created_at: string;
 }
+
+const statuses: { key: Status; label: string }[] = [
+  { key: "want_to_read", label: "Want to Read" },
+  { key: "reading", label: "Reading" },
+  { key: "finished", label: "Finished" },
+];
+
+const statusStyle: Record<Status, string> = {
+  want_to_read:
+    "bg-amber-50 text-amber-700 hover:bg-amber-100 dark:bg-amber-950 dark:text-amber-400 dark:hover:bg-amber-900",
+  reading:
+    "bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-950 dark:text-blue-400 dark:hover:bg-blue-900",
+  finished:
+    "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-400 dark:hover:bg-emerald-900",
+};
 
 export default function MyBooksPage() {
   const { userId } = useAuth();
@@ -19,6 +41,8 @@ export default function MyBooksPage() {
   const [loading, setLoading] = useState(true);
   const [removing, setRemoving] = useState<Set<string>>(new Set());
   const [error, setError] = useState<string | null>(null);
+  const [filter, setFilter] = useState<Status | "all">("all");
+  const [sortKey, setSortKey] = useState<SortKey>("date-desc");
 
   useEffect(() => {
     if (!userId) return;
@@ -26,14 +50,14 @@ export default function MyBooksPage() {
     async function fetchBooks() {
       const { data, error: fetchError } = await supabase
         .from("favorites")
-        .select("id, title, author, cover_url, ol_key")
+        .select("id, title, author, cover_url, ol_key, status, is_public, created_at")
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 
       if (fetchError) {
         setError("Failed to load your books. Please refresh.");
       } else {
-        setBooks(data ?? []);
+        setBooks((data ?? []) as Favorite[]);
       }
       setLoading(false);
     }
@@ -41,38 +65,70 @@ export default function MyBooksPage() {
     fetchBooks();
   }, [userId]);
 
+  async function handleStatusChange(id: string, newStatus: Status) {
+    setError(null);
+    const { error: updateError } = await supabase
+      .from("favorites")
+      .update({ status: newStatus })
+      .eq("id", id);
+
+    if (updateError) {
+      setError("Failed to update status.");
+    } else {
+      setBooks((prev) =>
+        prev.map((b) => (b.id === id ? { ...b, status: newStatus } : b))
+      );
+    }
+  }
+
+  async function handleToggleVisibility(id: string, current: boolean) {
+    const { error: updateError } = await supabase
+      .from("favorites")
+      .update({ is_public: !current })
+      .eq("id", id);
+
+    if (!updateError) {
+      setBooks((prev) =>
+        prev.map((b) => (b.id === id ? { ...b, is_public: !current } : b))
+      );
+    }
+  }
+
   async function handleRemove(id: string) {
     setRemoving((prev) => new Set(prev).add(id));
     setError(null);
-
     const { error: deleteError } = await supabase
       .from("favorites")
       .delete()
       .eq("id", id);
 
     if (deleteError) {
-      setError("Failed to remove book. Please try again.");
-      setRemoving((prev) => {
-        const next = new Set(prev);
-        next.delete(id);
-        return next;
-      });
+      setError("Failed to remove book.");
     } else {
       setBooks((prev) => prev.filter((b) => b.id !== id));
-      setRemoving((prev) => {
-        const next = new Set(prev);
-        next.delete(id);
-        return next;
-      });
     }
+    setRemoving((prev) => {
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
   }
+
+  const filtered =
+    filter === "all" ? books : books.filter((b) => b.status === filter);
+  const sorted = sortBooks(filtered, sortKey);
+
+  const counts = {
+    all: books.length,
+    want_to_read: books.filter((b) => b.status === "want_to_read").length,
+    reading: books.filter((b) => b.status === "reading").length,
+    finished: books.filter((b) => b.status === "finished").length,
+  };
 
   if (!userId) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center gap-4 py-24">
-        <p className="text-stone-500 text-lg">
-          Sign in to see your saved books.
-        </p>
+        <p className="text-stone-500 text-lg">Sign in to see your reading list.</p>
       </div>
     );
   }
@@ -80,19 +136,19 @@ export default function MyBooksPage() {
   return (
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
-        <div className="max-w-6xl mx-auto px-6 py-12">
-          <h1 className="text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
-            My Books
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+            My Reading List
           </h1>
           <p className="mt-2 text-stone-500">
             {loading
               ? "Loading..."
-              : `${books.length} ${books.length === 1 ? "book" : "books"} saved`}
+              : `${books.length} ${books.length === 1 ? "book" : "books"} on your list`}
           </p>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         {error && (
           <div
             role="alert"
@@ -105,62 +161,114 @@ export default function MyBooksPage() {
         {loading && (
           <div className="flex justify-center py-20" role="status">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-stone-300 border-t-stone-900 dark:border-stone-700 dark:border-t-stone-100" />
-            <span className="sr-only">Loading your books</span>
+            <span className="sr-only">Loading</span>
           </div>
         )}
 
         {!loading && books.length === 0 && (
-          <div className="text-center py-24">
-            <p className="text-stone-400 text-lg">
-              You haven&apos;t saved any books yet.
-            </p>
+          <div className="text-center py-16 sm:py-24">
+            <div className="text-5xl mb-4">📖</div>
+            <p className="text-stone-500 text-lg font-medium">Your reading list is empty.</p>
+            <p className="text-stone-400 text-sm mt-1 mb-6">Search for books and start building your list.</p>
             <a
               href="/search"
-              className="mt-4 inline-block rounded-md bg-stone-900 px-5 py-2 text-sm font-medium text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300"
+              className="inline-block rounded-md bg-stone-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300"
             >
               Find books to add
             </a>
           </div>
         )}
 
-        {books.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-            {books.map((book) => (
-              <div key={book.id} className="group flex flex-col">
-                <div className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-sm transition-all duration-200 group-hover:shadow-lg group-hover:-translate-y-1">
-                  {book.cover_url ? (
-                    <Image
-                      src={book.cover_url}
-                      alt={`Cover of ${book.title}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
-                    />
-                  ) : (
-                    <div
-                      className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-xs text-center px-3"
-                      aria-label={`No cover available for ${book.title}`}
-                    >
-                      No cover
-                    </div>
-                  )}
-                </div>
-                <h3 className="mt-3 text-sm font-medium leading-snug line-clamp-2 text-stone-800 dark:text-stone-200">
-                  {book.title}
-                </h3>
-                <p className="mt-0.5 text-xs text-stone-500 line-clamp-1">
-                  {book.author}
-                </p>
-                <button
-                  onClick={() => handleRemove(book.id)}
-                  disabled={removing.has(book.id)}
-                  className="mt-2 self-start rounded-md px-3 py-1.5 text-xs font-medium text-red-600 bg-red-50 transition-colors hover:bg-red-100 disabled:opacity-50 dark:text-red-400 dark:bg-red-950 dark:hover:bg-red-900"
-                >
-                  {removing.has(book.id) ? "Removing..." : "Remove"}
-                </button>
+        {!loading && books.length > 0 && (
+          <>
+            <SortFilterBar
+              sortKey={sortKey}
+              onSortChange={setSortKey}
+              filter={filter}
+              onFilterChange={setFilter}
+              counts={counts}
+            />
+
+            {sorted.length === 0 && (
+              <div className="text-center py-16">
+                <p className="text-stone-400 text-lg">No books in this category.</p>
               </div>
-            ))}
-          </div>
+            )}
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
+              {sorted.map((book) => {
+                const bookKey = book.ol_key.replace("/works/", "");
+                return (
+                  <div key={book.id} className="group flex flex-col">
+                    <a
+                      href={`/book/${bookKey}`}
+                      className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-sm transition-all duration-200 group-hover:shadow-lg group-hover:-translate-y-1"
+                    >
+                      {book.cover_url ? (
+                        <Image
+                          src={book.cover_url}
+                          alt={`Cover of ${book.title}`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, (max-width: 1024px) 22vw, 16vw"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-xs text-center px-3">
+                          No cover
+                        </div>
+                      )}
+                    </a>
+                    <a
+                      href={`/book/${bookKey}`}
+                      className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium leading-snug line-clamp-2 text-stone-800 hover:underline dark:text-stone-200"
+                    >
+                      {book.title}
+                    </a>
+                    <p className="mt-0.5 text-[11px] sm:text-xs text-stone-500 line-clamp-1">
+                      {book.author}
+                    </p>
+
+                    {/* Status switcher */}
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {statuses.map((s) => (
+                        <button
+                          key={s.key}
+                          onClick={() => handleStatusChange(book.id, s.key)}
+                          className={`rounded-full px-2 py-0.5 text-[10px] sm:text-xs font-medium transition-colors ${
+                            book.status === s.key
+                              ? statusStyle[s.key]
+                              : "bg-stone-100 text-stone-400 hover:text-stone-600 dark:bg-stone-800 dark:text-stone-500 dark:hover:text-stone-300"
+                          }`}
+                        >
+                          {s.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Visibility + Remove */}
+                    <div className="mt-1.5 flex items-center gap-3">
+                      <button
+                        onClick={() =>
+                          handleToggleVisibility(book.id, book.is_public)
+                        }
+                        className="text-[11px] sm:text-xs text-stone-400 hover:text-stone-600 transition-colors dark:hover:text-stone-300"
+                        title={book.is_public ? "Make private" : "Make public"}
+                      >
+                        {book.is_public ? "Public" : "Private"}
+                      </button>
+                      <button
+                        onClick={() => handleRemove(book.id)}
+                        disabled={removing.has(book.id)}
+                        className="text-[11px] sm:text-xs text-stone-400 hover:text-red-600 transition-colors disabled:opacity-50 dark:hover:text-red-400"
+                      >
+                        {removing.has(book.id) ? "Removing..." : "Remove"}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -147,7 +147,7 @@ export default async function Home() {
         {/* Empty state */}
         {grouped.size === 0 && (
           <div className="text-center py-24">
-            <p className="font-display text-2xl italic text-[var(--grey)]">The bookshelf awaits.</p>
+            <p className="font-display text-2xl italic text-[var(--grey)]">The book club awaits.</p>
             <p className="font-body text-sm text-[var(--grey)] mt-2 mb-6">Be the first to add books to your reading list.</p>
             <a href="/search" className="border border-[var(--foreground)] bg-[var(--foreground)] px-8 py-3 text-sm font-body italic text-[var(--background)] transition-colors hover:bg-transparent hover:text-[var(--foreground)]">
               Search for books

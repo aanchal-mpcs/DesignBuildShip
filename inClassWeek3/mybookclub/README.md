@@ -2,7 +2,7 @@
 
 A shared class book club built with Next.js 16, Clerk, Supabase, and the Open Library API. Search for books, build your reading list, track your progress, follow classmates, and discover what everyone is reading.
 
-**Vercel URL:** https://bookshelf-dun-eight.vercel.app
+**Vercel URL:** https://mybookclub.vercel.app
 
 **GitHub URL:** https://github.com/aanchal-mpcs/DesignBuildShip
 

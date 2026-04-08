@@ -22,13 +22,14 @@
   --font-body: var(--font-garamond);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1a1714;
-    --foreground: #ece7df;
-    --cream: #2a2520;
-    --grey-light: #3d3630;
-  }
+html.dark {
+  --background: #1a1714;
+  --foreground: #ece7df;
+  --gold: #c9980f;
+  --grey: #9a9088;
+  --grey-dark: #c4bab0;
+  --grey-light: #3d3630;
+  --cream: #2a2520;
 }
 
 body {

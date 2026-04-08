@@ -9,6 +9,7 @@ import {
 import { Bodoni_Moda, EB_Garamond } from "next/font/google";
 import SyncUser from "@/components/SyncUser";
 import NavLinks from "@/components/NavLinks";
+import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 
 const bodoni = Bodoni_Moda({
@@ -39,7 +40,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${bodoni.variable} ${garamond.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})()` }} />
+      </head>
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
           <nav className="sticky top-0 z-50 backdrop-blur-md bg-[var(--background)]/85 border-b border-[var(--grey-light)]">
@@ -54,6 +59,7 @@ export default function RootLayout({
                 <NavLinks />
               </div>
               <div className="flex items-center gap-3">
+                <ThemeToggle />
                 <Show when="signed-out">
                   <SignInButton>
                     <button className="px-4 py-1.5 text-sm font-body text-[var(--grey)] transition-colors hover:text-[var(--foreground)]">

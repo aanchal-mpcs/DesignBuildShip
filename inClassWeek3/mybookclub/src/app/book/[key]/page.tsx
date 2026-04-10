@@ -418,14 +418,14 @@ export default function BookPage() {
                 ) : (
                   <>
                     <select value={recTo} onChange={(e) => setRecTo(e.target.value)}
-                      className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm dark:border-stone-700 dark:bg-stone-900 dark:text-white" required>
+                      className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-black dark:border-stone-700" required>
                       <option value="">Select a classmate...</option>
                       {recUsers.map((u) => (
                         <option key={u.clerk_id} value={u.clerk_id}>{u.name ?? u.email ?? "Anonymous"}</option>
                       ))}
                     </select>
                     <input type="text" value={recNote} onChange={(e) => setRecNote(e.target.value)}
-                      placeholder="Add a note (optional)" className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm dark:border-stone-700 dark:bg-stone-900 dark:text-white" />
+                      placeholder="Add a note (optional)" className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-black dark:border-stone-700" />
                     <button type="submit" disabled={recSending}
                       className="rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300">
                       {recSending ? "Sending..." : "Send Recommendation"}
@@ -459,7 +459,7 @@ export default function BookPage() {
             <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-100 mb-3">My Notes</h2>
             <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4}
               placeholder="Private notes, quotes, page numbers..."
-              className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-stone-500 focus:ring-2 focus:ring-stone-200 dark:border-stone-700 dark:bg-stone-900 dark:text-white dark:focus:ring-stone-800" />
+              className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-black outline-none focus:border-stone-500 focus:ring-2 focus:ring-stone-200 dark:border-stone-700" />
             <button onClick={handleSaveNotes} disabled={savingNotes || notes === saved.notes}
               className="mt-2 rounded-md bg-stone-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-stone-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300">
               {savingNotes ? "Saving..." : "Save Notes"}
@@ -505,7 +505,7 @@ export default function BookPage() {
                 ))}
               </div>
               <textarea value={myReview} onChange={(e) => setMyReview(e.target.value)} placeholder="Share your thoughts... (optional)" rows={3}
-                className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-stone-500 focus:ring-2 focus:ring-stone-200 dark:border-stone-700 dark:bg-stone-900 dark:text-white dark:focus:ring-stone-800" />
+                className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-black outline-none focus:border-stone-500 focus:ring-2 focus:ring-stone-200 dark:border-stone-700" />
               <button type="submit" disabled={myRating === 0 || submitting}
                 className="mt-3 rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300">
                 {submitting ? "Submitting..." : "Submit Review"}
@@ -540,7 +540,7 @@ export default function BookPage() {
             <form onSubmit={handlePostComment} className="mb-6 flex gap-3">
               <input type="text" value={newComment} onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Start a discussion..."
-                className="flex-1 rounded-md border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-white" />
+                className="flex-1 rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-black outline-none focus:border-stone-500 dark:border-stone-700" />
               <button type="submit" disabled={!newComment.trim()}
                 className="rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300">
                 Post
@@ -582,7 +582,7 @@ export default function BookPage() {
                       <div className="mt-3 flex gap-2">
                         <input type="text" value={replyText} onChange={(e) => setReplyText(e.target.value)}
                           placeholder="Write a reply..." autoFocus
-                          className="flex-1 rounded-md border border-stone-300 bg-white px-2 py-1.5 text-xs outline-none dark:border-stone-700 dark:bg-stone-900 dark:text-white" />
+                          className="flex-1 rounded-md border border-stone-300 bg-white px-2 py-1.5 text-xs text-black outline-none dark:border-stone-700" />
                         <button onClick={() => handlePostReply(comment.id)} disabled={!replyText.trim()}
                           className="rounded-md bg-stone-800 px-3 py-1.5 text-xs font-medium text-white hover:bg-stone-600 disabled:opacity-50 dark:bg-stone-200 dark:text-stone-900">
                           Reply

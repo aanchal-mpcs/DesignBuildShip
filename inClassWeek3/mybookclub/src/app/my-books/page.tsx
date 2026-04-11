@@ -164,15 +164,15 @@ export default function MyBooksPage() {
           {/* Actions */}
           <div className="mt-4 flex flex-wrap gap-3">
             <a href={`/api/export?user_id=${userId}`}
-              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800">
+              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-foreground hover:bg-stone-50 dark:border-stone-700 dark:hover:bg-stone-800">
               Export CSV
             </a>
             <a href="/shelves"
-              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800">
+              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-foreground hover:bg-stone-50 dark:border-stone-700 dark:hover:bg-stone-800">
               My Shelves
             </a>
             <a href="/recommendations"
-              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800">
+              className="rounded-md border border-stone-300 px-4 py-1.5 text-sm font-medium text-foreground hover:bg-stone-50 dark:border-stone-700 dark:hover:bg-stone-800">
               Recommendations
             </a>
           </div>
@@ -183,7 +183,7 @@ export default function MyBooksPage() {
               {challengeGoal ? (
                 <>
                   <div className="flex items-center justify-between text-sm mb-1.5">
-                    <span className="font-medium text-stone-500 dark:text-stone-300">{new Date().getFullYear()} Reading Challenge</span>
+                    <span className="font-medium text-foreground">{new Date().getFullYear()} Reading Challenge</span>
                     <span className="text-stone-600">{counts.finished} / {challengeGoal}</span>
                   </div>
                   <div className="h-3 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">

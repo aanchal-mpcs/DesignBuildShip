@@ -111,7 +111,7 @@ export default function FollowingPage() {
                   )}
                 </a>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-stone-500 dark:text-stone-300">
+                  <p className="text-sm text-foreground">
                     <a href={`/user/${a.user_id}`} className="font-medium hover:underline">{name}</a>
                     {" "}{statusVerb[a.status] ?? "saved"}{" "}
                     <a href={`/book/${bk}`} className="font-medium hover:underline">{a.title}</a>

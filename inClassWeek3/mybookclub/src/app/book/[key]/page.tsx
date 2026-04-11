@@ -404,7 +404,7 @@ export default function BookPage() {
               )}
               {userId && (
                 <button onClick={() => setShowRecommend(!showRecommend)}
-                  className="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-50 transition-colors dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800">
+                  className="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-foreground hover:bg-stone-50 transition-colors dark:border-stone-700 dark:hover:bg-stone-800">
                   Recommend
                 </button>
               )}
@@ -438,7 +438,7 @@ export default function BookPage() {
             {/* Description */}
             {description && (
               <div className="mt-6">
-                <h2 className="text-sm font-semibold text-stone-500 dark:text-stone-300 mb-2">About this book</h2>
+                <h2 className="text-sm font-semibold text-foreground mb-2">About this book</h2>
                 <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed whitespace-pre-line">{description}</p>
               </div>
             )}
@@ -483,7 +483,7 @@ export default function BookPage() {
                         <div className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-[10px] text-center px-1">No cover</div>
                       )}
                     </div>
-                    <p className="mt-1.5 text-[11px] font-medium line-clamp-2 text-stone-500 dark:text-stone-300">{b.title}</p>
+                    <p className="mt-1.5 text-[11px] font-medium line-clamp-2 text-foreground">{b.title}</p>
                   </a>
                 );
               })}
@@ -496,7 +496,7 @@ export default function BookPage() {
           <h2 className="text-lg font-semibold text-heading mb-6">Reviews</h2>
           {userId && (
             <form onSubmit={handleSubmitReview} className="mb-8 rounded-lg border border-stone-200 dark:border-stone-800 p-4">
-              <p className="text-sm font-medium text-stone-500 dark:text-stone-300 mb-3">Your review</p>
+              <p className="text-sm font-medium text-foreground mb-3">Your review</p>
               <div className="flex gap-1 mb-3">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button key={star} type="button" onClick={() => setMyRating(star)}
@@ -565,7 +565,7 @@ export default function BookPage() {
                     {replies(comment.id).map((reply) => (
                       <div key={reply.id}>
                         <div className="flex items-center gap-2 mb-0.5">
-                          <span className="text-xs font-medium text-stone-500 dark:text-stone-300">
+                          <span className="text-xs font-medium text-foreground">
                             {reply.users?.[0]?.name ?? reply.users?.[0]?.email ?? "Anonymous"}
                           </span>
                           <span className="text-[10px] text-stone-500">{new Date(reply.created_at).toLocaleDateString()}</span>

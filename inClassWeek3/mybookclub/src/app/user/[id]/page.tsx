@@ -171,7 +171,7 @@ export default async function UserPage({
           {challenge && (
             <div className="mt-6 max-w-sm">
               <div className="flex items-center justify-between text-sm mb-1.5">
-                <span className="font-medium text-stone-500 dark:text-stone-300">{currentYear} Reading Challenge</span>
+                <span className="font-medium text-foreground">{currentYear} Reading Challenge</span>
                 <span className="text-stone-600">{finishedThisYear} / {challenge.goal}</span>
               </div>
               <div className="h-3 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">

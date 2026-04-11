@@ -106,7 +106,7 @@ export default async function DigestPage() {
                         <div className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-[10px] text-center">No cover</div>
                       )}
                     </div>
-                    <p className="mt-1.5 text-[11px] sm:text-xs font-medium line-clamp-2 text-stone-500 dark:text-stone-300">{b.title}</p>
+                    <p className="mt-1.5 text-[11px] sm:text-xs font-medium line-clamp-2 text-foreground">{b.title}</p>
                     <p className="text-[10px] text-stone-500">{b.users.size} readers</p>
                   </a>
                 );
@@ -132,7 +132,7 @@ export default async function DigestPage() {
                         <div className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-[10px]">No cover</div>
                       )}
                     </div>
-                    <p className="mt-1.5 text-xs font-medium line-clamp-2 text-stone-500 dark:text-stone-300">{b.title}</p>
+                    <p className="mt-1.5 text-xs font-medium line-clamp-2 text-foreground">{b.title}</p>
                     <p className="text-[10px] text-stone-500">Finished by {name}</p>
                   </a>
                 );
@@ -161,7 +161,7 @@ export default async function DigestPage() {
                       )}
                     </a>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-stone-500 dark:text-stone-300">
+                      <p className="text-sm text-foreground">
                         <a href={`/user/${a.user_id}`} className="font-medium hover:underline">{name}</a>
                         {" "}{statusVerb[a.status] ?? "saved"}{" "}
                         <a href={`/book/${bk}`} className="font-medium hover:underline">{a.title}</a>

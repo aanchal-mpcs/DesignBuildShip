@@ -61,7 +61,7 @@ export default function RecommendationsPage() {
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-950 dark:text-stone-50">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-heading">
             Recommendations
           </h1>
           <p className="mt-2 text-stone-600">Books your classmates think you should read.</p>
@@ -85,7 +85,7 @@ export default function RecommendationsPage() {
 
         {unread.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-lg font-semibold text-stone-950 dark:text-stone-50 mb-4">
+            <h2 className="text-lg font-semibold text-heading mb-4">
               New <span className="ml-1 text-sm font-normal text-stone-500">{unread.length}</span>
             </h2>
             <div className="space-y-3">
@@ -124,7 +124,7 @@ export default function RecommendationsPage() {
 
         {read.length > 0 && (
           <section>
-            <h2 className="text-lg font-semibold text-stone-950 dark:text-stone-50 mb-4">
+            <h2 className="text-lg font-semibold text-heading mb-4">
               Previous <span className="ml-1 text-sm font-normal text-stone-500">{read.length}</span>
             </h2>
             <div className="space-y-3">

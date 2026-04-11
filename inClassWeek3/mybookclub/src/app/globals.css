@@ -4,6 +4,7 @@
   --background: #f4f0ea;
   --foreground: #2a2520;
   --gold: #8a6508;
+  --heading: #6b5210;
   --grey: #6b6158;
   --grey-dark: #504840;
   --grey-light: #ddd6cc;
@@ -14,6 +15,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-gold: var(--gold);
+  --color-heading: var(--heading);
   --color-grey: var(--grey);
   --color-grey-dark: var(--grey-dark);
   --color-grey-light: var(--grey-light);
@@ -26,6 +28,7 @@ html.dark {
   --background: #1a1714;
   --foreground: #ece7df;
   --gold: #c9980f;
+  --heading: #f5efe5;
   --grey: #9a9088;
   --grey-dark: #c4bab0;
   --grey-light: #3d3630;

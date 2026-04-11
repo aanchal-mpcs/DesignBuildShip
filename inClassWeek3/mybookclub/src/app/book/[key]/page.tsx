@@ -362,7 +362,7 @@ export default function BookPage() {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl sm:text-3xl font-bold text-stone-950 dark:text-stone-50">{book.title}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-heading">{book.title}</h1>
             {authorName && <p className="mt-1 text-lg text-stone-600">{authorName}</p>}
             {book.first_publish_date && <p className="mt-1 text-sm text-stone-500">First published: {book.first_publish_date}</p>}
 
@@ -456,7 +456,7 @@ export default function BookPage() {
         {/* Notes */}
         {saved && (
           <div className="mt-10 border-t border-stone-200 dark:border-stone-800 pt-8">
-            <h2 className="text-lg font-semibold text-stone-950 dark:text-stone-50 mb-3">My Notes</h2>
+            <h2 className="text-lg font-semibold text-heading mb-3">My Notes</h2>
             <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4}
               placeholder="Private notes, quotes, page numbers..."
               className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-black outline-none focus:border-stone-500 focus:ring-2 focus:ring-stone-200 dark:border-stone-700" />
@@ -470,7 +470,7 @@ export default function BookPage() {
         {/* If you liked this */}
         {similar.length > 0 && (
           <div className="mt-10 border-t border-stone-200 dark:border-stone-800 pt-8">
-            <h2 className="text-lg font-semibold text-stone-950 dark:text-stone-50 mb-4">Readers also saved</h2>
+            <h2 className="text-lg font-semibold text-heading mb-4">Readers also saved</h2>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
               {similar.map((b) => {
                 const bk = b.ol_key.replace("/works/", "");
@@ -493,7 +493,7 @@ export default function BookPage() {
 
         {/* Reviews */}
         <div className="mt-10 border-t border-stone-200 dark:border-stone-800 pt-8">
-          <h2 className="text-lg font-semibold text-stone-950 dark:text-stone-50 mb-6">Reviews</h2>
+          <h2 className="text-lg font-semibold text-heading mb-6">Reviews</h2>
           {userId && (
             <form onSubmit={handleSubmitReview} className="mb-8 rounded-lg border border-stone-200 dark:border-stone-800 p-4">
               <p className="text-sm font-medium text-stone-700 dark:text-stone-300 mb-3">Your review</p>
@@ -517,7 +517,7 @@ export default function BookPage() {
             {reviews.map((r) => (
               <div key={r.id} className="rounded-lg border border-stone-200 dark:border-stone-800 p-4">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-medium text-stone-950 dark:text-stone-50">
+                  <span className="text-sm font-medium text-heading">
                     {r.users?.[0]?.name ?? r.users?.[0]?.email ?? "Anonymous"}
                   </span>
                   <span className="text-xs text-stone-500">{new Date(r.created_at).toLocaleDateString()}</span>
@@ -535,7 +535,7 @@ export default function BookPage() {
 
         {/* Discussion */}
         <div className="mt-10 border-t border-stone-200 dark:border-stone-800 pt-8">
-          <h2 className="text-lg font-semibold text-stone-950 dark:text-stone-50 mb-6">Discussion</h2>
+          <h2 className="text-lg font-semibold text-heading mb-6">Discussion</h2>
           {userId && (
             <form onSubmit={handlePostComment} className="mb-6 flex gap-3">
               <input type="text" value={newComment} onChange={(e) => setNewComment(e.target.value)}
@@ -552,7 +552,7 @@ export default function BookPage() {
             {topLevel.map((comment) => (
               <div key={comment.id} className="rounded-lg border border-stone-200 dark:border-stone-800 p-4">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-medium text-stone-950 dark:text-stone-50">
+                  <span className="text-sm font-medium text-heading">
                     {comment.users?.[0]?.name ?? comment.users?.[0]?.email ?? "Anonymous"}
                   </span>
                   <span className="text-xs text-stone-500">{new Date(comment.created_at).toLocaleDateString()}</span>

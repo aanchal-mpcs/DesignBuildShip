@@ -80,7 +80,7 @@ export default async function DigestPage() {
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
             Weekly Digest
           </h1>
-          <p className="mt-2 sm:mt-3 text-base sm:text-lg text-stone-500 dark:text-stone-400 max-w-xl">
+          <p className="mt-2 sm:mt-3 text-base sm:text-lg text-stone-600 dark:text-stone-400 max-w-xl">
             What&apos;s been happening in the book club this week.
           </p>
         </div>
@@ -92,7 +92,7 @@ export default async function DigestPage() {
           <section className="mb-12">
             <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4">
               Trending
-              <span className="ml-2 text-sm font-normal text-stone-400">Saved by multiple readers</span>
+              <span className="ml-2 text-sm font-normal text-stone-500">Saved by multiple readers</span>
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
               {trending.map((b) => {
@@ -107,7 +107,7 @@ export default async function DigestPage() {
                       )}
                     </div>
                     <p className="mt-1.5 text-[11px] sm:text-xs font-medium line-clamp-2 text-stone-700 dark:text-stone-300">{b.title}</p>
-                    <p className="text-[10px] text-stone-400">{b.users.size} readers</p>
+                    <p className="text-[10px] text-stone-500">{b.users.size} readers</p>
                   </a>
                 );
               })}
@@ -133,7 +133,7 @@ export default async function DigestPage() {
                       )}
                     </div>
                     <p className="mt-1.5 text-xs font-medium line-clamp-2 text-stone-700 dark:text-stone-300">{b.title}</p>
-                    <p className="text-[10px] text-stone-400">Finished by {name}</p>
+                    <p className="text-[10px] text-stone-500">Finished by {name}</p>
                   </a>
                 );
               })}
@@ -145,7 +145,7 @@ export default async function DigestPage() {
         <section>
           <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4">This Week</h2>
           {recent.length === 0 ? (
-            <p className="text-stone-400">No activity this week.</p>
+            <p className="text-stone-500">No activity this week.</p>
           ) : (
             <div className="space-y-3">
               {recent.map((a) => {
@@ -166,7 +166,7 @@ export default async function DigestPage() {
                         {" "}{statusVerb[a.status] ?? "saved"}{" "}
                         <a href={`/book/${bk}`} className="font-medium hover:underline">{a.title}</a>
                       </p>
-                      <p className="text-[11px] text-stone-400 mt-0.5">{new Date(a.created_at).toLocaleDateString()}</p>
+                      <p className="text-[11px] text-stone-500 mt-0.5">{new Date(a.created_at).toLocaleDateString()}</p>
                     </div>
                   </div>
                 );

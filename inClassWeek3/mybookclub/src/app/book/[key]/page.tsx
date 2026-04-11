@@ -342,8 +342,8 @@ export default function BookPage() {
   if (error || !book) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center py-24">
-        <p className="text-stone-500 text-lg">{error ?? "Book not found."}</p>
-        <a href="/search" className="mt-4 text-sm text-stone-500 underline">Back to search</a>
+        <p className="text-stone-600 text-lg">{error ?? "Book not found."}</p>
+        <a href="/search" className="mt-4 text-sm text-stone-600 underline">Back to search</a>
       </div>
     );
   }
@@ -363,8 +363,8 @@ export default function BookPage() {
 
           <div className="flex-1 min-w-0">
             <h1 className="text-2xl sm:text-3xl font-bold text-stone-900 dark:text-stone-100">{book.title}</h1>
-            {authorName && <p className="mt-1 text-lg text-stone-500">{authorName}</p>}
-            {book.first_publish_date && <p className="mt-1 text-sm text-stone-400">First published: {book.first_publish_date}</p>}
+            {authorName && <p className="mt-1 text-lg text-stone-600">{authorName}</p>}
+            {book.first_publish_date && <p className="mt-1 text-sm text-stone-500">First published: {book.first_publish_date}</p>}
 
             {/* Actions */}
             <div className="mt-5 flex flex-wrap gap-2">
@@ -380,12 +380,12 @@ export default function BookPage() {
                 </>
               ) : userId ? (
                 <button onClick={handleSave} className="rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300">+ Add to Reading List</button>
-              ) : <p className="text-sm text-stone-400">Sign in to save this book.</p>}
+              ) : <p className="text-sm text-stone-500">Sign in to save this book.</p>}
             </div>
 
             {/* Reading dates */}
             {saved && (saved.started_at || saved.finished_at) && (
-              <div className="mt-3 flex gap-4 text-xs text-stone-400">
+              <div className="mt-3 flex gap-4 text-xs text-stone-500">
                 {saved.started_at && <span>Started: {new Date(saved.started_at).toLocaleDateString()}</span>}
                 {saved.finished_at && <span>Finished: {new Date(saved.finished_at).toLocaleDateString()}</span>}
                 {saved.started_at && saved.finished_at && (
@@ -512,7 +512,7 @@ export default function BookPage() {
               </button>
             </form>
           )}
-          {reviews.length === 0 && <p className="text-stone-400 text-sm">No reviews yet.</p>}
+          {reviews.length === 0 && <p className="text-stone-500 text-sm">No reviews yet.</p>}
           <div className="space-y-4">
             {reviews.map((r) => (
               <div key={r.id} className="rounded-lg border border-stone-200 dark:border-stone-800 p-4">
@@ -520,7 +520,7 @@ export default function BookPage() {
                   <span className="text-sm font-medium text-stone-800 dark:text-stone-200">
                     {r.users?.[0]?.name ?? r.users?.[0]?.email ?? "Anonymous"}
                   </span>
-                  <span className="text-xs text-stone-400">{new Date(r.created_at).toLocaleDateString()}</span>
+                  <span className="text-xs text-stone-500">{new Date(r.created_at).toLocaleDateString()}</span>
                 </div>
                 <div className="flex gap-0.5 mb-2 text-sm">
                   {[1, 2, 3, 4, 5].map((s) => (
@@ -547,7 +547,7 @@ export default function BookPage() {
               </button>
             </form>
           )}
-          {topLevel.length === 0 && <p className="text-stone-400 text-sm">No comments yet. Start the conversation!</p>}
+          {topLevel.length === 0 && <p className="text-stone-500 text-sm">No comments yet. Start the conversation!</p>}
           <div className="space-y-4">
             {topLevel.map((comment) => (
               <div key={comment.id} className="rounded-lg border border-stone-200 dark:border-stone-800 p-4">
@@ -555,7 +555,7 @@ export default function BookPage() {
                   <span className="text-sm font-medium text-stone-800 dark:text-stone-200">
                     {comment.users?.[0]?.name ?? comment.users?.[0]?.email ?? "Anonymous"}
                   </span>
-                  <span className="text-xs text-stone-400">{new Date(comment.created_at).toLocaleDateString()}</span>
+                  <span className="text-xs text-stone-500">{new Date(comment.created_at).toLocaleDateString()}</span>
                 </div>
                 <p className="text-sm text-stone-600 dark:text-stone-400">{comment.body}</p>
 
@@ -568,7 +568,7 @@ export default function BookPage() {
                           <span className="text-xs font-medium text-stone-700 dark:text-stone-300">
                             {reply.users?.[0]?.name ?? reply.users?.[0]?.email ?? "Anonymous"}
                           </span>
-                          <span className="text-[10px] text-stone-400">{new Date(reply.created_at).toLocaleDateString()}</span>
+                          <span className="text-[10px] text-stone-500">{new Date(reply.created_at).toLocaleDateString()}</span>
                         </div>
                         <p className="text-xs text-stone-600 dark:text-stone-400">{reply.body}</p>
                       </div>

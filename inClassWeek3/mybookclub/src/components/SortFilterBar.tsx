@@ -60,12 +60,12 @@ export default function SortFilterBar({
               className={`whitespace-nowrap px-3 py-2 text-sm font-medium border-b-2 sm:border-b-0 sm:rounded-md transition-colors ${
                 filter === tab.key
                   ? `${activeTabStyle[tab.key]} sm:bg-stone-100 sm:dark:bg-stone-800`
-                  : "border-transparent text-stone-500 hover:text-stone-700 dark:hover:text-stone-300"
+                  : "border-transparent text-stone-600 hover:text-stone-700 dark:hover:text-stone-300"
               }`}
             >
               {tab.label}
               {counts && counts[tab.key] !== undefined && (
-                <span className="ml-1 text-xs text-stone-400">
+                <span className="ml-1 text-xs text-stone-500">
                   {counts[tab.key]}
                 </span>
               )}

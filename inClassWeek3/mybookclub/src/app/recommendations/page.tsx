@@ -52,7 +52,7 @@ export default function RecommendationsPage() {
   if (!userId) {
     return (
       <div className="flex-1 flex items-center justify-center py-24">
-        <p className="text-stone-500 text-lg">Sign in to see your recommendations.</p>
+        <p className="text-stone-600 text-lg">Sign in to see your recommendations.</p>
       </div>
     );
   }
@@ -64,7 +64,7 @@ export default function RecommendationsPage() {
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
             Recommendations
           </h1>
-          <p className="mt-2 text-stone-500">Books your classmates think you should read.</p>
+          <p className="mt-2 text-stone-600">Books your classmates think you should read.</p>
         </div>
       </div>
 
@@ -78,15 +78,15 @@ export default function RecommendationsPage() {
         {!loading && recs.length === 0 && (
           <div className="text-center py-16">
             <div className="text-5xl mb-4">💌</div>
-            <p className="text-stone-500 text-lg font-medium">No recommendations yet.</p>
-            <p className="text-stone-400 text-sm mt-1">When classmates recommend books to you, they&apos;ll show up here.</p>
+            <p className="text-stone-600 text-lg font-medium">No recommendations yet.</p>
+            <p className="text-stone-500 text-sm mt-1">When classmates recommend books to you, they&apos;ll show up here.</p>
           </div>
         )}
 
         {unread.length > 0 && (
           <section className="mb-10">
             <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4">
-              New <span className="ml-1 text-sm font-normal text-stone-400">{unread.length}</span>
+              New <span className="ml-1 text-sm font-normal text-stone-500">{unread.length}</span>
             </h2>
             <div className="space-y-3">
               {unread.map((rec) => {
@@ -103,8 +103,8 @@ export default function RecommendationsPage() {
                     </a>
                     <div className="flex-1 min-w-0">
                       <a href={`/book/${bookKey}`} className="text-sm font-medium text-stone-900 hover:underline dark:text-stone-100">{rec.title}</a>
-                      {rec.author && <p className="text-xs text-stone-500 mt-0.5">{rec.author}</p>}
-                      <p className="text-xs text-stone-500 mt-1">Recommended by <span className="font-medium text-stone-700 dark:text-stone-300">{from}</span></p>
+                      {rec.author && <p className="text-xs text-stone-600 mt-0.5">{rec.author}</p>}
+                      <p className="text-xs text-stone-600 mt-1">Recommended by <span className="font-medium text-stone-700 dark:text-stone-300">{from}</span></p>
                       {rec.note && <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 italic">&ldquo;{rec.note}&rdquo;</p>}
                       <div className="mt-2 flex gap-2">
                         <button onClick={() => handleMarkRead(rec.id)}
@@ -125,7 +125,7 @@ export default function RecommendationsPage() {
         {read.length > 0 && (
           <section>
             <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4">
-              Previous <span className="ml-1 text-sm font-normal text-stone-400">{read.length}</span>
+              Previous <span className="ml-1 text-sm font-normal text-stone-500">{read.length}</span>
             </h2>
             <div className="space-y-3">
               {read.map((rec) => {
@@ -142,7 +142,7 @@ export default function RecommendationsPage() {
                     </a>
                     <div className="flex-1 min-w-0">
                       <a href={`/book/${bookKey}`} className="text-sm font-medium text-stone-800 hover:underline dark:text-stone-200">{rec.title}</a>
-                      <p className="text-xs text-stone-500 mt-0.5">From {from}</p>
+                      <p className="text-xs text-stone-600 mt-0.5">From {from}</p>
                     </div>
                   </div>
                 );

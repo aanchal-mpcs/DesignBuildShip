@@ -64,7 +64,7 @@ export default function FollowingPage() {
   if (!userId) {
     return (
       <div className="flex-1 flex items-center justify-center py-24">
-        <p className="text-stone-500 text-lg">Sign in to see your feed.</p>
+        <p className="text-stone-600 text-lg">Sign in to see your feed.</p>
       </div>
     );
   }
@@ -76,7 +76,7 @@ export default function FollowingPage() {
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
             Following
           </h1>
-          <p className="mt-2 text-stone-500">Recent activity from people you follow.</p>
+          <p className="mt-2 text-stone-600">Recent activity from people you follow.</p>
         </div>
       </div>
 
@@ -90,8 +90,8 @@ export default function FollowingPage() {
         {!loading && activities.length === 0 && (
           <div className="text-center py-16">
             <div className="text-5xl mb-4">👥</div>
-            <p className="text-stone-500 text-lg font-medium">No activity yet.</p>
-            <p className="text-stone-400 text-sm mt-1 mb-6">
+            <p className="text-stone-600 text-lg font-medium">No activity yet.</p>
+            <p className="text-stone-500 text-sm mt-1 mb-6">
               Follow readers in the <a href="/community" className="underline">Community</a> to see their updates here.
             </p>
           </div>
@@ -116,7 +116,7 @@ export default function FollowingPage() {
                     {" "}{statusVerb[a.status] ?? "saved"}{" "}
                     <a href={`/book/${bk}`} className="font-medium hover:underline">{a.title}</a>
                   </p>
-                  <p className="text-[11px] text-stone-400 mt-0.5">{new Date(a.created_at).toLocaleDateString()}</p>
+                  <p className="text-[11px] text-stone-500 mt-0.5">{new Date(a.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
             );

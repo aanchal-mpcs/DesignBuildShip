@@ -118,7 +118,7 @@ export default function ShelvesPage() {
   if (!userId) {
     return (
       <div className="flex-1 flex items-center justify-center py-24">
-        <p className="text-stone-500 text-lg">Sign in to manage your shelves.</p>
+        <p className="text-stone-600 text-lg">Sign in to manage your shelves.</p>
       </div>
     );
   }
@@ -130,7 +130,7 @@ export default function ShelvesPage() {
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
             My Shelves
           </h1>
-          <p className="mt-2 text-stone-500">Organize your books into custom collections.</p>
+          <p className="mt-2 text-stone-600">Organize your books into custom collections.</p>
         </div>
       </div>
 
@@ -153,7 +153,7 @@ export default function ShelvesPage() {
 
         {!loading && shelves.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-stone-400 text-lg">No shelves yet. Create one above!</p>
+            <p className="text-stone-500 text-lg">No shelves yet. Create one above!</p>
           </div>
         )}
 
@@ -162,7 +162,7 @@ export default function ShelvesPage() {
             <div key={shelf.id} className="rounded-xl border border-stone-200 dark:border-stone-800 p-5">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-100">{shelf.name}
-                  <span className="ml-2 text-sm font-normal text-stone-400">{shelf.books.length}</span>
+                  <span className="ml-2 text-sm font-normal text-stone-500">{shelf.books.length}</span>
                 </h2>
                 <div className="flex gap-2">
                   <button onClick={() => setAddingTo(addingTo === shelf.id ? null : shelf.id)}
@@ -191,7 +191,7 @@ export default function ShelvesPage() {
               )}
 
               {shelf.books.length === 0 ? (
-                <p className="text-sm text-stone-400">No books on this shelf.</p>
+                <p className="text-sm text-stone-500">No books on this shelf.</p>
               ) : (
                 <div className="flex gap-3 overflow-x-auto pb-2">
                   {shelf.books.map((book) => {

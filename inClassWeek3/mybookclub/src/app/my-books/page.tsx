@@ -143,7 +143,7 @@ export default function MyBooksPage() {
   if (!userId) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center gap-4 py-24">
-        <p className="text-stone-500 text-lg">Sign in to see your reading list.</p>
+        <p className="text-stone-600 text-lg">Sign in to see your reading list.</p>
       </div>
     );
   }
@@ -155,7 +155,7 @@ export default function MyBooksPage() {
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
             My Reading List
           </h1>
-          <p className="mt-2 text-stone-500">
+          <p className="mt-2 text-stone-600">
             {loading
               ? "Loading..."
               : `${books.length} ${books.length === 1 ? "book" : "books"} on your list`}
@@ -184,7 +184,7 @@ export default function MyBooksPage() {
                 <>
                   <div className="flex items-center justify-between text-sm mb-1.5">
                     <span className="font-medium text-stone-700 dark:text-stone-300">{new Date().getFullYear()} Reading Challenge</span>
-                    <span className="text-stone-500">{counts.finished} / {challengeGoal}</span>
+                    <span className="text-stone-600">{counts.finished} / {challengeGoal}</span>
                   </div>
                   <div className="h-3 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
                     <div className="h-full rounded-full bg-emerald-500 transition-all"
@@ -240,8 +240,8 @@ export default function MyBooksPage() {
         {!loading && books.length === 0 && (
           <div className="text-center py-16 sm:py-24">
             <div className="text-5xl mb-4">📖</div>
-            <p className="text-stone-500 text-lg font-medium">Your reading list is empty.</p>
-            <p className="text-stone-400 text-sm mt-1 mb-6">Search for books and start building your list.</p>
+            <p className="text-stone-600 text-lg font-medium">Your reading list is empty.</p>
+            <p className="text-stone-500 text-sm mt-1 mb-6">Search for books and start building your list.</p>
             <a
               href="/search"
               className="inline-block rounded-md bg-stone-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300"
@@ -263,7 +263,7 @@ export default function MyBooksPage() {
 
             {sorted.length === 0 && (
               <div className="text-center py-16">
-                <p className="text-stone-400 text-lg">No books in this category.</p>
+                <p className="text-stone-500 text-lg">No books in this category.</p>
               </div>
             )}
 
@@ -296,7 +296,7 @@ export default function MyBooksPage() {
                     >
                       {book.title}
                     </a>
-                    <p className="mt-0.5 text-[11px] sm:text-xs text-stone-500 line-clamp-1">
+                    <p className="mt-0.5 text-[11px] sm:text-xs text-stone-600 line-clamp-1">
                       {book.author}
                     </p>
 

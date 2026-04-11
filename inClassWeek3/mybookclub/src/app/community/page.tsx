@@ -84,7 +84,7 @@ export default async function CommunityPage() {
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
             Community
           </h1>
-          <p className="mt-2 sm:mt-3 text-base sm:text-lg text-stone-500 dark:text-stone-400 max-w-xl">
+          <p className="mt-2 sm:mt-3 text-base sm:text-lg text-stone-600 dark:text-stone-400 max-w-xl">
             See what everyone in the club is reading. Click a member to explore
             their full reading list.
           </p>
@@ -93,7 +93,7 @@ export default async function CommunityPage() {
               <span className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100">
                 {totalMembers}
               </span>
-              <span className="text-xs sm:text-sm text-stone-500">
+              <span className="text-xs sm:text-sm text-stone-600">
                 {totalMembers === 1 ? "member" : "members"}
               </span>
             </div>
@@ -101,7 +101,7 @@ export default async function CommunityPage() {
               <span className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100">
                 {totalBooks}
               </span>
-              <span className="text-xs sm:text-sm text-stone-500">
+              <span className="text-xs sm:text-sm text-stone-600">
                 public books
               </span>
             </div>
@@ -109,7 +109,7 @@ export default async function CommunityPage() {
               <span className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100">
                 {activeReaders}
               </span>
-              <span className="text-xs sm:text-sm text-stone-500">
+              <span className="text-xs sm:text-sm text-stone-600">
                 active readers
               </span>
             </div>
@@ -120,7 +120,7 @@ export default async function CommunityPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {members.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-stone-400 text-lg">No members yet.</p>
+            <p className="text-stone-500 text-lg">No members yet.</p>
           </div>
         )}
 
@@ -146,7 +146,7 @@ export default async function CommunityPage() {
                     <h2 className="text-base font-semibold text-stone-900 dark:text-stone-100">
                       {displayName}
                     </h2>
-                    <p className="text-xs text-stone-400 mt-0.5">
+                    <p className="text-xs text-stone-500 mt-0.5">
                       {member.books.length} {member.books.length === 1 ? "book" : "books"}
                       {member.followers > 0 && (
                         <span className="ml-2">{member.followers} {member.followers === 1 ? "follower" : "followers"}</span>
@@ -196,7 +196,7 @@ export default async function CommunityPage() {
                     )}
                   </div>
                 ) : (
-                  <p className="text-xs text-stone-400">
+                  <p className="text-xs text-stone-500">
                     No public books yet.
                   </p>
                 )}

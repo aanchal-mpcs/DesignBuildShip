@@ -59,10 +59,10 @@ export default function FollowButton({ targetUserId, initialFollowers, initialFo
     <div className="flex items-center gap-4 mt-4">
       <div className="flex gap-4 text-sm">
         <span className="text-stone-600 dark:text-stone-400">
-          <span className="font-semibold text-stone-900 dark:text-stone-100">{followers}</span> {followers === 1 ? "follower" : "followers"}
+          <span className="font-semibold text-stone-950 dark:text-stone-50">{followers}</span> {followers === 1 ? "follower" : "followers"}
         </span>
         <span className="text-stone-600 dark:text-stone-400">
-          <span className="font-semibold text-stone-900 dark:text-stone-100">{following}</span> following
+          <span className="font-semibold text-stone-950 dark:text-stone-50">{following}</span> following
         </span>
       </div>
 

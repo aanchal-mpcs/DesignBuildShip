@@ -73,7 +73,7 @@ export default function FollowingPage() {
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-950 dark:text-stone-50">
             Following
           </h1>
           <p className="mt-2 text-stone-600">Recent activity from people you follow.</p>

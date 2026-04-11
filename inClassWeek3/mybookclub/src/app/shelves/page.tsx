@@ -127,7 +127,7 @@ export default function ShelvesPage() {
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-950 dark:text-stone-50">
             My Shelves
           </h1>
           <p className="mt-2 text-stone-600">Organize your books into custom collections.</p>
@@ -161,7 +161,7 @@ export default function ShelvesPage() {
           {shelves.map((shelf) => (
             <div key={shelf.id} className="rounded-xl border border-stone-200 dark:border-stone-800 p-5">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-100">{shelf.name}
+                <h2 className="text-lg font-semibold text-stone-950 dark:text-stone-50">{shelf.name}
                   <span className="ml-2 text-sm font-normal text-stone-500">{shelf.books.length}</span>
                 </h2>
                 <div className="flex gap-2">

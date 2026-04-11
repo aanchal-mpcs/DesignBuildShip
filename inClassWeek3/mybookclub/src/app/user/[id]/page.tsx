@@ -130,7 +130,7 @@ export default async function UserPage({
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-950 dark:text-stone-50">
             {displayName}
           </h1>
           {memberSince && <p className="text-sm text-stone-500 mt-1">Member since {memberSince}</p>}
@@ -144,15 +144,15 @@ export default async function UserPage({
           {/* Stats */}
           <div className="mt-5 flex flex-wrap gap-6">
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-stone-900 dark:text-stone-100">{favorites.length}</span>
+              <span className="text-xl font-bold text-stone-950 dark:text-stone-50">{favorites.length}</span>
               <span className="text-xs text-stone-600">books</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-stone-900 dark:text-stone-100">{finishedTotal}</span>
+              <span className="text-xl font-bold text-stone-950 dark:text-stone-50">{finishedTotal}</span>
               <span className="text-xs text-stone-600">finished</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-stone-900 dark:text-stone-100">{readingNow}</span>
+              <span className="text-xl font-bold text-stone-950 dark:text-stone-50">{readingNow}</span>
               <span className="text-xs text-stone-600">reading</span>
             </div>
             {avgRating && (
@@ -162,7 +162,7 @@ export default async function UserPage({
               </div>
             )}
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-stone-900 dark:text-stone-100">{finishedThisYear}</span>
+              <span className="text-xl font-bold text-stone-950 dark:text-stone-50">{finishedThisYear}</span>
               <span className="text-xs text-stone-600">finished in {currentYear}</span>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default async function UserPage({
 
           return (
             <section key={status} className="mb-10 sm:mb-14">
-              <h2 className="text-lg sm:text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4 sm:mb-6">
+              <h2 className="text-lg sm:text-xl font-semibold text-stone-950 dark:text-stone-50 mb-4 sm:mb-6">
                 {statusLabel[status]}
                 <span className="ml-2 text-sm font-normal text-stone-500">{items.length}</span>
               </h2>
@@ -216,7 +216,7 @@ export default async function UserPage({
                           <div className="w-full h-full bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400 text-xs text-center px-3">No cover</div>
                         )}
                       </div>
-                      <h3 className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium leading-snug line-clamp-2 text-stone-800 dark:text-stone-200">{book.title}</h3>
+                      <h3 className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium leading-snug line-clamp-2 text-stone-950 dark:text-stone-50">{book.title}</h3>
                       <p className="mt-0.5 text-[11px] sm:text-xs text-stone-600 line-clamp-1">{book.author}</p>
                     </a>
                   );

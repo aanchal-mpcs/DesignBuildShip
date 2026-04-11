@@ -81,7 +81,7 @@ export default async function CommunityPage() {
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-stone-950 dark:text-stone-50">
             Community
           </h1>
           <p className="mt-2 sm:mt-3 text-base sm:text-lg text-stone-600 dark:text-stone-400 max-w-xl">
@@ -90,7 +90,7 @@ export default async function CommunityPage() {
           </p>
           <div className="mt-4 sm:mt-6 flex gap-6">
             <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100">
+              <span className="text-xl sm:text-2xl font-bold text-stone-950 dark:text-stone-50">
                 {totalMembers}
               </span>
               <span className="text-xs sm:text-sm text-stone-600">
@@ -98,7 +98,7 @@ export default async function CommunityPage() {
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100">
+              <span className="text-xl sm:text-2xl font-bold text-stone-950 dark:text-stone-50">
                 {totalBooks}
               </span>
               <span className="text-xs sm:text-sm text-stone-600">
@@ -106,7 +106,7 @@ export default async function CommunityPage() {
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100">
+              <span className="text-xl sm:text-2xl font-bold text-stone-950 dark:text-stone-50">
                 {activeReaders}
               </span>
               <span className="text-xs sm:text-sm text-stone-600">
@@ -143,7 +143,7 @@ export default async function CommunityPage() {
               >
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h2 className="text-base font-semibold text-stone-900 dark:text-stone-100">
+                    <h2 className="text-base font-semibold text-stone-950 dark:text-stone-50">
                       {displayName}
                     </h2>
                     <p className="text-xs text-stone-500 mt-0.5">

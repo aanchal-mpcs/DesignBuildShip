@@ -77,7 +77,7 @@ export default async function DigestPage() {
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-stone-950 dark:text-stone-50">
             Weekly Digest
           </h1>
           <p className="mt-2 sm:mt-3 text-base sm:text-lg text-stone-600 dark:text-stone-400 max-w-xl">
@@ -90,7 +90,7 @@ export default async function DigestPage() {
         {/* Trending */}
         {trending.length > 0 && (
           <section className="mb-12">
-            <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4">
+            <h2 className="text-xl font-semibold text-stone-950 dark:text-stone-50 mb-4">
               Trending
               <span className="ml-2 text-sm font-normal text-stone-500">Saved by multiple readers</span>
             </h2>
@@ -118,7 +118,7 @@ export default async function DigestPage() {
         {/* Recently finished */}
         {recentlyFinished.length > 0 && (
           <section className="mb-12">
-            <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4">Recently Finished</h2>
+            <h2 className="text-xl font-semibold text-stone-950 dark:text-stone-50 mb-4">Recently Finished</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
               {recentlyFinished.map((b) => {
                 const bk = b.ol_key.replace("/works/", "");
@@ -143,7 +143,7 @@ export default async function DigestPage() {
 
         {/* Activity feed */}
         <section>
-          <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4">This Week</h2>
+          <h2 className="text-xl font-semibold text-stone-950 dark:text-stone-50 mb-4">This Week</h2>
           {recent.length === 0 ? (
             <p className="text-stone-500">No activity this week.</p>
           ) : (

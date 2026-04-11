@@ -152,7 +152,7 @@ export default function MyBooksPage() {
     <div className="flex-1">
       <div className="border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-950 dark:text-stone-50">
             My Reading List
           </h1>
           <p className="mt-2 text-stone-600">
@@ -292,7 +292,7 @@ export default function MyBooksPage() {
                     </a>
                     <a
                       href={`/book/${bookKey}`}
-                      className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium leading-snug line-clamp-2 text-stone-800 hover:underline dark:text-stone-200"
+                      className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium leading-snug line-clamp-2 text-stone-950 hover:underline dark:text-stone-50"
                     >
                       {book.title}
                     </a>

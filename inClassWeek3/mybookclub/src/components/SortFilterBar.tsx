@@ -30,7 +30,7 @@ const filterTabs: { key: Status | "all"; label: string }[] = [
 ];
 
 const activeTabStyle: Record<string, string> = {
-  all: "border-stone-900 text-stone-900 dark:border-stone-100 dark:text-stone-100",
+  all: "border-stone-950 text-stone-950 dark:border-stone-50 dark:text-stone-50",
   want_to_read: "border-amber-500 text-amber-700 dark:text-amber-400",
   reading: "border-blue-500 text-blue-700 dark:text-blue-400",
   finished: "border-emerald-500 text-emerald-700 dark:text-emerald-400",

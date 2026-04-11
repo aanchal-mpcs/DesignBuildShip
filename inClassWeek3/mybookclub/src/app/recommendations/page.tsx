@@ -104,7 +104,7 @@ export default function RecommendationsPage() {
                     <div className="flex-1 min-w-0">
                       <a href={`/book/${bookKey}`} className="text-sm font-medium text-stone-900 hover:underline dark:text-stone-100">{rec.title}</a>
                       {rec.author && <p className="text-xs text-stone-600 mt-0.5">{rec.author}</p>}
-                      <p className="text-xs text-stone-600 mt-1">Recommended by <span className="font-medium text-stone-700 dark:text-stone-300">{from}</span></p>
+                      <p className="text-xs text-stone-600 mt-1">Recommended by <span className="font-medium text-stone-500 dark:text-stone-300">{from}</span></p>
                       {rec.note && <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 italic">&ldquo;{rec.note}&rdquo;</p>}
                       <div className="mt-2 flex gap-2">
                         <button onClick={() => handleMarkRead(rec.id)}

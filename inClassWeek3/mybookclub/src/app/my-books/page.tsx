@@ -183,7 +183,7 @@ export default function MyBooksPage() {
               {challengeGoal ? (
                 <>
                   <div className="flex items-center justify-between text-sm mb-1.5">
-                    <span className="font-medium text-stone-700 dark:text-stone-300">{new Date().getFullYear()} Reading Challenge</span>
+                    <span className="font-medium text-stone-500 dark:text-stone-300">{new Date().getFullYear()} Reading Challenge</span>
                     <span className="text-stone-600">{counts.finished} / {challengeGoal}</span>
                   </div>
                   <div className="h-3 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">

@@ -45,6 +45,7 @@ export default async function DashboardPage() {
       initialGames={games}
       userFavoriteAbbrs={favoriteAbbrs}
       isLoggedIn={!!user}
+      userEmail={user?.email ?? null}
     />
   );
 }

@@ -17,7 +17,7 @@ export function useRealtimeScores(
   }, [initialGames]);
 
   useEffect(() => {
-    if (favoriteAbbrs.length === 0) return;
+    const showAll = favoriteAbbrs.length === 0;
 
     const channel = supabase
       .channel("live-scores")
@@ -31,6 +31,7 @@ export function useRealtimeScores(
         (payload) => {
           const updated = payload.new as Game;
           if (
+            !showAll &&
             !favoriteAbbrs.includes(updated.home_team) &&
             !favoriteAbbrs.includes(updated.away_team)
           ) {
@@ -52,6 +53,7 @@ export function useRealtimeScores(
         (payload) => {
           const inserted = payload.new as Game;
           if (
+            !showAll &&
             !favoriteAbbrs.includes(inserted.home_team) &&
             !favoriteAbbrs.includes(inserted.away_team)
           ) {

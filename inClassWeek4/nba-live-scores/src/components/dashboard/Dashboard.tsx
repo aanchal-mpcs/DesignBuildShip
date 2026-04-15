@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRealtimeScores } from "@/hooks/useRealtimeScores";
-import { useFavoriteTeams } from "@/hooks/useFavoriteTeams";
 import { classifyGames } from "@/lib/utils/game-status";
 import { Game } from "@/lib/types";
 import GameSection from "./GameSection";
@@ -12,17 +11,16 @@ import Link from "next/link";
 
 interface DashboardProps {
   initialGames: Game[];
-  userFavoriteIds: number[];
+  userFavoriteAbbrs: string[];
 }
 
-export default function Dashboard({ initialGames, userFavoriteIds }: DashboardProps) {
-  const games = useRealtimeScores(initialGames, userFavoriteIds);
+export default function Dashboard({ initialGames, userFavoriteAbbrs }: DashboardProps) {
+  const games = useRealtimeScores(initialGames, userFavoriteAbbrs);
   const { live, final: finalGames, upcoming } = classifyGames(games);
   const supabase = createClient();
   const router = useRouter();
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-  // Track when games update
   useEffect(() => {
     setLastUpdated(new Date());
   }, [games]);

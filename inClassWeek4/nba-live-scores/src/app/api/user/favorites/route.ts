@@ -9,26 +9,26 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { team_ids } = await request.json();
+  const { team_abbrs } = await request.json();
 
-  if (!Array.isArray(team_ids)) {
+  if (!Array.isArray(team_abbrs)) {
     return NextResponse.json(
-      { error: "team_ids must be an array" },
+      { error: "team_abbrs must be an array" },
       { status: 400 }
     );
   }
 
   // Delete existing favorites
-  await supabase.from("user_favorites").delete().eq("user_id", user.id);
+  await supabase.from("nba_favorites").delete().eq("user_id", user.id);
 
   // Insert new favorites
-  if (team_ids.length > 0) {
-    const favorites = team_ids.map((team_id: number) => ({
+  if (team_abbrs.length > 0) {
+    const favorites = team_abbrs.map((team_abbr: string) => ({
       user_id: user.id,
-      team_id,
+      team_abbr,
     }));
 
-    const { error } = await supabase.from("user_favorites").insert(favorites);
+    const { error } = await supabase.from("nba_favorites").insert(favorites);
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

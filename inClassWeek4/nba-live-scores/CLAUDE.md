@@ -34,9 +34,10 @@ balldontlie.io API
 - Server Components for initial data fetch (fast first paint)
 - Client components subscribe to Supabase Realtime for live updates
 - Proxy (`src/proxy.ts`) handles session refresh and auth redirects
-- Static routes: `/login`, `/signup`, `/onboarding`
-- Dynamic route: `/dashboard` (server component, requires auth)
+- Dynamic routes: `/login`, `/signup`, `/onboarding`, `/dashboard`
 - API routes: `/api/teams` (CDN cached 24h), `/api/user/favorites`
+- Vercel Cron calls `/api/cron/poll-scores` daily as a fallback; primary polling runs on Railway
+- Deployed at: https://nba-live-scores.vercel.app
 
 ### Railway -- Score Poller Worker
 
@@ -48,11 +49,15 @@ balldontlie.io API
 
 ### Supabase -- Database + Auth + Realtime
 
-- **Postgres** with four tables: `teams`, `profiles`, `user_favorites`, `games`
-- **Auth**: email/password signup with JWT, integrates with RLS
-- **Realtime**: Postgres WAL changes on `games` table broadcast via WebSocket to subscribed clients
-- **RLS policies**: users read/write own profile and favorites; games readable by all authenticated users; poller uses service role key
-- Migration: `supabase/migrations/001_initial_schema.sql`
+Project ID: `cowvfrepvadirtvdurez`
+
+- **Postgres** with two NBA tables: `nba_games`, `nba_favorites` (prefixed to avoid collision with existing book-app tables)
+- **Auth**: Supabase Auth with JWT, integrates with RLS via `auth.jwt() ->> 'sub'`
+- **Realtime**: `nba_games` added to `supabase_realtime` publication -- any INSERT/UPDATE pushes over WebSocket to subscribed clients
+- **RLS policies**:
+  - `nba_games`: SELECT open to everyone (public scoreboard)
+  - `nba_favorites`: SELECT/INSERT/DELETE scoped to `jwt.sub = user_id`
+  - Poller uses service role key (bypasses RLS) for writes
 
 ## The Fan-Out Pattern
 
@@ -68,55 +73,56 @@ Poller (1 process) --> Postgres UPSERT --> WAL --> Supabase Realtime --> N clien
 
 | Table | Purpose | Key columns |
 |-------|---------|-------------|
-| `teams` | Static reference, 30 NBA teams | id, name, abbreviation, city, conference, division |
-| `profiles` | Extends auth.users | id (FK auth.users), username |
-| `user_favorites` | Many-to-many join | user_id, team_id (composite PK) |
-| `games` | Cached game data from poller | id, date, status, period, time, home/away team+score |
+| `nba_games` | Cached game data from poller | id (int PK), home_team, away_team (abbreviations), home_score, away_score, status, game_clock, home_logo, away_logo, date, scheduled_at, updated_at |
+| `nba_favorites` | Teams each user follows | id (uuid PK), user_id (text), team_abbr (text), created_at; UNIQUE(user_id, team_abbr) |
 
-`games.status` is one of: `scheduled`, `live`, `final`.
+`nba_games.status` is one of: `scheduled`, `live`, `final`.
 
-Indexes: `home_team_id`, `away_team_id`, `(date, status)`.
+`nba_games.game_clock` stores formatted strings like `Q4 2:31`, `Halftime`, `OT 1:05`.
 
-A trigger auto-creates a `profiles` row on signup.
+`home_logo` / `away_logo` are NBA CDN URLs (`cdn.nba.com/logos/nba/{id}/global/L/logo.svg`).
+
+Indexes: `home_team`, `away_team`, `(date, status)`, `nba_favorites(user_id)`.
 
 ## Project Structure
 
 ```
 src/
   app/
-    (auth)/login/         -- Login page
-    (auth)/signup/        -- Signup page
-    onboarding/           -- TeamPicker (post-signup)
+    (auth)/login/         -- Login page (force-dynamic)
+    (auth)/signup/        -- Signup page (force-dynamic)
+    onboarding/           -- TeamPicker (force-dynamic)
     dashboard/            -- Main view (server component initial fetch)
-    api/teams/            -- GET all 30 teams (CDN cached)
-    api/user/favorites/   -- PATCH user's favorite team IDs
-    api/cron/poll-scores/ -- Poller logic (fetches balldontlie, upserts games)
+    dashboard/loading.tsx -- Skeleton loading state
+    api/teams/            -- GET all 30 teams (CDN cached 24h)
+    api/user/favorites/   -- PATCH user's favorite team abbreviations
+    api/cron/poll-scores/ -- Poller logic (fetches balldontlie, upserts nba_games)
   components/
     auth/                 -- LoginForm, SignupForm
-    onboarding/           -- TeamPicker (grid of 30 teams, multi-select)
+    onboarding/           -- TeamPicker (grid of 30 teams by conference, multi-select)
     dashboard/            -- Dashboard, GameSection, LiveGameCard,
                              CompletedGameCard, UpcomingGameCard
   hooks/
-    useRealtimeScores.ts  -- Supabase channel subscription lifecycle
-    useFavoriteTeams.ts   -- Read user_favorites from Supabase
+    useRealtimeScores.ts  -- Supabase channel subscription on nba_games
+    useFavoriteTeams.ts   -- Read nba_favorites from Supabase
   lib/
     supabase/client.ts    -- Browser Supabase client (@supabase/ssr)
     supabase/server.ts    -- Server Supabase client (cookies-based)
     supabase/middleware.ts -- Session refresh helper used by proxy
-    sports-api/balldontlie.ts -- Typed wrapper for balldontlie.io
-    nba-teams.ts          -- Static list of 30 NBA teams
-    types.ts              -- Game, Team, Profile, UserFavorite types
+    sports-api/balldontlie.ts -- Typed wrapper for balldontlie.io v1
+    nba-teams.ts          -- Static list of 30 NBA teams (id, abbreviation, city, conference)
+    types.ts              -- Game, NbaFavorite types
     utils/game-status.ts  -- classifyGames(), formatGameTime()
   proxy.ts                -- Next.js 16 proxy (replaces middleware)
 supabase/
-  migrations/001_initial_schema.sql -- Tables, RLS, triggers, seed data
+  migrations/001_initial_schema.sql -- Original migration (superseded by MCP migration)
 ```
 
 ## Data Flow
 
-1. **Dashboard load** (server): `DashboardPage` server component fetches user favorites + today's games from Supabase, passes as props to client `Dashboard`
-2. **Realtime** (client): `useRealtimeScores` subscribes to `postgres_changes` on `games` table, filters by favorite team IDs client-side, merges updates into state
-3. **Poller** (Railway): Fetches balldontlie.io, maps response to `games` row shape, upserts to Postgres. The upsert triggers WAL replication which Supabase Realtime picks up automatically.
+1. **Dashboard load** (server): `DashboardPage` server component fetches user favorites from `nba_favorites` + today's games from `nba_games` filtered by favorite team abbreviations, passes as props to client `Dashboard`
+2. **Realtime** (client): `useRealtimeScores` subscribes to `postgres_changes` on `nba_games` table, filters by favorite abbreviations client-side, merges updates into React state
+3. **Poller** (Railway): Fetches balldontlie.io, maps response to `nba_games` row shape (with abbreviations, logos, game clock), upserts to Postgres. The upsert triggers WAL replication which Supabase Realtime picks up automatically.
 
 ## Environment Variables
 
@@ -130,6 +136,8 @@ CRON_SECRET                   -- Bearer token to secure the poll endpoint
 
 Set these in Vercel (frontend) and Railway (worker). The service role key and CRON_SECRET must never be exposed to the client.
 
+Currently set on Vercel for production environment (placeholder values -- replace with real Supabase credentials).
+
 ## Commands
 
 ```sh
@@ -142,7 +150,9 @@ npm run lint      # ESLint
 
 - Next.js 16 uses `proxy.ts` (not `middleware.ts`) -- exported function must be named `proxy`
 - Supabase clients: use `lib/supabase/server.ts` in server components/route handlers, `lib/supabase/client.ts` in client components
-- Team IDs in this app match balldontlie.io team IDs (1-30)
-- Game IDs are balldontlie.io game IDs (integers)
+- Teams are identified by abbreviation (e.g. `LAL`, `BOS`, `CHI`), not numeric IDs
+- Game IDs are balldontlie.io game IDs (integers), used as the `nba_games` primary key
 - All game writes go through the service role client (bypasses RLS)
 - External API is balldontlie.io v1 (`https://api.balldontlie.io/v1`)
+- Auth pages and onboarding are `force-dynamic` to avoid build-time prerender failures without env vars
+- Vercel Hobby plan only supports daily crons; sub-minute polling must run on Railway

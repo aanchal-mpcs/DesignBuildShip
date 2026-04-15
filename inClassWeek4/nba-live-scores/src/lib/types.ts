@@ -1,38 +1,23 @@
 export type GameStatus = "scheduled" | "live" | "final";
 
-export interface Team {
-  id: number;
-  name: string;
-  abbreviation: string;
-  city: string;
-  conference: string;
-  division: string;
-}
-
 export interface Game {
   id: number;
-  date: string;
+  home_team: string;
+  away_team: string;
+  home_score: number;
+  away_score: number;
   status: GameStatus;
-  period: number | null;
-  time: string | null;
-  home_team_id: number;
-  away_team_id: number;
-  home_team_score: number;
-  away_team_score: number;
-  scheduled_at: string;
+  game_clock: string | null;
+  home_logo: string | null;
+  away_logo: string | null;
+  date: string;
+  scheduled_at: string | null;
   updated_at: string;
-  // Joined fields
-  home_team?: Team;
-  away_team?: Team;
 }
 
-export interface Profile {
+export interface NbaFavorite {
   id: string;
-  username: string;
-  created_at: string;
-}
-
-export interface UserFavorite {
   user_id: string;
-  team_id: number;
+  team_abbr: string;
+  created_at: string;
 }

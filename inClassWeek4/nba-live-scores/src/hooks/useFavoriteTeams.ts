@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 export function useFavoriteTeams() {
-  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
+  const [favoriteAbbrs, setFavoriteAbbrs] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
 
@@ -17,12 +17,12 @@ export function useFavoriteTeams() {
       }
 
       const { data } = await supabase
-        .from("user_favorites")
-        .select("team_id")
+        .from("nba_favorites")
+        .select("team_abbr")
         .eq("user_id", user.id);
 
       if (data) {
-        setFavoriteIds(data.map((f) => f.team_id));
+        setFavoriteAbbrs(data.map((f) => f.team_abbr));
       }
       setLoading(false);
     }
@@ -30,5 +30,5 @@ export function useFavoriteTeams() {
     fetchFavorites();
   }, []);
 
-  return { favoriteIds, loading };
+  return { favoriteAbbrs, loading };
 }

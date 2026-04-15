@@ -6,18 +6,18 @@ import { Game } from "@/lib/types";
 
 export function useRealtimeScores(
   initialGames: Game[],
-  favoriteTeamIds: number[]
+  favoriteAbbrs: string[]
 ) {
   const [games, setGames] = useState<Game[]>(initialGames);
   const supabase = createClient();
 
-  // Sync when initialGames prop changes (e.g. from refetch)
+  // Sync when initialGames prop changes
   useEffect(() => {
     setGames(initialGames);
   }, [initialGames]);
 
   useEffect(() => {
-    if (favoriteTeamIds.length === 0) return;
+    if (favoriteAbbrs.length === 0) return;
 
     const channel = supabase
       .channel("live-scores")
@@ -26,14 +26,13 @@ export function useRealtimeScores(
         {
           event: "UPDATE",
           schema: "public",
-          table: "games",
+          table: "nba_games",
         },
         (payload) => {
           const updated = payload.new as Game;
-          // Only process if it involves a favorite team
           if (
-            !favoriteTeamIds.includes(updated.home_team_id) &&
-            !favoriteTeamIds.includes(updated.away_team_id)
+            !favoriteAbbrs.includes(updated.home_team) &&
+            !favoriteAbbrs.includes(updated.away_team)
           ) {
             return;
           }
@@ -48,19 +47,18 @@ export function useRealtimeScores(
         {
           event: "INSERT",
           schema: "public",
-          table: "games",
+          table: "nba_games",
         },
         (payload) => {
           const inserted = payload.new as Game;
           if (
-            !favoriteTeamIds.includes(inserted.home_team_id) &&
-            !favoriteTeamIds.includes(inserted.away_team_id)
+            !favoriteAbbrs.includes(inserted.home_team) &&
+            !favoriteAbbrs.includes(inserted.away_team)
           ) {
             return;
           }
 
           setGames((prev) => {
-            // Avoid duplicates
             if (prev.some((g) => g.id === inserted.id)) return prev;
             return [...prev, inserted];
           });
@@ -71,7 +69,7 @@ export function useRealtimeScores(
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [favoriteTeamIds]);
+  }, [favoriteAbbrs]);
 
   return games;
 }

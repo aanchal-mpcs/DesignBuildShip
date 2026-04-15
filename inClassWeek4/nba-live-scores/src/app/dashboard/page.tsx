@@ -11,35 +11,35 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
-  // Fetch user's favorite team IDs
+  // Fetch user's favorite team abbreviations
   const { data: favorites } = await supabase
-    .from("user_favorites")
-    .select("team_id")
+    .from("nba_favorites")
+    .select("team_abbr")
     .eq("user_id", user.id);
 
-  const favoriteIds = favorites?.map((f) => f.team_id) ?? [];
+  const favoriteAbbrs = favorites?.map((f) => f.team_abbr) ?? [];
 
   // If no favorites, redirect to onboarding
-  if (favoriteIds.length === 0) {
+  if (favoriteAbbrs.length === 0) {
     redirect("/onboarding");
   }
 
   // Fetch today's games for favorite teams
   const today = new Date().toISOString().split("T")[0];
   const { data: games } = await supabase
-    .from("games")
+    .from("nba_games")
     .select("*")
     .eq("date", today)
     .or(
-      favoriteIds
-        .flatMap((id) => [`home_team_id.eq.${id}`, `away_team_id.eq.${id}`])
+      favoriteAbbrs
+        .flatMap((abbr) => [`home_team.eq.${abbr}`, `away_team.eq.${abbr}`])
         .join(",")
     );
 
   return (
     <Dashboard
       initialGames={(games as Game[]) ?? []}
-      userFavoriteIds={favoriteIds}
+      userFavoriteAbbrs={favoriteAbbrs}
     />
   );
 }

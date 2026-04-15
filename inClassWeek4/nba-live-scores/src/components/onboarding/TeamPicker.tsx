@@ -6,19 +6,19 @@ import { createClient } from "@/lib/supabase/client";
 import { NBA_TEAMS } from "@/lib/nba-teams";
 
 export default function TeamPicker() {
-  const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [selected, setSelected] = useState<Set<string>>(new Set());
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const supabase = createClient();
 
-  function toggleTeam(teamId: number) {
+  function toggleTeam(abbr: string) {
     setSelected((prev) => {
       const next = new Set(prev);
-      if (next.has(teamId)) {
-        next.delete(teamId);
+      if (next.has(abbr)) {
+        next.delete(abbr);
       } else {
-        next.add(teamId);
+        next.add(abbr);
       }
       return next;
     });
@@ -40,15 +40,17 @@ export default function TeamPicker() {
       return;
     }
 
-    // Insert favorites
-    const favorites = Array.from(selected).map((team_id) => ({
+    // Clear existing favorites, then insert new ones
+    await supabase.from("nba_favorites").delete().eq("user_id", user.id);
+
+    const favorites = Array.from(selected).map((team_abbr) => ({
       user_id: user.id,
-      team_id,
+      team_abbr,
     }));
 
     const { error: insertError } = await supabase
-      .from("user_favorites")
-      .upsert(favorites, { onConflict: "user_id,team_id" });
+      .from("nba_favorites")
+      .insert(favorites);
 
     if (insertError) {
       setError(insertError.message);
@@ -60,7 +62,6 @@ export default function TeamPicker() {
     router.refresh();
   }
 
-  // Group teams by conference
   const east = NBA_TEAMS.filter((t) => t.conference === "East");
   const west = NBA_TEAMS.filter((t) => t.conference === "West");
 
@@ -78,10 +79,10 @@ export default function TeamPicker() {
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
             {east.map((team) => (
               <button
-                key={team.id}
-                onClick={() => toggleTeam(team.id)}
+                key={team.abbreviation}
+                onClick={() => toggleTeam(team.abbreviation)}
                 className={`rounded-lg border-2 px-3 py-3 text-center text-sm font-medium transition-all ${
-                  selected.has(team.id)
+                  selected.has(team.abbreviation)
                     ? "border-orange-500 bg-orange-50 text-orange-700"
                     : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300"
                 }`}
@@ -100,10 +101,10 @@ export default function TeamPicker() {
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
             {west.map((team) => (
               <button
-                key={team.id}
-                onClick={() => toggleTeam(team.id)}
+                key={team.abbreviation}
+                onClick={() => toggleTeam(team.abbreviation)}
                 className={`rounded-lg border-2 px-3 py-3 text-center text-sm font-medium transition-all ${
-                  selected.has(team.id)
+                  selected.has(team.abbreviation)
                     ? "border-orange-500 bg-orange-50 text-orange-700"
                     : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300"
                 }`}

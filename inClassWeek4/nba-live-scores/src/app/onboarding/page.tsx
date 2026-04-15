@@ -1,5 +1,7 @@
 import TeamPicker from "@/components/onboarding/TeamPicker";
 
+export const dynamic = "force-dynamic";
+
 export default function OnboardingPage() {
   return (
     <div className="flex min-h-screen flex-col items-center bg-zinc-50 px-4 py-12">
